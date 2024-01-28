@@ -1,0 +1,151 @@
+1)
+(SELECT course_id
+FROM section
+WHERE semester = 'Fall' and year = 2009)
+UNION
+(SELECT course_id
+FROM section
+WHERE semester = 'Spring' and year = 2010);
+
+2)
+(SELECT course_id
+FROM section
+WHERE semester = 'Fall' and year = 2009)
+INTERSECT
+(SELECT course_id
+FROM section
+WHERE semester = 'Spring' and year = 2010);
+
+3)
+(SELECT course_id
+FROM section
+WHERE semester = 'Fall' and year = 2009)
+MINUS
+(SELECT course_id
+FROM section
+WHERE semester = 'Spring' and year = 2010);
+
+4)
+SELECT title
+FROM course
+WHERE course_id NOT IN(SELECT course_id
+FROM takes);
+
+5)
+SELECT DISTINCT course_id
+FROM section
+WHERE semester = 'Fall' and year= 2009 and 
+course_id IN (SELECT course_id
+FROM section
+WHERE semester = 'Spring' and year= 2010);
+
+6)
+SELECT COUNT (DISTINCT ID)
+FROM takes
+WHERE (course_id, sec_id, semester, year) IN 
+(SELECT course_id, sec_id, semester, year
+FROM teaches
+WHERE teaches.ID= 10101);
+
+7)
+SELECT DISTINCT course_id
+FROM section
+WHERE semester = 'Fall' and year= 2009 and 
+course_id NOT IN (SELECT course_id
+FROM section
+WHERE semester = 'Spring' and year= 2010);
+
+8)
+SELECT name
+FROM student 
+WHERE name IN(SELECT name 
+FROM instructor);
+
+9)
+SELECT name
+FROM instructor
+WHERE salary > SOME (SELECT salary
+FROM instructor
+WHERE dept_name = 'Biology');
+
+10)
+SELECT name
+FROM instructor
+WHERE salary > ALL (SELECT salary
+FROM instructor
+WHERE dept_name = 'Biology');
+
+11)
+SELECT dept_name, avg(salary) 
+FROM instructor 
+GROUP BY dept_name 
+HAVING avg(salary)>= ALL(SELECT avg(salary)
+FROM instructor
+GROUP BY dept_name);
+
+12)
+SELECT dept_name, budget 
+FROM department 
+WHERE budget<(SELECT avg(salary) 
+FROM instructor);
+
+13)
+SELECT course_id
+FROM section S
+WHERE semester = 'Fall' and year = 2009 and 
+EXISTS (SELECT *
+FROM section T
+WHERE semester = 'Spring' and year= 2010 
+and S.course_id = T.course_id);
+
+14)
+SELECT DISTINCT S.ID, S.name
+FROM student S
+WHERE NOT EXISTS ( (SELECT course_id
+FROM course
+WHERE dept_name = 'Biology')
+EXCEPT
+(SELECT T.course_id
+FROM takes T
+WHERE S.ID = T.ID));
+
+15)
+SELECT title
+FROM course 
+WHERE course_id IN (SELECT course_id 
+FROM section 
+WHERE year = 2009
+GROUP BY course_id 
+HAVING count(course_id)<2);
+
+16)
+SELECT name 
+FROM student s 
+WHERE 2<=(SELECT count(id) 
+FROM takes t 
+WHERE s.id=t.id and s.dept_name='Comp. Sci.' GROUP BY id);
+
+17)
+SELECT dept_name, avg (salary) as avg_salary
+FROM instructor
+GROUP BY dept_name
+HAVING avg (salary) > 42000;
+
+18)
+CREATE VIEW all_courses as
+SELECT course.course_id, sec_id, building, room_number
+from course, section
+where course.course_id = section.course_id
+and course.dept_name = 'Physics'
+and section.semester = 'Fall'
+and section.year = '2009';
+
+19)
+SELECT course_id 
+FROM all_courses;
+
+20)
+CREATE VIEW departments_total_salary(dept_name, total_salary) as
+SELECT dept_name, sum (salary)
+FROM instructor
+GROUP BY dept_name;

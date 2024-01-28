@@ -1,0 +1,157 @@
+1)CREATE TABLE Employee(
+    EmpNo INT PRIMARY KEY,
+    EmpName VARCHAR(25) NOT NULL,
+    Gender CHAR(1) NOT NULL,
+    Salary NUMBER(8) NOT NULL,
+    Address CHAR(25) NOT NULL,
+    DNo INT,
+    CHECK(Gender IN ('M','F'))
+  );
+
+2)CREATE TABLE Department1(
+    DeptNo INT PRIMARY KEY,
+    DeptName VARCHAR(25) UNIQUE,
+    Location CHAR(25)
+  );
+
+3)ALTER TABLE Employee 
+  ADD CONSTRAINT FK_ID
+  FOREIGN KEY (DNo) REFERENCES Department1 (DeptNo);
+
+4)INSERT INTO Department1 VALUES(&DeptNo,'&DeptName','&Location');
+//Enter these values 
+  //101, CSE, Geneva
+  //102, ECE, Manipal
+  //103, IT, Manglore
+  //104, Biomedical, Manipal
+  //105, Automobile, Mumbai
+
+  INSERT INTO Employee VALUES(&EmpNo,'&EmpName','&Gender', &Salary, '&Address', &DNo);
+//Enter these values 
+  //1, Adam, M, 12000,  Geneva, 101
+  //2, Bob, M, 24000, Manipal, 102
+  //3, Casey, F, 50000, Manglore, 103
+  //4, Donald, M, 10000, Manipal, 104
+  //5, Emma, F, 65000, Mumbai, 105
+
+5)INSERT INTO Department1 VALUES(101, 'Aeronautics', 'USA');
+  INSERT INTO Department1 VALUES(106, 'CSE', 'Toronto');
+  INSERT INTO Employee VALUES(6, 'Fred', 'N',78000, 'Pune', 106);
+  INSERT INTO Employee VALUES(7, 'Ginnie', 'F',8000, null, 107);
+
+6)DELETE FROM Department1 
+  WHERE DeptNo = 105;
+
+7)ALTER TABLE Employee
+  DROP CONSTRAINT FK_ID;
+
+  ALTER TABLE Employee
+  ADD CONSTRAINT FK_ID
+  FOREIGN KEY (DNo) REFERENCES Department1 (DeptNo)
+  ON DELETE CASCADE;
+
+8)ALTER TABLE Employee
+  MODIFY (CONSTRAINT  sal Salary DEFAULT 10000);
+
+  INSERT INTO Department1 VALUES(106,'CCE', 'Banglore');
+
+  INSERT INTO Employee (EmpNo, EmpName, Gender,Address, DNo) VALUES (6,'Freddie','M','Banglore',106);
+
+  SELECT *
+  FROM Employee
+  WHERE EmpNo = 6;
+
+9)
+SELECT name, dept_name 
+FROM student;
+
+10)
+SELECT *
+FROM instructor
+WHERE dept_name = 'Comp. Sci.';
+
+11)
+SELECT title 
+FROM course
+WHERE dept_name = 'Comp. Sci.' AND credits = 3;
+
+12)
+SELECT takes.course_id, title 
+FROM course,takes
+WHERE id = 12345 AND takes.course_id = course.course_id;
+
+13)
+SELECT *
+FROM instructor
+WHERE salary BETWEEN 40000 AND 90000;
+
+14)
+SELECT id
+FROM instructor
+WHERE id NOT IN(SELECT id FROM teaches);
+
+15)
+SELECT name, title, year
+FROM student NATURAL JOIN course NATURAL JOIN section
+WHERE room_number = 303;
+
+SELECT name, title, year
+FROM student NATURAL JOIN course NATURAL JOIN section
+WHERE room_number = 120;
+
+16)
+SELECT name,takes.course_id, title as c_name
+FROM student, course, takes
+WHERE year = 2015;
+
+17)
+SELECT name, salary as inst_salary
+FROM instructor
+WHERE salary > (SELECT min(salary)
+FROM instructor
+WHERE dept_name = 'Comp. Sci.');
+
+18)
+SELECT *
+FROM instructor
+WHERE dept_name LIKE '%ch%';
+
+SELECT *
+FROM instructor
+WHERE dept_name LIKE '%ic%';
+
+19)
+SELECT name, LENGTH(name)
+FROM student;
+
+20)
+SELECT dept_name, SUBSTR(dept_name,3,3)
+FROM department;
+
+21)
+SELECT UPPER(name)
+FROM instructor;
+
+22)
+SELECT id, course_id, NVL(grade, 0)
+FROM takes
+WHERE id = '98988';
+
+23)
+SELECT salary , ROUND(salary/3,-2)
+FROM instructor;
+
+24)
+ALTER TABLE Employee
+ADD (DOB CHAR(8));
+
+UPDATE Employee SET DOB = 26052004
+WHERE EmpNo = 1;
+UPDATE Employee SET DOB = 01052004
+WHERE EmpNo = 2;
+
+SELECT EmpName, TO_DATE(DOB,'DD-MM-YYYY')
+FROM Employee;
+
+25)SELECT EmpName, TO_CHAR(DOB,YYYY)
+FROM Employee;

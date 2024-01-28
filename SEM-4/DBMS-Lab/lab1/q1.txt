@@ -1,0 +1,36 @@
+1)CREATE TABLE employee(
+    emp_no INT,
+    emp_name VARCHAR(25),
+    emp_address CHAR(25)
+  );
+
+2)INSERT INTO employee VALUES(&emp_no, '&emp_name', '&emp_address');
+  // 101, Adam, Manipal
+  // 102, Bob, Manglore    
+  // 103, Casey, Manipal
+  // 104, Donald, Manipal
+  // 105, Eddie, Manglore 
+
+3)SELECT emp_name
+  FROM employee;
+
+4)SELECT *
+  FROM employee WHERE emp_address='Manipal';
+
+5)ALTER TABLE employee
+  ADD(salary INT);
+
+6)UPDATE employee SET salary=10000 WHERE emp_no=101;
+  UPDATE employee SET salary=20000 WHERE emp_no=102;
+  UPDATE employee SET salary=30000 WHERE emp_no=103;
+  UPDATE employee SET salary=40000 WHERE emp_no=104;
+  UPDATE employee SET salary=50000 WHERE emp_no=105;
+
+7)DESCRIBE employee;
+
+8)DELETE FROM employee
+  WHERE emp_address = 'Manglore';
+
+9)RENAME employee TO employee1;
+
+10)DROP TABLE employee1;
