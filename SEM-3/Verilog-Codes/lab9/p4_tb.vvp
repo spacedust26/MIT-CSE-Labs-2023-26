@@ -1,0 +1,122 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00977C60 .scope module, "p4_tb" "p4_tb" 2 3;
+ .timescale -9 -9;
+RS_011740DC .resolv tri, L_0097DD68, L_0097DE18, C4<zzzzzzzz>, C4<zzzzzzzz>;
+v0097DC60_0 .net8 "Q", 7 0, RS_011740DC; 2 drivers
+v0097DB58_0 .var "clk", 0 0;
+v0097DAA8_0 .var "reset", 0 0;
+S_00977B50 .scope module, "uut" "p4" 2 6, 3 12, S_00977C60;
+ .timescale -9 -9;
+L_0097A5B0 .functor OR 1, L_0097DDC0, L_0097D948, C4<0>, C4<0>;
+L_0097E098 .functor OR 1, L_0097A5B0, L_0097D9A0, C4<0>, C4<0>;
+L_0097E338 .functor OR 1, L_0097E098, L_0097D840, C4<0>, C4<0>;
+v00974008_0 .net *"_s10", 0 0, L_0097E098; 1 drivers
+v00974060_0 .net *"_s13", 0 0, L_0097D840; 1 drivers
+v009731D0_0 .net *"_s3", 0 0, L_0097DDC0; 1 drivers
+v00973228_0 .net *"_s5", 0 0, L_0097D948; 1 drivers
+v00973280_0 .net *"_s6", 0 0, L_0097A5B0; 1 drivers
+v0097A440_0 .net *"_s9", 0 0, L_0097D9A0; 1 drivers
+v0097A498_0 .net "clk", 0 0, v0097DB58_0; 1 drivers
+v0097A4F0_0 .alias "op", 7 0, v0097DC60_0;
+v0097DD10_0 .net "reset", 0 0, v0097DAA8_0; 1 drivers
+v0097D7E8_0 .net "s", 0 0, L_0097E338; 1 drivers
+L_0097DD68 .part/pv v011719A0_0, 0, 4, 8;
+L_0097DDC0 .part RS_011740DC, 3, 1;
+L_0097D948 .part RS_011740DC, 2, 1;
+L_0097D9A0 .part RS_011740DC, 1, 1;
+L_0097D840 .part RS_011740DC, 0, 1;
+L_0097DE18 .part/pv v0097A298_0, 4, 4, 8;
+S_009781B0 .scope module, "st0" "counter" 3 16, 3 1, S_00977B50;
+ .timescale -9 -9;
+v01171948_0 .alias "clk", 0 0, v0097A498_0;
+v011719A0_0 .var "count", 3 0;
+v00973FB0_0 .alias "rst", 0 0, v0097DD10_0;
+E_00978F00 .event negedge, v01171948_0;
+S_00978348 .scope module, "st1" "counter" 3 18, 3 1, S_00977B50;
+ .timescale -9 -9;
+v0097A1F0_0 .alias "clk", 0 0, v0097D7E8_0;
+v0097A298_0 .var "count", 3 0;
+v011718F0_0 .alias "rst", 0 0, v0097DD10_0;
+E_00978E40 .event negedge, v0097A1F0_0;
+    .scope S_009781B0;
+T_0 ;
+    %wait E_00978F00;
+    %load/v 8, v00973FB0_0, 1;
+    %mov 9, 0, 1;
+    %cmpi/u 8, 0, 2;
+    %mov 8, 4, 1;
+    %load/v 9, v011719A0_0, 4;
+    %mov 13, 0, 2;
+    %cmpi/u 9, 9, 6;
+    %or 8, 4, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 4, 0;
+    %assign/v0 v011719A0_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v011719A0_0, 4;
+    %mov 12, 0, 28;
+    %addi 8, 1, 32;
+    %ix/load 0, 4, 0;
+    %assign/v0 v011719A0_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_00978348;
+T_1 ;
+    %wait E_00978E40;
+    %load/v 8, v011718F0_0, 1;
+    %mov 9, 0, 1;
+    %cmpi/u 8, 0, 2;
+    %mov 8, 4, 1;
+    %load/v 9, v0097A298_0, 4;
+    %mov 13, 0, 2;
+    %cmpi/u 9, 9, 6;
+    %or 8, 4, 1;
+    %jmp/0xz  T_1.0, 8;
+    %ix/load 0, 4, 0;
+    %assign/v0 v0097A298_0, 0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/v 8, v0097A298_0, 4;
+    %mov 12, 0, 28;
+    %addi 8, 1, 32;
+    %ix/load 0, 4, 0;
+    %assign/v0 v0097A298_0, 0, 8;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_00977C60;
+T_2 ;
+    %set/v v0097DB58_0, 0, 1;
+T_2.0 ;
+    %delay 10, 0;
+    %load/v 8, v0097DB58_0, 1;
+    %inv 8, 1;
+    %set/v v0097DB58_0, 8, 1;
+    %jmp T_2.0;
+    %end;
+    .thread T_2;
+    .scope S_00977C60;
+T_3 ;
+    %vpi_call 2 14 "$dumpfile", "p4_tb.vcd";
+    %vpi_call 2 15 "$dumpvars", 1'sb0, S_00977C60;
+    %set/v v0097DAA8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0097DAA8_0, 1, 1;
+    %delay 1000, 0;
+    %vpi_call 2 19 "$display", "Test Complete";
+    %vpi_call 2 20 "$finish";
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "p4_tb.v";
+    "./p4.v";

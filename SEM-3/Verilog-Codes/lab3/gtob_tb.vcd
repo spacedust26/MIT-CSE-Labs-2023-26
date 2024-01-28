@@ -1,0 +1,46 @@
+$date
+	Sat Nov 18 17:53:09 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module gtob_tb $end
+$var wire 4 ! b [3:0] $end
+$var reg 4 " g [3:0] $end
+$scope module uut $end
+$var wire 4 # g [3:0] $end
+$var reg 4 $ b [3:0] $end
+$var integer 32 % i [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b11111111111111111111111111111111 %
+b1100 $
+b1010 #
+b1010 "
+b1100 !
+$end
+#20
+b11111111111111111111111111111111 %
+b10 $
+b10 !
+b11 "
+b11 #
+#40
+b11111111111111111111111111111111 %
+b1010 $
+b1010 !
+b1111 "
+b1111 #
+#60
+b11111111111111111111111111111111 %
+b100 $
+b100 !
+b110 "
+b110 #
+#80

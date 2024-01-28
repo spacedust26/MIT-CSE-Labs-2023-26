@@ -1,0 +1,79 @@
+$date
+	Wed Nov 22 10:04:43 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module addtff_tb $end
+$var wire 1 ! q $end
+$var reg 1 " clk $end
+$var reg 1 # reset $end
+$var reg 1 $ t $end
+$scope module uut $end
+$var wire 1 % clk $end
+$var wire 1 & reset $end
+$var wire 1 ' t $end
+$var reg 1 ( q $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0(
+0'
+1&
+0%
+0$
+1#
+0"
+0!
+$end
+#10
+1"
+1%
+#20
+1(
+1!
+0"
+0%
+0#
+0&
+1$
+1'
+#30
+1"
+1%
+#40
+0(
+0!
+0"
+0%
+#50
+1"
+1%
+#60
+0"
+0%
+0$
+0'
+#70
+1"
+1%
+#80
+1(
+1!
+0"
+0%
+1$
+1'
+#90
+1"
+1%
+#100
+0(
+0!
+0"
+0%

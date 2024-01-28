@@ -1,0 +1,122 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01067FE8 .scope module, "kmap2_tb" "kmap2_tb" 2 3;
+ .timescale -9 -9;
+v0106B5F8_0 .var "a", 0 0;
+v010A10D0_0 .var "b", 0 0;
+v010A1128_0 .var "c", 0 0;
+v010C6FA8_0 .var "d", 0 0;
+v010C7058_0 .net "f", 0 0, L_0106D8E0; 1 drivers
+S_01068758 .scope module, "uut" "kmap2" 2 6, 3 1, S_01067FE8;
+ .timescale -9 -9;
+L_0106D8A8 .functor NOT 1, v010A1128_0, C4<0>, C4<0>, C4<0>;
+L_0106D9F8 .functor AND 1, v010A10D0_0, L_0106D8A8, C4<1>, C4<1>;
+L_0106D988 .functor NOT 1, v010C6FA8_0, C4<0>, C4<0>, C4<0>;
+L_0106DC28 .functor AND 1, v010A1128_0, L_0106D988, C4<1>, C4<1>;
+L_0106D8E0 .functor OR 1, L_0106D9F8, L_0106DC28, C4<0>, C4<0>;
+v01063D30_0 .net *"_s0", 0 0, L_0106D8A8; 1 drivers
+v01063D88_0 .net *"_s2", 0 0, L_0106D9F8; 1 drivers
+v01063DE0_0 .net *"_s4", 0 0, L_0106D988; 1 drivers
+v01063118_0 .net *"_s6", 0 0, L_0106DC28; 1 drivers
+v01063170_0 .net "a", 0 0, v0106B5F8_0; 1 drivers
+v010631C8_0 .net "b", 0 0, v010A10D0_0; 1 drivers
+v0106B4F0_0 .net "c", 0 0, v010A1128_0; 1 drivers
+v0106B548_0 .net "d", 0 0, v010C6FA8_0; 1 drivers
+v0106B5A0_0 .alias "f", 0 0, v010C7058_0;
+    .scope S_01067FE8;
+T_0 ;
+    %vpi_call 2 8 "$dumpfile", "kmap2_tb.vcd";
+    %vpi_call 2 9 "$dumpvars", 1'sb0, S_01067FE8;
+    %set/v v0106B5F8_0, 0, 1;
+    %set/v v010A10D0_0, 0, 1;
+    %set/v v010A1128_0, 0, 1;
+    %set/v v010C6FA8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 0, 1;
+    %set/v v010A10D0_0, 0, 1;
+    %set/v v010A1128_0, 0, 1;
+    %set/v v010C6FA8_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 0, 1;
+    %set/v v010A10D0_0, 0, 1;
+    %set/v v010A1128_0, 1, 1;
+    %set/v v010C6FA8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 0, 1;
+    %set/v v010A10D0_0, 0, 1;
+    %set/v v010A1128_0, 1, 1;
+    %set/v v010C6FA8_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 0, 1;
+    %set/v v010A10D0_0, 1, 1;
+    %set/v v010A1128_0, 0, 1;
+    %set/v v010C6FA8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 0, 1;
+    %set/v v010A10D0_0, 1, 1;
+    %set/v v010A1128_0, 0, 1;
+    %set/v v010C6FA8_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 0, 1;
+    %set/v v010A10D0_0, 1, 1;
+    %set/v v010A1128_0, 1, 1;
+    %set/v v010C6FA8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 0, 1;
+    %set/v v010A10D0_0, 1, 1;
+    %set/v v010A1128_0, 1, 1;
+    %set/v v010C6FA8_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 1, 1;
+    %set/v v010A10D0_0, 0, 1;
+    %set/v v010A1128_0, 0, 1;
+    %set/v v010C6FA8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 1, 1;
+    %set/v v010A10D0_0, 0, 1;
+    %set/v v010A1128_0, 0, 1;
+    %set/v v010C6FA8_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 1, 1;
+    %set/v v010A10D0_0, 0, 1;
+    %set/v v010A1128_0, 1, 1;
+    %set/v v010C6FA8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 1, 1;
+    %set/v v010A10D0_0, 0, 1;
+    %set/v v010A1128_0, 1, 1;
+    %set/v v010C6FA8_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 1, 1;
+    %set/v v010A10D0_0, 1, 1;
+    %set/v v010A1128_0, 0, 1;
+    %set/v v010C6FA8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 1, 1;
+    %set/v v010A10D0_0, 1, 1;
+    %set/v v010A1128_0, 0, 1;
+    %set/v v010C6FA8_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 1, 1;
+    %set/v v010A10D0_0, 1, 1;
+    %set/v v010A1128_0, 1, 1;
+    %set/v v010C6FA8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0106B5F8_0, 1, 1;
+    %set/v v010A10D0_0, 1, 1;
+    %set/v v010A1128_0, 1, 1;
+    %set/v v010C6FA8_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 26 "$display", "Test complete";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "kmap2_tb.v";
+    "./kmap2.v";

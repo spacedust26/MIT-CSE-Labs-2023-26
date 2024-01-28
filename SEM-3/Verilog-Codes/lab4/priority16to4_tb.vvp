@@ -1,0 +1,76 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0104C8D0 .scope module, "priority16to4_tb" "priority16to4_tb" 2 3;
+ .timescale -9 -9;
+v01048C90_0 .var "w", 15 0;
+v01048CE8_0 .net "y", 3 0, v01047FB8_0; 1 drivers
+v0104A2A8_0 .net "z", 0 0, v01048C38_0; 1 drivers
+S_0104C738 .scope module, "uut" "priority16to4" 2 7, 3 1, S_0104C8D0;
+ .timescale -9 -9;
+v01047F08_0 .var/i "i", 31 0;
+v01047F60_0 .net "w", 15 0, v01048C90_0; 1 drivers
+v01047FB8_0 .var "y", 3 0;
+v01048C38_0 .var "z", 0 0;
+E_0104BA00 .event edge, v01047F60_0;
+    .scope S_0104C738;
+T_0 ;
+    %wait E_0104BA00;
+    %set/v v01047FB8_0, 2, 4;
+    %set/v v01048C38_0, 0, 1;
+    %set/v v01047F08_0, 0, 32;
+T_0.0 ;
+    %load/v 8, v01047F08_0, 32;
+   %cmpi/s 8, 16, 32;
+    %jmp/0xz T_0.1, 5;
+    %ix/getv/s 1, v01047F08_0;
+    %jmp/1 T_0.2, 4;
+    %load/x1p 8, v01047F60_0, 1;
+    %jmp T_0.3;
+T_0.2 ;
+    %mov 8, 2, 1;
+T_0.3 ;
+; Save base=8 wid=1 in lookaside.
+    %jmp/0xz  T_0.4, 8;
+    %load/v 8, v01047F08_0, 32;
+    %set/v v01047FB8_0, 8, 4;
+    %set/v v01048C38_0, 1, 1;
+T_0.4 ;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v01047F08_0, 32;
+    %set/v v01047F08_0, 8, 32;
+    %jmp T_0.0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0104C8D0;
+T_1 ;
+    %vpi_call 2 9 "$dumpfile", "priority16to4_tb.vcd";
+    %vpi_call 2 10 "$dumpvars", 1'sb0, S_0104C8D0;
+    %movi 8, 250, 16;
+    %set/v v01048C90_0, 8, 16;
+    %delay 20, 0;
+    %movi 8, 527, 16;
+    %set/v v01048C90_0, 8, 16;
+    %delay 20, 0;
+    %movi 8, 1709, 16;
+    %set/v v01048C90_0, 8, 16;
+    %delay 20, 0;
+    %movi 8, 3158, 16;
+    %set/v v01048C90_0, 8, 16;
+    %delay 20, 0;
+    %movi 8, 1, 16;
+    %set/v v01048C90_0, 8, 16;
+    %delay 20, 0;
+    %vpi_call 2 16 "$display", "Test complete";
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "priority16to4_tb.v";
+    "./priority16to4.v";

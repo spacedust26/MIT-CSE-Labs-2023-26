@@ -1,0 +1,433 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_010F2010 .scope module, "ft2_tb" "ft2_tb" 2 3;
+ .timescale -9 -9;
+RS_011041EC .resolv tri, L_0112FA30, L_0112F6C0, L_0112FB90, L_0112F400;
+v0112D8A0_0 .net8 "a", 3 0, RS_011041EC; 4 drivers
+v0112D848_0 .var "clk", 0 0;
+v0112DED0_0 .var "i", 3 0;
+v0112DF28_0 .var "s", 1 0;
+v0112D950_0 .var "si", 0 0;
+S_010F25E8 .scope module, "uut" "ft2" 2 8, 3 21, S_010F2010;
+ .timescale -9 -9;
+L_010F7420 .functor NOT 1, L_0112E0E0, C4<0>, C4<0>, C4<0>;
+L_010F7538 .functor NOT 1, L_0112E450, C4<0>, C4<0>, C4<0>;
+L_0112EB98 .functor NOT 1, L_0112E500, C4<0>, C4<0>, C4<0>;
+L_0112F1B8 .functor NOT 1, L_0112E3A0, C4<0>, C4<0>, C4<0>;
+v0112D140_0 .net *"_s1", 0 0, L_0112DF80; 1 drivers
+v0112D1F0_0 .net *"_s13", 0 0, L_0112E660; 1 drivers
+v0112CF30_0 .net *"_s15", 0 0, L_0112E450; 1 drivers
+v0112CFE0_0 .net *"_s16", 0 0, L_010F7538; 1 drivers
+v0112D038_0 .net *"_s19", 0 0, L_0112E4A8; 1 drivers
+v0112D248_0 .net *"_s21", 0 0, L_0112E558; 1 drivers
+v0112D2A0_0 .net *"_s25", 0 0, L_0112E1E8; 1 drivers
+v0112DA00_0 .net *"_s27", 0 0, L_0112E500; 1 drivers
+v0112DCC0_0 .net *"_s28", 0 0, L_0112EB98; 1 drivers
+v0112DBB8_0 .net *"_s3", 0 0, L_0112E0E0; 1 drivers
+v0112D8F8_0 .net *"_s31", 0 0, L_0112E608; 1 drivers
+v0112DE20_0 .net *"_s33", 0 0, L_0112E348; 1 drivers
+v0112DAB0_0 .net *"_s37", 0 0, L_0112E240; 1 drivers
+v0112E030_0 .net *"_s39", 0 0, L_0112E3A0; 1 drivers
+v0112DDC8_0 .net *"_s4", 0 0, L_010F7420; 1 drivers
+v0112E088_0 .net *"_s40", 0 0, L_0112F1B8; 1 drivers
+v0112D6E8_0 .net *"_s43", 0 0, L_0112E298; 1 drivers
+v0112DB08_0 .net *"_s7", 0 0, L_0112D740; 1 drivers
+v0112E138_0 .net *"_s9", 0 0, L_0112D798; 1 drivers
+v0112DA58_0 .alias "a", 3 0, v0112D8A0_0;
+v0112DB60_0 .net "clk", 0 0, v0112D848_0; 1 drivers
+RS_01104204 .resolv tri, L_0112F350, L_0112FDA0, L_0112F718, L_0112F2F8;
+v0112DFD8_0 .net8 "d", 3 0, RS_01104204; 4 drivers
+v0112DC10_0 .net "i", 3 0, v0112DED0_0; 1 drivers
+v0112DD70_0 .net "m0", 3 0, L_0112E2F0; 1 drivers
+v0112DC68_0 .net "m1", 3 0, L_0112E5B0; 1 drivers
+v0112D9A8_0 .net "m2", 3 0, L_0112E3F8; 1 drivers
+v0112DD18_0 .net "m3", 3 0, L_0112D7F0; 1 drivers
+v0112DE78_0 .net "s", 1 0, v0112DF28_0; 1 drivers
+v0112E190_0 .net "si", 0 0, v0112D950_0; 1 drivers
+L_0112DF80 .part RS_011041EC, 3, 1;
+L_0112E0E0 .part RS_011041EC, 3, 1;
+L_0112D740 .part v0112DED0_0, 3, 1;
+L_0112D798 .part RS_011041EC, 2, 1;
+L_0112D7F0 .concat [ 1 1 1 1], L_0112D798, L_0112D740, L_010F7420, L_0112DF80;
+L_0112E660 .part RS_011041EC, 2, 1;
+L_0112E450 .part RS_011041EC, 2, 1;
+L_0112E4A8 .part v0112DED0_0, 2, 1;
+L_0112E558 .part RS_011041EC, 1, 1;
+L_0112E3F8 .concat [ 1 1 1 1], L_0112E558, L_0112E4A8, L_010F7538, L_0112E660;
+L_0112E1E8 .part RS_011041EC, 1, 1;
+L_0112E500 .part RS_011041EC, 1, 1;
+L_0112E608 .part v0112DED0_0, 1, 1;
+L_0112E348 .part RS_011041EC, 0, 1;
+L_0112E5B0 .concat [ 1 1 1 1], L_0112E348, L_0112E608, L_0112EB98, L_0112E1E8;
+L_0112E240 .part RS_011041EC, 0, 1;
+L_0112E3A0 .part RS_011041EC, 0, 1;
+L_0112E298 .part v0112DED0_0, 0, 1;
+L_0112E2F0 .concat [ 1 1 1 1], v0112D950_0, L_0112E298, L_0112F1B8, L_0112E240;
+L_0112F350 .part/pv v0112D3A8_0, 3, 1, 4;
+L_0112FDA0 .part/pv v0112D560_0, 2, 1, 4;
+L_0112F718 .part/pv v0112D2F8_0, 1, 1, 4;
+L_0112F2F8 .part/pv v0112D198_0, 0, 1, 4;
+L_0112FA88 .part RS_01104204, 3, 1;
+L_0112FA30 .part/pv v0112D400_0, 3, 1, 4;
+L_0112F770 .part RS_01104204, 2, 1;
+L_0112F6C0 .part/pv v010C48A0_0, 2, 1, 4;
+L_0112F3A8 .part RS_01104204, 1, 1;
+L_0112FB90 .part/pv v010C31C8_0, 1, 1, 4;
+L_0112F458 .part RS_01104204, 0, 1;
+L_0112F400 .part/pv v010F90C0_0, 0, 1, 4;
+S_010F2670 .scope module, "stg0" "mux4to1" 3 31, 3 1, S_010F25E8;
+ .timescale -9 -9;
+v0112D3A8_0 .var "f", 0 0;
+v0112D5B8_0 .alias "s", 1 0, v0112DE78_0;
+v0112D4B0_0 .alias "w", 3 0, v0112DD18_0;
+E_010F9850 .event edge, v0112CED8_0, v0112D4B0_0;
+S_010F1BD0 .scope module, "stg1" "mux4to1" 3 32, 3 1, S_010F25E8;
+ .timescale -9 -9;
+v0112D560_0 .var "f", 0 0;
+v0112D090_0 .alias "s", 1 0, v0112DE78_0;
+v0112D350_0 .alias "w", 3 0, v0112D9A8_0;
+E_010F9830 .event edge, v0112CED8_0, v0112D350_0;
+S_010F21A8 .scope module, "stg2" "mux4to1" 3 33, 3 1, S_010F25E8;
+ .timescale -9 -9;
+v0112D2F8_0 .var "f", 0 0;
+v0112D508_0 .alias "s", 1 0, v0112DE78_0;
+v0112D610_0 .alias "w", 3 0, v0112DC68_0;
+E_010F99D0 .event edge, v0112CED8_0, v0112D610_0;
+S_010F2780 .scope module, "stg3" "mux4to1" 3 34, 3 1, S_010F25E8;
+ .timescale -9 -9;
+v0112D198_0 .var "f", 0 0;
+v0112CED8_0 .alias "s", 1 0, v0112DE78_0;
+v0112D458_0 .alias "w", 3 0, v0112DD70_0;
+E_010F9810 .event edge, v0112CED8_0, v0112D458_0;
+S_010F1CE0 .scope module, "stg4" "dff" 3 35, 3 14, S_010F25E8;
+ .timescale -9 -9;
+v0112D0E8_0 .alias "clk", 0 0, v0112DB60_0;
+v0112CF88_0 .net "d", 0 0, L_0112FA88; 1 drivers
+v0112D400_0 .var "q", 0 0;
+S_010F2560 .scope module, "stg5" "dff" 3 36, 3 14, S_010F25E8;
+ .timescale -9 -9;
+v010C47F0_0 .alias "clk", 0 0, v0112DB60_0;
+v010C4848_0 .net "d", 0 0, L_0112F770; 1 drivers
+v010C48A0_0 .var "q", 0 0;
+S_010F1AC0 .scope module, "stg6" "dff" 3 37, 3 14, S_010F25E8;
+ .timescale -9 -9;
+v010C3118_0 .alias "clk", 0 0, v0112DB60_0;
+v010C3170_0 .net "d", 0 0, L_0112F3A8; 1 drivers
+v010C31C8_0 .var "q", 0 0;
+S_010F2450 .scope module, "stg7" "dff" 3 38, 3 14, S_010F25E8;
+ .timescale -9 -9;
+v010F9010_0 .alias "clk", 0 0, v0112DB60_0;
+v010F9068_0 .net "d", 0 0, L_0112F458; 1 drivers
+v010F90C0_0 .var "q", 0 0;
+E_010F97D0 .event posedge, v010F9010_0;
+    .scope S_010F2670;
+T_0 ;
+    %wait E_010F9850;
+    %load/v 8, v0112D5B8_0, 2;
+    %cmpi/u 8, 0, 2;
+    %jmp/1 T_0.0, 6;
+    %cmpi/u 8, 1, 2;
+    %jmp/1 T_0.1, 6;
+    %cmpi/u 8, 2, 2;
+    %jmp/1 T_0.2, 6;
+    %cmpi/u 8, 3, 2;
+    %jmp/1 T_0.3, 6;
+    %jmp T_0.4;
+T_0.0 ;
+    %load/v 8, v0112D4B0_0, 1; Only need 1 of 4 bits
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D3A8_0, 8, 1;
+    %jmp T_0.4;
+T_0.1 ;
+    %ix/load 1, 1, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.5, 4;
+    %load/x1p 8, v0112D4B0_0, 1;
+    %jmp T_0.6;
+T_0.5 ;
+    %mov 8, 2, 1;
+T_0.6 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D3A8_0, 8, 1;
+    %jmp T_0.4;
+T_0.2 ;
+    %ix/load 1, 2, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.7, 4;
+    %load/x1p 8, v0112D4B0_0, 1;
+    %jmp T_0.8;
+T_0.7 ;
+    %mov 8, 2, 1;
+T_0.8 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D3A8_0, 8, 1;
+    %jmp T_0.4;
+T_0.3 ;
+    %ix/load 1, 3, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.9, 4;
+    %load/x1p 8, v0112D4B0_0, 1;
+    %jmp T_0.10;
+T_0.9 ;
+    %mov 8, 2, 1;
+T_0.10 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D3A8_0, 8, 1;
+    %jmp T_0.4;
+T_0.4 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_010F1BD0;
+T_1 ;
+    %wait E_010F9830;
+    %load/v 8, v0112D090_0, 2;
+    %cmpi/u 8, 0, 2;
+    %jmp/1 T_1.0, 6;
+    %cmpi/u 8, 1, 2;
+    %jmp/1 T_1.1, 6;
+    %cmpi/u 8, 2, 2;
+    %jmp/1 T_1.2, 6;
+    %cmpi/u 8, 3, 2;
+    %jmp/1 T_1.3, 6;
+    %jmp T_1.4;
+T_1.0 ;
+    %load/v 8, v0112D350_0, 1; Only need 1 of 4 bits
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D560_0, 8, 1;
+    %jmp T_1.4;
+T_1.1 ;
+    %ix/load 1, 1, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_1.5, 4;
+    %load/x1p 8, v0112D350_0, 1;
+    %jmp T_1.6;
+T_1.5 ;
+    %mov 8, 2, 1;
+T_1.6 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D560_0, 8, 1;
+    %jmp T_1.4;
+T_1.2 ;
+    %ix/load 1, 2, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_1.7, 4;
+    %load/x1p 8, v0112D350_0, 1;
+    %jmp T_1.8;
+T_1.7 ;
+    %mov 8, 2, 1;
+T_1.8 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D560_0, 8, 1;
+    %jmp T_1.4;
+T_1.3 ;
+    %ix/load 1, 3, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_1.9, 4;
+    %load/x1p 8, v0112D350_0, 1;
+    %jmp T_1.10;
+T_1.9 ;
+    %mov 8, 2, 1;
+T_1.10 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D560_0, 8, 1;
+    %jmp T_1.4;
+T_1.4 ;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_010F21A8;
+T_2 ;
+    %wait E_010F99D0;
+    %load/v 8, v0112D508_0, 2;
+    %cmpi/u 8, 0, 2;
+    %jmp/1 T_2.0, 6;
+    %cmpi/u 8, 1, 2;
+    %jmp/1 T_2.1, 6;
+    %cmpi/u 8, 2, 2;
+    %jmp/1 T_2.2, 6;
+    %cmpi/u 8, 3, 2;
+    %jmp/1 T_2.3, 6;
+    %jmp T_2.4;
+T_2.0 ;
+    %load/v 8, v0112D610_0, 1; Only need 1 of 4 bits
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D2F8_0, 8, 1;
+    %jmp T_2.4;
+T_2.1 ;
+    %ix/load 1, 1, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_2.5, 4;
+    %load/x1p 8, v0112D610_0, 1;
+    %jmp T_2.6;
+T_2.5 ;
+    %mov 8, 2, 1;
+T_2.6 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D2F8_0, 8, 1;
+    %jmp T_2.4;
+T_2.2 ;
+    %ix/load 1, 2, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_2.7, 4;
+    %load/x1p 8, v0112D610_0, 1;
+    %jmp T_2.8;
+T_2.7 ;
+    %mov 8, 2, 1;
+T_2.8 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D2F8_0, 8, 1;
+    %jmp T_2.4;
+T_2.3 ;
+    %ix/load 1, 3, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_2.9, 4;
+    %load/x1p 8, v0112D610_0, 1;
+    %jmp T_2.10;
+T_2.9 ;
+    %mov 8, 2, 1;
+T_2.10 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D2F8_0, 8, 1;
+    %jmp T_2.4;
+T_2.4 ;
+    %jmp T_2;
+    .thread T_2, $push;
+    .scope S_010F2780;
+T_3 ;
+    %wait E_010F9810;
+    %load/v 8, v0112CED8_0, 2;
+    %cmpi/u 8, 0, 2;
+    %jmp/1 T_3.0, 6;
+    %cmpi/u 8, 1, 2;
+    %jmp/1 T_3.1, 6;
+    %cmpi/u 8, 2, 2;
+    %jmp/1 T_3.2, 6;
+    %cmpi/u 8, 3, 2;
+    %jmp/1 T_3.3, 6;
+    %jmp T_3.4;
+T_3.0 ;
+    %load/v 8, v0112D458_0, 1; Only need 1 of 4 bits
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D198_0, 8, 1;
+    %jmp T_3.4;
+T_3.1 ;
+    %ix/load 1, 1, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_3.5, 4;
+    %load/x1p 8, v0112D458_0, 1;
+    %jmp T_3.6;
+T_3.5 ;
+    %mov 8, 2, 1;
+T_3.6 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D198_0, 8, 1;
+    %jmp T_3.4;
+T_3.2 ;
+    %ix/load 1, 2, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_3.7, 4;
+    %load/x1p 8, v0112D458_0, 1;
+    %jmp T_3.8;
+T_3.7 ;
+    %mov 8, 2, 1;
+T_3.8 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D198_0, 8, 1;
+    %jmp T_3.4;
+T_3.3 ;
+    %ix/load 1, 3, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_3.9, 4;
+    %load/x1p 8, v0112D458_0, 1;
+    %jmp T_3.10;
+T_3.9 ;
+    %mov 8, 2, 1;
+T_3.10 ;
+; Save base=8 wid=1 in lookaside.
+    %set/v v0112D198_0, 8, 1;
+    %jmp T_3.4;
+T_3.4 ;
+    %jmp T_3;
+    .thread T_3, $push;
+    .scope S_010F1CE0;
+T_4 ;
+    %wait E_010F97D0;
+    %load/v 8, v0112CF88_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0112D400_0, 0, 8;
+    %jmp T_4;
+    .thread T_4;
+    .scope S_010F2560;
+T_5 ;
+    %wait E_010F97D0;
+    %load/v 8, v010C4848_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v010C48A0_0, 0, 8;
+    %jmp T_5;
+    .thread T_5;
+    .scope S_010F1AC0;
+T_6 ;
+    %wait E_010F97D0;
+    %load/v 8, v010C3170_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v010C31C8_0, 0, 8;
+    %jmp T_6;
+    .thread T_6;
+    .scope S_010F2450;
+T_7 ;
+    %wait E_010F97D0;
+    %load/v 8, v010F9068_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v010F90C0_0, 0, 8;
+    %jmp T_7;
+    .thread T_7;
+    .scope S_010F2010;
+T_8 ;
+    %vpi_call 2 10 "$dumpfile", "ft2_tb.vcd";
+    %vpi_call 2 11 "$dumpvars", 1'sb0, S_010F2010;
+    %set/v v0112D848_0, 0, 1;
+T_8.0 ;
+    %delay 10, 0;
+    %load/v 8, v0112D848_0, 1;
+    %inv 8, 1;
+    %set/v v0112D848_0, 8, 1;
+    %jmp T_8.0;
+    %end;
+    .thread T_8;
+    .scope S_010F2010;
+T_9 ;
+    %movi 8, 10, 4;
+    %set/v v0112DED0_0, 8, 4;
+    %set/v v0112D950_0, 0, 1;
+    %movi 8, 1, 2;
+    %set/v v0112DF28_0, 8, 2;
+    %delay 20, 0;
+    %movi 8, 10, 4;
+    %set/v v0112DED0_0, 8, 4;
+    %set/v v0112D950_0, 0, 1;
+    %set/v v0112DF28_0, 0, 2;
+    %delay 20, 0;
+    %movi 8, 10, 4;
+    %set/v v0112DED0_0, 8, 4;
+    %set/v v0112D950_0, 0, 1;
+    %movi 8, 2, 2;
+    %set/v v0112DF28_0, 8, 2;
+    %delay 20, 0;
+    %movi 8, 10, 4;
+    %set/v v0112DED0_0, 8, 4;
+    %set/v v0112D950_0, 0, 1;
+    %set/v v0112DF28_0, 1, 2;
+    %delay 20, 0;
+    %vpi_call 2 20 "$display", "Test complete";
+    %vpi_call 2 21 "$finish";
+    %end;
+    .thread T_9;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "ft2_tb.v";
+    "./ft2.v";

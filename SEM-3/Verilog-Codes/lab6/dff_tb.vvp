@@ -1,0 +1,71 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_010D3F00 .scope module, "dff_tb" "dff_tb" 2 3;
+ .timescale -9 -9;
+v01113710_0 .var "clk", 0 0;
+v01113768_0 .var "d", 0 0;
+v010DEC80_0 .net "q", 0 0, v01113660_0; 1 drivers
+v010DECD8_0 .var "reset", 0 0;
+S_010D3118 .scope module, "uut" "dff" 2 6, 3 1, S_010D3F00;
+ .timescale -9 -9;
+v010D31A0_0 .net "clk", 0 0, v01113710_0; 1 drivers
+v010D31F8_0 .net "d", 0 0, v01113768_0; 1 drivers
+v01113660_0 .var "q", 0 0;
+v011136B8_0 .net "reset", 0 0, v010DECD8_0; 1 drivers
+E_011119F0 .event posedge, v011136B8_0, v010D31A0_0;
+    .scope S_010D3118;
+T_0 ;
+    %wait E_011119F0;
+    %load/v 8, v011136B8_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01113660_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v010D31F8_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01113660_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_010D3F00;
+T_1 ;
+    %vpi_call 2 8 "$dumpfile", "dff_tb.vcd";
+    %vpi_call 2 9 "$dumpvars", 1'sb0, S_010D3F00;
+    %set/v v01113710_0, 0, 1;
+T_1.0 ;
+    %delay 20, 0;
+    %load/v 8, v01113710_0, 1;
+    %inv 8, 1;
+    %set/v v01113710_0, 8, 1;
+    %jmp T_1.0;
+    %end;
+    .thread T_1;
+    .scope S_010D3F00;
+T_2 ;
+    %set/v v01113768_0, 1, 1;
+    %set/v v010DECD8_0, 1, 1;
+    %delay 20, 0;
+    %set/v v01113768_0, 1, 1;
+    %set/v v010DECD8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v01113768_0, 1, 1;
+    %set/v v010DECD8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v01113768_0, 0, 1;
+    %set/v v010DECD8_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 18 "$display", "Test complete";
+    %vpi_call 2 19 "$finish";
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "dff_tb.v";
+    "./dff.v";

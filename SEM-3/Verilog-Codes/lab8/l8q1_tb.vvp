@@ -1,0 +1,217 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0103A2B8 .scope module, "l8q1_tb" "l8q1_tb" 2 3;
+ .timescale -9 -9;
+RS_01074474 .resolv tri, L_0109D6E8, L_0109D218, L_0109D110, C4<zzz>;
+v0109CFB0_0 .net8 "a", 3 1, RS_01074474; 3 drivers
+v0109D638_0 .var "clk", 0 0;
+v0109CEA8_0 .var "reset", 0 0;
+v0109D168_0 .var "x", 0 0;
+v0109D4D8_0 .net "y", 0 0, L_0109EC48; 1 drivers
+S_0103A010 .scope module, "uut" "l8q1" 2 7, 3 11, S_0103A2B8;
+ .timescale -9 -9;
+L_01032E58 .functor NOT 1, v0109D168_0, C4<0>, C4<0>, C4<0>;
+L_01034E60 .functor AND 1, L_0109CDA0, L_01032E58, C4<1>, C4<1>;
+L_0109DD90 .functor NOT 1, L_0109CD48, C4<0>, C4<0>, C4<0>;
+L_0109DF18 .functor AND 1, L_0109CF00, L_0109DD90, C4<1>, C4<1>;
+L_0109DF50 .functor NOT 1, v0109D168_0, C4<0>, C4<0>, C4<0>;
+L_0109DC78 .functor AND 1, L_0109DF18, L_0109DF50, C4<1>, C4<1>;
+L_0109DDC8 .functor OR 1, L_01034E60, L_0109DC78, C4<0>, C4<0>;
+L_0109DE00 .functor AND 1, L_0109D008, v0109D168_0, C4<1>, C4<1>;
+L_0109DEA8 .functor NOT 1, L_0109D1C0, C4<0>, C4<0>, C4<0>;
+L_0109E520 .functor NOT 1, L_0109CC40, C4<0>, C4<0>, C4<0>;
+L_0109E168 .functor AND 1, L_0109DEA8, L_0109E520, C4<1>, C4<1>;
+L_0109E590 .functor NOT 1, v0109D168_0, C4<0>, C4<0>, C4<0>;
+L_0109E1A0 .functor AND 1, L_0109E168, L_0109E590, C4<1>, C4<1>;
+L_0109E4B0 .functor OR 1, L_0109DE00, L_0109E1A0, C4<0>, C4<0>;
+L_0109E6A8 .functor NOT 1, v0109D168_0, C4<0>, C4<0>, C4<0>;
+L_0109E638 .functor AND 1, L_0109D428, L_0109E6A8, C4<1>, C4<1>;
+L_0109E5C8 .functor OR 1, L_0109E4B0, L_0109E638, C4<0>, C4<0>;
+L_0109E670 .functor AND 1, L_0109D060, L_0109D270, C4<1>, C4<1>;
+L_0109E6E0 .functor NOT 1, L_0109D2C8, C4<0>, C4<0>, C4<0>;
+L_0109E328 .functor NOT 1, L_0109D588, C4<0>, C4<0>, C4<0>;
+L_0109E360 .functor AND 1, L_0109E6E0, L_0109E328, C4<1>, C4<1>;
+L_0109E050 .functor NOT 1, L_0109D5E0, C4<0>, C4<0>, C4<0>;
+L_0109E408 .functor AND 1, L_0109E360, L_0109E050, C4<1>, C4<1>;
+L_0109E7C0 .functor OR 1, L_0109E670, L_0109E408, C4<0>, C4<0>;
+L_0109EAC0 .functor NOT 1, v0109D168_0, C4<0>, C4<0>, C4<0>;
+L_0109EB68 .functor AND 1, L_0109D320, L_0109EAC0, C4<1>, C4<1>;
+L_0109EA50 .functor AND 1, L_0109D690, v0109D168_0, C4<1>, C4<1>;
+L_0109EBA0 .functor OR 1, L_0109EB68, L_0109EA50, C4<0>, C4<0>;
+L_0109E938 .functor AND 1, L_0109CDF8, L_0109CC98, C4<1>, C4<1>;
+L_0109EC48 .functor OR 1, L_0109EBA0, L_0109E938, C4<0>, C4<0>;
+v01070F88_0 .net *"_s1", 0 0, L_0109CDA0; 1 drivers
+v01070DD0_0 .net *"_s10", 0 0, L_0109DD90; 1 drivers
+v010708A8_0 .net *"_s12", 0 0, L_0109DF18; 1 drivers
+v01070CC8_0 .net *"_s14", 0 0, L_0109DF50; 1 drivers
+v010705E8_0 .net *"_s16", 0 0, L_0109DC78; 1 drivers
+v01070D20_0 .net *"_s2", 0 0, L_01032E58; 1 drivers
+v01070A08_0 .net *"_s23", 0 0, L_0109D008; 1 drivers
+v01070698_0 .net *"_s24", 0 0, L_0109DE00; 1 drivers
+v010706F0_0 .net *"_s27", 0 0, L_0109D1C0; 1 drivers
+v01070BC0_0 .net *"_s28", 0 0, L_0109DEA8; 1 drivers
+v01070B68_0 .net *"_s31", 0 0, L_0109CC40; 1 drivers
+v01070748_0 .net *"_s32", 0 0, L_0109E520; 1 drivers
+v01070AB8_0 .net *"_s34", 0 0, L_0109E168; 1 drivers
+v01070ED8_0 .net *"_s36", 0 0, L_0109E590; 1 drivers
+v010704E0_0 .net *"_s38", 0 0, L_0109E1A0; 1 drivers
+v01070A60_0 .net *"_s4", 0 0, L_01034E60; 1 drivers
+v010707F8_0 .net *"_s40", 0 0, L_0109E4B0; 1 drivers
+v01070C18_0 .net *"_s43", 0 0, L_0109D428; 1 drivers
+v01070900_0 .net *"_s44", 0 0, L_0109E6A8; 1 drivers
+v01070538_0 .net *"_s46", 0 0, L_0109E638; 1 drivers
+v01070958_0 .net *"_s53", 0 0, L_0109D060; 1 drivers
+v010707A0_0 .net *"_s55", 0 0, L_0109D270; 1 drivers
+v01070850_0 .net *"_s56", 0 0, L_0109E670; 1 drivers
+v010709B0_0 .net *"_s59", 0 0, L_0109D2C8; 1 drivers
+v01070E28_0 .net *"_s60", 0 0, L_0109E6E0; 1 drivers
+v01070E80_0 .net *"_s63", 0 0, L_0109D588; 1 drivers
+v01070640_0 .net *"_s64", 0 0, L_0109E328; 1 drivers
+v01070B10_0 .net *"_s66", 0 0, L_0109E360; 1 drivers
+v01070590_0 .net *"_s69", 0 0, L_0109D5E0; 1 drivers
+v010711F0_0 .net *"_s7", 0 0, L_0109CF00; 1 drivers
+v01071400_0 .net *"_s70", 0 0, L_0109E050; 1 drivers
+v01071350_0 .net *"_s72", 0 0, L_0109E408; 1 drivers
+v01071248_0 .net *"_s79", 0 0, L_0109D320; 1 drivers
+v010712F8_0 .net *"_s80", 0 0, L_0109EAC0; 1 drivers
+v01071198_0 .net *"_s82", 0 0, L_0109EB68; 1 drivers
+v010712A0_0 .net *"_s85", 0 0, L_0109D690; 1 drivers
+v010713A8_0 .net *"_s86", 0 0, L_0109EA50; 1 drivers
+v01070FE0_0 .net *"_s88", 0 0, L_0109EBA0; 1 drivers
+v010710E8_0 .net *"_s9", 0 0, L_0109CD48; 1 drivers
+v01071140_0 .net *"_s91", 0 0, L_0109CDF8; 1 drivers
+v01071090_0 .net *"_s93", 0 0, L_0109CC98; 1 drivers
+v01071458_0 .net *"_s94", 0 0, L_0109E938; 1 drivers
+v01071038_0 .alias "a", 3 1, v0109CFB0_0;
+v0109D480_0 .net "clk", 0 0, v0109D638_0; 1 drivers
+v0109CF58_0 .net "reset", 0 0, v0109CEA8_0; 1 drivers
+v0109D530_0 .net "x", 0 0, v0109D168_0; 1 drivers
+v0109CCF0_0 .alias "y", 0 0, v0109D4D8_0;
+L_0109CDA0 .part RS_01074474, 2, 1;
+L_0109CF00 .part RS_01074474, 1, 1;
+L_0109CD48 .part RS_01074474, 0, 1;
+L_0109D6E8 .part/pv v01070C70_0, 2, 1, 3;
+L_0109D008 .part RS_01074474, 2, 1;
+L_0109D1C0 .part RS_01074474, 2, 1;
+L_0109CC40 .part RS_01074474, 1, 1;
+L_0109D428 .part RS_01074474, 0, 1;
+L_0109D218 .part/pv v01062308_0, 1, 1, 3;
+L_0109D060 .part RS_01074474, 1, 1;
+L_0109D270 .part RS_01074474, 0, 1;
+L_0109D2C8 .part RS_01074474, 2, 1;
+L_0109D588 .part RS_01074474, 1, 1;
+L_0109D5E0 .part RS_01074474, 0, 1;
+L_0109D110 .part/pv v01062468_0, 0, 1, 3;
+L_0109D320 .part RS_01074474, 1, 1;
+L_0109D690 .part RS_01074474, 2, 1;
+L_0109CDF8 .part RS_01074474, 1, 1;
+L_0109CC98 .part RS_01074474, 0, 1;
+S_01039B48 .scope module, "stg0" "dff" 3 15, 3 1, S_0103A010;
+ .timescale -9 -9;
+v01062570_0 .alias "clk", 0 0, v0109D480_0;
+v01070D78_0 .net "d", 0 0, L_0109DDC8; 1 drivers
+v01070C70_0 .var "q", 0 0;
+v01070F30_0 .alias "reset", 0 0, v0109CF58_0;
+S_01039680 .scope module, "stg1" "dff" 3 16, 3 1, S_0103A010;
+ .timescale -9 -9;
+v01062200_0 .alias "clk", 0 0, v0109D480_0;
+v010622B0_0 .net "d", 0 0, L_0109E5C8; 1 drivers
+v01062308_0 .var "q", 0 0;
+v01062518_0 .alias "reset", 0 0, v0109CF58_0;
+S_01039350 .scope module, "stg2" "dff" 3 17, 3 1, S_0103A010;
+ .timescale -9 -9;
+v01062410_0 .alias "clk", 0 0, v0109D480_0;
+v010621A8_0 .net "d", 0 0, L_0109E7C0; 1 drivers
+v01062468_0 .var "q", 0 0;
+v01062780_0 .alias "reset", 0 0, v0109CF58_0;
+E_01064018 .event posedge, v01062780_0, v01062410_0;
+    .scope S_01039B48;
+T_0 ;
+    %wait E_01064018;
+    %load/v 8, v01070F30_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01070C70_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v01070D78_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01070C70_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_01039680;
+T_1 ;
+    %wait E_01064018;
+    %load/v 8, v01062518_0, 1;
+    %jmp/0xz  T_1.0, 8;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01062308_0, 0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/v 8, v010622B0_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01062308_0, 0, 8;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_01039350;
+T_2 ;
+    %wait E_01064018;
+    %load/v 8, v01062780_0, 1;
+    %jmp/0xz  T_2.0, 8;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01062468_0, 0, 0;
+    %jmp T_2.1;
+T_2.0 ;
+    %load/v 8, v010621A8_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01062468_0, 0, 8;
+T_2.1 ;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0103A2B8;
+T_3 ;
+    %vpi_call 2 9 "$dumpfile", "l8q1_tb.vcd";
+    %vpi_call 2 10 "$dumpvars", 1'sb0, S_0103A2B8;
+    %set/v v0109D638_0, 0, 1;
+T_3.0 ;
+    %delay 10, 0;
+    %load/v 8, v0109D638_0, 1;
+    %inv 8, 1;
+    %set/v v0109D638_0, 8, 1;
+    %jmp T_3.0;
+    %end;
+    .thread T_3;
+    .scope S_0103A2B8;
+T_4 ;
+    %set/v v0109D168_0, 1, 1;
+    %set/v v0109CEA8_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0109D168_0, 0, 1;
+    %set/v v0109CEA8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0109D168_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0109D168_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0109D168_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0109D168_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0109D168_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 22 "$display", "Test complete";
+    %vpi_call 2 23 "$finish";
+    %end;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "l8q1_tb.v";
+    "./l8q1.v";

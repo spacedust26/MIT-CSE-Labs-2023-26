@@ -1,0 +1,46 @@
+$date
+	Sat Nov 18 18:11:01 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module bcdExcess_tb $end
+$var wire 4 ! b [3:0] $end
+$var reg 4 " a [3:0] $end
+$scope module uut $end
+$var wire 4 # a [3:0] $end
+$var wire 4 $ b [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b11 $
+b0 #
+b0 "
+b11 !
+$end
+#20
+b100 !
+b100 $
+b1 "
+b1 #
+#40
+b101 !
+b101 $
+b10 "
+b10 #
+#60
+b110 !
+b110 $
+b11 "
+b11 #
+#80
+b1100 !
+b1100 $
+b1001 "
+b1001 #
+#100

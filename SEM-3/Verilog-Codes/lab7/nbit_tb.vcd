@@ -1,0 +1,67 @@
+$date
+	Sun Nov 19 09:39:30 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module nbit_tb $end
+$var wire 4 ! o [3:0] $end
+$var reg 1 " clk $end
+$var reg 4 # i [3:0] $end
+$scope module uut $end
+$var wire 1 $ clk $end
+$var wire 4 % i [3:0] $end
+$var reg 4 & o [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx &
+b1000 %
+0$
+b1000 #
+0"
+bx !
+$end
+#10
+b1000 &
+b1000 !
+1"
+1$
+#20
+0"
+0$
+b111 #
+b111 %
+#30
+b111 &
+b111 !
+1"
+1$
+#40
+0"
+0$
+b1101 #
+b1101 %
+#50
+b1101 &
+b1101 !
+1"
+1$
+#60
+0"
+0$
+b101 #
+b101 %
+#70
+b101 &
+b101 !
+1"
+1$
+#80
+0"
+0$

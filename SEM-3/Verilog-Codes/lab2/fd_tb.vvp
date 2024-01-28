@@ -1,0 +1,122 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01227878 .scope module, "fd_tb" "fd_tb" 2 3;
+ .timescale -9 -9;
+v0122B5B0_0 .var "a", 0 0;
+v0122B608_0 .var "b", 0 0;
+v0122B660_0 .var "c", 0 0;
+v01176D88_0 .var "d", 0 0;
+v01176CD8_0 .net "f", 0 0, L_0122E590; 1 drivers
+S_01227DC8 .scope module, "uut" "fd" 2 6, 3 1, S_01227878;
+ .timescale -9 -9;
+L_0122E3D0 .functor XOR 1, v0122B660_0, v01176D88_0, C4<0>, C4<0>;
+L_0122E2F0 .functor AND 1, v0122B5B0_0, L_0122E3D0, C4<1>, C4<1>;
+L_0122E600 .functor NOT 1, L_0122E3D0, C4<0>, C4<0>, C4<0>;
+L_0122E328 .functor AND 1, v0122B608_0, L_0122E600, C4<1>, C4<1>;
+L_0122E590 .functor OR 1, L_0122E2F0, L_0122E328, C4<0>, C4<0>;
+v0122ED38_0 .net *"_s2", 0 0, L_0122E2F0; 1 drivers
+v01223118_0 .net *"_s4", 0 0, L_0122E600; 1 drivers
+v01223170_0 .net *"_s6", 0 0, L_0122E328; 1 drivers
+v012231C8_0 .net "a", 0 0, v0122B5B0_0; 1 drivers
+v01223D98_0 .net "b", 0 0, v0122B608_0; 1 drivers
+v01223DF0_0 .net "c", 0 0, v0122B660_0; 1 drivers
+v01223E48_0 .net "d", 0 0, v01176D88_0; 1 drivers
+v01223EA0_0 .alias "f", 0 0, v01176CD8_0;
+v0122B558_0 .net "g", 0 0, L_0122E3D0; 1 drivers
+    .scope S_01227878;
+T_0 ;
+    %vpi_call 2 8 "$dumpfile", "fd_tb.vcd";
+    %vpi_call 2 9 "$dumpvars", 1'sb0, S_01227878;
+    %set/v v0122B5B0_0, 0, 1;
+    %set/v v0122B608_0, 0, 1;
+    %set/v v0122B660_0, 0, 1;
+    %set/v v01176D88_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 0, 1;
+    %set/v v0122B608_0, 0, 1;
+    %set/v v0122B660_0, 0, 1;
+    %set/v v01176D88_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 0, 1;
+    %set/v v0122B608_0, 0, 1;
+    %set/v v0122B660_0, 1, 1;
+    %set/v v01176D88_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 0, 1;
+    %set/v v0122B608_0, 0, 1;
+    %set/v v0122B660_0, 1, 1;
+    %set/v v01176D88_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 0, 1;
+    %set/v v0122B608_0, 1, 1;
+    %set/v v0122B660_0, 0, 1;
+    %set/v v01176D88_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 0, 1;
+    %set/v v0122B608_0, 1, 1;
+    %set/v v0122B660_0, 0, 1;
+    %set/v v01176D88_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 0, 1;
+    %set/v v0122B608_0, 1, 1;
+    %set/v v0122B660_0, 1, 1;
+    %set/v v01176D88_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 0, 1;
+    %set/v v0122B608_0, 1, 1;
+    %set/v v0122B660_0, 1, 1;
+    %set/v v01176D88_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 1, 1;
+    %set/v v0122B608_0, 0, 1;
+    %set/v v0122B660_0, 0, 1;
+    %set/v v01176D88_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 1, 1;
+    %set/v v0122B608_0, 0, 1;
+    %set/v v0122B660_0, 0, 1;
+    %set/v v01176D88_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 1, 1;
+    %set/v v0122B608_0, 0, 1;
+    %set/v v0122B660_0, 1, 1;
+    %set/v v01176D88_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 1, 1;
+    %set/v v0122B608_0, 0, 1;
+    %set/v v0122B660_0, 1, 1;
+    %set/v v01176D88_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 1, 1;
+    %set/v v0122B608_0, 1, 1;
+    %set/v v0122B660_0, 0, 1;
+    %set/v v01176D88_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 1, 1;
+    %set/v v0122B608_0, 1, 1;
+    %set/v v0122B660_0, 0, 1;
+    %set/v v01176D88_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 1, 1;
+    %set/v v0122B608_0, 1, 1;
+    %set/v v0122B660_0, 1, 1;
+    %set/v v01176D88_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0122B5B0_0, 1, 1;
+    %set/v v0122B608_0, 1, 1;
+    %set/v v0122B660_0, 1, 1;
+    %set/v v01176D88_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 26 "$display", "Test complete";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "fd_tb.v";
+    "./fd.v";

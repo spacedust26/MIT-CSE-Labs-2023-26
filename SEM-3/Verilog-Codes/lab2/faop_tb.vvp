@@ -1,0 +1,121 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01297DD0 .scope module, "faop_tb" "faop_tb" 2 3;
+ .timescale -9 -9;
+v01167840_0 .var "a", 0 0;
+v01167BB0_0 .net "andGate", 0 0, L_01167FC0; 1 drivers
+v011679A0_0 .var "b", 0 0;
+v01167948_0 .net "nandGate", 0 0, L_01168110; 1 drivers
+v01167790_0 .net "norGate", 0 0, L_01167EA8; 1 drivers
+v01167A50_0 .net "orGate", 0 0, L_01167E00; 1 drivers
+v01167898_0 .net "xnorGate", 0 0, L_01141448; 1 drivers
+v01167B58_0 .net "xorGate", 0 0, L_011416E8; 1 drivers
+S_01298870 .scope module, "uut" "faop" 2 6, 3 8, S_01297DD0;
+ .timescale -9 -9;
+L_011416E8 .functor BUFZ 1, L_011414F0, C4<0>, C4<0>, C4<0>;
+L_01141448 .functor NOT 1, L_011414F0, C4<0>, C4<0>, C4<0>;
+L_01167E00 .functor BUFZ 1, L_011681B8, C4<0>, C4<0>, C4<0>;
+L_01167EA8 .functor NOT 1, L_011681B8, C4<0>, C4<0>, C4<0>;
+L_01167FC0 .functor BUFZ 1, L_011680A0, C4<0>, C4<0>, C4<0>;
+L_01168110 .functor NOT 1, L_011680A0, C4<0>, C4<0>, C4<0>;
+v01166FA8_0 .net "a", 0 0, v01167840_0; 1 drivers
+v01166D98_0 .alias "andGate", 0 0, v01167BB0_0;
+v011672C0_0 .net "b", 0 0, v011679A0_0; 1 drivers
+v01166DF0_0 .net "c1", 0 0, C4<z>; 0 drivers
+RS_0114414C .resolv tri, L_01142E88, L_011417C8, C4<z>, C4<z>;
+v01167318_0 .net8 "c2", 0 0, RS_0114414C; 2 drivers
+v01167478_0 .net "c3", 0 0, L_01167CE8; 1 drivers
+v01167370_0 .alias "nandGate", 0 0, v01167948_0;
+v01167580_0 .alias "norGate", 0 0, v01167790_0;
+v011675D8_0 .alias "orGate", 0 0, v01167A50_0;
+v01166EA0_0 .net "s1", 0 0, L_011414F0; 1 drivers
+v01166EF8_0 .net "s2", 0 0, L_011681B8; 1 drivers
+v01167630_0 .net "s3", 0 0, L_011680A0; 1 drivers
+v01166F50_0 .alias "xnorGate", 0 0, v01167898_0;
+v011678F0_0 .alias "xorGate", 0 0, v01167B58_0;
+S_01297D48 .scope module, "stg0" "fullAdder" 3 12, 3 1, S_01298870;
+ .timescale -9 -9;
+L_0129B5F8 .functor AND 1, v01167840_0, v011679A0_0, C4<1>, C4<1>;
+L_0129B630 .functor AND 1, v011679A0_0, C4<0>, C4<1>, C4<1>;
+L_01293230 .functor OR 1, L_0129B5F8, L_0129B630, C4<0>, C4<0>;
+L_01142E18 .functor AND 1, v01167840_0, C4<0>, C4<1>, C4<1>;
+L_01142E88 .functor OR 1, L_01293230, L_01142E18, C4<0>, C4<0>;
+L_011415D0 .functor XOR 1, v01167840_0, v011679A0_0, C4<0>, C4<0>;
+L_011414F0 .functor XOR 1, L_011415D0, C4<0>, C4<0>, C4<0>;
+v01167688_0 .net *"_s0", 0 0, L_0129B5F8; 1 drivers
+v01167268_0 .net *"_s10", 0 0, L_011415D0; 1 drivers
+v01167108_0 .net *"_s2", 0 0, L_0129B630; 1 drivers
+v01167160_0 .net *"_s4", 0 0, L_01293230; 1 drivers
+v01167210_0 .net *"_s6", 0 0, L_01142E18; 1 drivers
+v01166C90_0 .net "cin", 0 0, C4<0>; 1 drivers
+v011670B0_0 .alias "cout", 0 0, v01167318_0;
+v01166D40_0 .alias "s", 0 0, v01166EA0_0;
+v01167528_0 .alias "x", 0 0, v01166FA8_0;
+v01166CE8_0 .alias "y", 0 0, v011672C0_0;
+S_01298298 .scope module, "stg1" "fullAdder" 3 15, 3 1, S_01298870;
+ .timescale -9 -9;
+L_011416B0 .functor AND 1, v011679A0_0, C4<z>, C4<1>, C4<1>;
+L_01141480 .functor AND 1, C4<z>, v01167840_0, C4<1>, C4<1>;
+L_01141560 .functor OR 1, L_011416B0, L_01141480, C4<0>, C4<0>;
+L_01141678 .functor AND 1, v011679A0_0, v01167840_0, C4<1>, C4<1>;
+L_011417C8 .functor OR 1, L_01141560, L_01141678, C4<0>, C4<0>;
+L_01167F18 .functor XOR 1, v011679A0_0, C4<z>, C4<0>, C4<0>;
+L_011681B8 .functor XOR 1, L_01167F18, v01167840_0, C4<0>, C4<0>;
+v01299E58_0 .net *"_s0", 0 0, L_011416B0; 1 drivers
+v01167000_0 .net *"_s10", 0 0, L_01167F18; 1 drivers
+v01166E48_0 .net *"_s2", 0 0, L_01141480; 1 drivers
+v011676E0_0 .net *"_s4", 0 0, L_01141560; 1 drivers
+v011673C8_0 .net *"_s6", 0 0, L_01141678; 1 drivers
+v01166C38_0 .alias "cin", 0 0, v01166FA8_0;
+v011674D0_0 .alias "cout", 0 0, v01167318_0;
+v01167058_0 .alias "s", 0 0, v01166EF8_0;
+v011671B8_0 .alias "x", 0 0, v011672C0_0;
+v01167420_0 .alias "y", 0 0, v01166DF0_0;
+S_01297AA0 .scope module, "stg2" "fullAdder" 3 18, 3 1, S_01298870;
+ .timescale -9 -9;
+L_01168030 .functor AND 1, C4<z>, L_011414F0, C4<1>, C4<1>;
+L_01168068 .functor AND 1, L_011414F0, v011679A0_0, C4<1>, C4<1>;
+L_01168298 .functor OR 1, L_01168030, L_01168068, C4<0>, C4<0>;
+L_01168260 .functor AND 1, C4<z>, v011679A0_0, C4<1>, C4<1>;
+L_01167CE8 .functor OR 1, L_01168298, L_01168260, C4<0>, C4<0>;
+L_01167E70 .functor XOR 1, C4<z>, L_011414F0, C4<0>, C4<0>;
+L_011680A0 .functor XOR 1, L_01167E70, v011679A0_0, C4<0>, C4<0>;
+v01299B98_0 .net *"_s0", 0 0, L_01168030; 1 drivers
+v01299C48_0 .net *"_s10", 0 0, L_01167E70; 1 drivers
+v01299AE8_0 .net *"_s2", 0 0, L_01168068; 1 drivers
+v01299B40_0 .net *"_s4", 0 0, L_01168298; 1 drivers
+v01299CA0_0 .net *"_s6", 0 0, L_01168260; 1 drivers
+v01299CF8_0 .alias "cin", 0 0, v011672C0_0;
+v01299D50_0 .alias "cout", 0 0, v01167478_0;
+v01299DA8_0 .alias "s", 0 0, v01167630_0;
+v01299E00_0 .alias "x", 0 0, v01166DF0_0;
+v01299F08_0 .alias "y", 0 0, v01166EA0_0;
+    .scope S_01297DD0;
+T_0 ;
+    %vpi_call 2 8 "$dumpfile", "faop_tb.vcd";
+    %vpi_call 2 9 "$dumpvars", 1'sb0, S_01297DD0;
+    %set/v v01167840_0, 0, 1;
+    %set/v v011679A0_0, 0, 1;
+    %delay 20, 0;
+    %set/v v01167840_0, 0, 1;
+    %set/v v011679A0_0, 1, 1;
+    %delay 20, 0;
+    %set/v v01167840_0, 1, 1;
+    %set/v v011679A0_0, 0, 1;
+    %delay 20, 0;
+    %set/v v01167840_0, 1, 1;
+    %set/v v011679A0_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 14 "$display", "Test complete";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "faop_tb.v";
+    "./faop.v";

@@ -1,0 +1,78 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01198FB8 .scope module, "f1_tb" "f1_tb" 2 3;
+ .timescale -9 -9;
+v0119DD30_0 .var "a", 0 0;
+v0119E468_0 .var "b", 0 0;
+v0119DF40_0 .var "c", 0 0;
+v0119E360_0 .net "f", 0 0, L_0119E880; 1 drivers
+S_01198C00 .scope module, "uut" "f1" 2 6, 3 1, S_01198FB8;
+ .timescale -9 -9;
+L_01199E60 .functor NOT 1, v0119DF40_0, C4<0>, C4<0>, C4<0>;
+L_01199ED0 .functor AND 1, v0119DD30_0, L_01199E60, C4<1>, C4<1>;
+L_0119E580 .functor AND 1, v0119E468_0, v0119DF40_0, C4<1>, C4<1>;
+L_0119E5F0 .functor OR 1, L_01199ED0, L_0119E580, C4<0>, C4<0>;
+L_0119E688 .functor NOT 1, v0119E468_0, C4<0>, C4<0>, C4<0>;
+L_0119E9D0 .functor NOT 1, v0119DF40_0, C4<0>, C4<0>, C4<0>;
+L_0119E960 .functor AND 1, L_0119E688, L_0119E9D0, C4<1>, C4<1>;
+L_0119E880 .functor OR 1, L_0119E5F0, L_0119E960, C4<0>, C4<0>;
+v01193CB8_0 .net *"_s0", 0 0, L_01199E60; 1 drivers
+v01193D10_0 .net *"_s10", 0 0, L_0119E9D0; 1 drivers
+v01193D68_0 .net *"_s12", 0 0, L_0119E960; 1 drivers
+v01193118_0 .net *"_s2", 0 0, L_01199ED0; 1 drivers
+v01193170_0 .net *"_s4", 0 0, L_0119E580; 1 drivers
+v011931C8_0 .net *"_s6", 0 0, L_0119E5F0; 1 drivers
+v01193220_0 .net *"_s8", 0 0, L_0119E688; 1 drivers
+v01199DB0_0 .net "a", 0 0, v0119DD30_0; 1 drivers
+v01199E08_0 .net "b", 0 0, v0119E468_0; 1 drivers
+v0119E0F8_0 .net "c", 0 0, v0119DF40_0; 1 drivers
+v0119DE38_0 .alias "f", 0 0, v0119E360_0;
+    .scope S_01198FB8;
+T_0 ;
+    %vpi_call 2 8 "$dumpfile", "f1_tb.vcd";
+    %vpi_call 2 9 "$dumpvars", 1'sb0, S_01198FB8;
+    %set/v v0119DD30_0, 0, 1;
+    %set/v v0119E468_0, 0, 1;
+    %set/v v0119DF40_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0119DD30_0, 0, 1;
+    %set/v v0119E468_0, 0, 1;
+    %set/v v0119DF40_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0119DD30_0, 0, 1;
+    %set/v v0119E468_0, 1, 1;
+    %set/v v0119DF40_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0119DD30_0, 0, 1;
+    %set/v v0119E468_0, 1, 1;
+    %set/v v0119DF40_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0119DD30_0, 1, 1;
+    %set/v v0119E468_0, 0, 1;
+    %set/v v0119DF40_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0119DD30_0, 1, 1;
+    %set/v v0119E468_0, 0, 1;
+    %set/v v0119DF40_0, 1, 1;
+    %delay 20, 0;
+    %set/v v0119DD30_0, 1, 1;
+    %set/v v0119E468_0, 1, 1;
+    %set/v v0119DF40_0, 0, 1;
+    %delay 20, 0;
+    %set/v v0119DD30_0, 1, 1;
+    %set/v v0119E468_0, 1, 1;
+    %set/v v0119DF40_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 18 "$display", "Test complete";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "f1_tb.v";
+    "./f1.v";

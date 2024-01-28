@@ -1,0 +1,64 @@
+$date
+	Sat Nov 18 20:00:21 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module priority16to4_tb $end
+$var wire 4 ! y [3:0] $end
+$var wire 1 " z $end
+$var reg 16 # w [15:0] $end
+$scope module uut $end
+$var wire 16 $ w [15:0] $end
+$var integer 32 % i [31:0] $end
+$var reg 4 & y [3:0] $end
+$var reg 1 ' z $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+1'
+b111 &
+b10000 %
+b11111010 $
+b11111010 #
+1"
+b111 !
+$end
+#20
+b10000 %
+1'
+1"
+b1001 &
+b1001 !
+b1000001111 #
+b1000001111 $
+#40
+b10000 %
+1'
+1"
+b1010 &
+b1010 !
+b11010101101 #
+b11010101101 $
+#60
+b10000 %
+1'
+1"
+b1011 &
+b1011 !
+b110001010110 #
+b110001010110 $
+#80
+b10000 %
+1'
+1"
+b0 &
+b0 !
+b1 #
+b1 $
+#100

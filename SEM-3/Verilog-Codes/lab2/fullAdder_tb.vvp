@@ -1,0 +1,77 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00A09090 .scope module, "fullAdder_tb" "fullAdder_tb" 2 3;
+ .timescale -9 -9;
+v00A0E828_0 .var "cin", 0 0;
+v00A0EA38_0 .net "cout", 0 0, L_011B5368; 1 drivers
+v00A0E988_0 .net "s", 0 0, L_011B51E0; 1 drivers
+v00A0E880_0 .var "x", 0 0;
+v00A0E720_0 .var "y", 0 0;
+S_00A08C50 .scope module, "uut" "fullAdder" 2 6, 3 1, S_00A09090;
+ .timescale -9 -9;
+L_00A03E80 .functor AND 1, v00A0E880_0, v00A0E720_0, C4<1>, C4<1>;
+L_00A0A0C0 .functor AND 1, v00A0E720_0, v00A0E828_0, C4<1>, C4<1>;
+L_00A0A130 .functor OR 1, L_00A03E80, L_00A0A0C0, C4<0>, C4<0>;
+L_00A0EBC8 .functor AND 1, v00A0E880_0, v00A0E828_0, C4<1>, C4<1>;
+L_011B5368 .functor OR 1, L_00A0A130, L_00A0EBC8, C4<0>, C4<0>;
+L_011B5250 .functor XOR 1, v00A0E880_0, v00A0E720_0, C4<0>, C4<0>;
+L_011B51E0 .functor XOR 1, L_011B5250, v00A0E828_0, C4<0>, C4<0>;
+v00A09500_0 .net *"_s0", 0 0, L_00A03E80; 1 drivers
+v00A09558_0 .net *"_s10", 0 0, L_011B5250; 1 drivers
+v00A03D78_0 .net *"_s2", 0 0, L_00A0A0C0; 1 drivers
+v00A03DD0_0 .net *"_s4", 0 0, L_00A0A130; 1 drivers
+v00A03E28_0 .net *"_s6", 0 0, L_00A0EBC8; 1 drivers
+v00A03118_0 .net "cin", 0 0, v00A0E828_0; 1 drivers
+v00A03170_0 .alias "cout", 0 0, v00A0EA38_0;
+v00A031C8_0 .alias "s", 0 0, v00A0E988_0;
+v00A03220_0 .net "x", 0 0, v00A0E880_0; 1 drivers
+v00A09FF8_0 .net "y", 0 0, v00A0E720_0; 1 drivers
+    .scope S_00A09090;
+T_0 ;
+    %vpi_call 2 8 "$dumpfile", "fullAdder_tb.vcd";
+    %vpi_call 2 9 "$dumpvars", 1'sb0, S_00A09090;
+    %set/v v00A0E828_0, 0, 1;
+    %set/v v00A0E880_0, 0, 1;
+    %set/v v00A0E720_0, 0, 1;
+    %delay 20, 0;
+    %set/v v00A0E828_0, 0, 1;
+    %set/v v00A0E880_0, 0, 1;
+    %set/v v00A0E720_0, 1, 1;
+    %delay 20, 0;
+    %set/v v00A0E828_0, 0, 1;
+    %set/v v00A0E880_0, 1, 1;
+    %set/v v00A0E720_0, 0, 1;
+    %delay 20, 0;
+    %set/v v00A0E828_0, 0, 1;
+    %set/v v00A0E880_0, 1, 1;
+    %set/v v00A0E720_0, 1, 1;
+    %delay 20, 0;
+    %set/v v00A0E828_0, 1, 1;
+    %set/v v00A0E880_0, 0, 1;
+    %set/v v00A0E720_0, 0, 1;
+    %delay 20, 0;
+    %set/v v00A0E828_0, 1, 1;
+    %set/v v00A0E880_0, 0, 1;
+    %set/v v00A0E720_0, 1, 1;
+    %delay 20, 0;
+    %set/v v00A0E828_0, 1, 1;
+    %set/v v00A0E880_0, 1, 1;
+    %set/v v00A0E720_0, 0, 1;
+    %delay 20, 0;
+    %set/v v00A0E828_0, 1, 1;
+    %set/v v00A0E880_0, 1, 1;
+    %set/v v00A0E720_0, 1, 1;
+    %delay 20, 0;
+    %vpi_call 2 18 "$display", "Test complete";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "fullAdder_tb.v";
+    "./fullAdder.v";

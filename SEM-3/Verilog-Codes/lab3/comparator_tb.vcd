@@ -1,0 +1,49 @@
+$date
+	Sat Nov 18 17:35:34 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module comparator_tb $end
+$var wire 1 ! e $end
+$var wire 1 " g $end
+$var wire 1 # l $end
+$var reg 3 $ a [2:0] $end
+$var reg 3 % b [2:0] $end
+$scope module uut $end
+$var wire 3 & a [2:0] $end
+$var wire 3 ' b [2:0] $end
+$var wire 1 ! e $end
+$var wire 1 " g $end
+$var wire 3 ( i [2:0] $end
+$var wire 1 # l $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10 (
+b1 '
+b100 &
+b1 %
+b100 $
+0#
+1"
+0!
+$end
+#20
+1#
+0"
+b100 (
+b111 %
+b111 '
+#40
+0#
+1!
+b111 (
+b100 %
+b100 '
+#60

@@ -1,0 +1,76 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0126B410 .scope module, "bcdExcess_tb" "bcdExcess_tb" 2 3;
+ .timescale -9 -9;
+v01151E20_0 .var "a", 3 0;
+RS_011201DC .resolv tri, L_01151E78, L_01151ED0, L_01151FD8, L_01151F28;
+v01151F80_0 .net8 "b", 3 0, RS_011201DC; 4 drivers
+S_0126AFD0 .scope module, "uut" "bcdExcess" 2 6, 3 1, S_0126B410;
+ .timescale -9 -9;
+L_0126CB08 .functor OR 1, L_011521E8, L_01151D18, C4<0>, C4<0>;
+L_01267B90 .functor NOT 1, L_011523F8, C4<0>, C4<0>, C4<0>;
+L_01152598 .functor OR 1, L_01152450, L_01152088, C4<0>, C4<0>;
+L_01152640 .functor AND 1, L_01267B90, L_01152598, C4<1>, C4<1>;
+L_01152748 .functor XOR 1, L_01152240, L_01152348, C4<0>, C4<0>;
+L_01152978 .functor NOT 1, L_01152748, C4<0>, C4<0>, C4<0>;
+L_01152860 .functor NOT 1, L_01152030, C4<0>, C4<0>, C4<0>;
+v0126D7C0_0 .net *"_s11", 0 0, L_011523F8; 1 drivers
+v01267A88_0 .net *"_s12", 0 0, L_01267B90; 1 drivers
+v01267AE0_0 .net *"_s15", 0 0, L_01152450; 1 drivers
+v01267B38_0 .net *"_s17", 0 0, L_01152088; 1 drivers
+v01268C38_0 .net *"_s18", 0 0, L_01152598; 1 drivers
+v01268C90_0 .net *"_s20", 0 0, L_01152640; 1 drivers
+v01268CE8_0 .net *"_s25", 0 0, L_01152240; 1 drivers
+v0126CA00_0 .net *"_s27", 0 0, L_01152348; 1 drivers
+v0126CA58_0 .net *"_s28", 0 0, L_01152748; 1 drivers
+v0126CAB0_0 .net *"_s3", 0 0, L_011521E8; 1 drivers
+v01152138_0 .net *"_s30", 0 0, L_01152978; 1 drivers
+v01152298_0 .net *"_s35", 0 0, L_01152030; 1 drivers
+v011522F0_0 .net *"_s36", 0 0, L_01152860; 1 drivers
+v01151D70_0 .net *"_s5", 0 0, L_01151D18; 1 drivers
+v01152190_0 .net *"_s6", 0 0, L_0126CB08; 1 drivers
+v011523A0_0 .net "a", 3 0, v01151E20_0; 1 drivers
+v01151DC8_0 .alias "b", 3 0, v01151F80_0;
+L_01151E78 .part/pv L_0126CB08, 3, 1, 4;
+L_011521E8 .part v01151E20_0, 2, 1;
+L_01151D18 .part v01151E20_0, 3, 1;
+L_01151ED0 .part/pv L_01152640, 2, 1, 4;
+L_011523F8 .part v01151E20_0, 2, 1;
+L_01152450 .part v01151E20_0, 0, 1;
+L_01152088 .part v01151E20_0, 1, 1;
+L_01151FD8 .part/pv L_01152978, 1, 1, 4;
+L_01152240 .part v01151E20_0, 1, 1;
+L_01152348 .part v01151E20_0, 0, 1;
+L_01151F28 .part/pv L_01152860, 0, 1, 4;
+L_01152030 .part v01151E20_0, 0, 1;
+    .scope S_0126B410;
+T_0 ;
+    %vpi_call 2 8 "$dumpfile", "bcdExcess_tb.vcd";
+    %vpi_call 2 9 "$dumpvars", 1'sb0, S_0126B410;
+    %set/v v01151E20_0, 0, 4;
+    %delay 20, 0;
+    %movi 8, 1, 4;
+    %set/v v01151E20_0, 8, 4;
+    %delay 20, 0;
+    %movi 8, 2, 4;
+    %set/v v01151E20_0, 8, 4;
+    %delay 20, 0;
+    %movi 8, 3, 4;
+    %set/v v01151E20_0, 8, 4;
+    %delay 20, 0;
+    %movi 8, 9, 4;
+    %set/v v01151E20_0, 8, 4;
+    %delay 20, 0;
+    %vpi_call 2 15 "$display", "Test complete";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "bcdExcess_tb.v";
+    "./bcdExcess.v";
