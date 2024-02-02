@@ -1,28 +1,34 @@
-//To find the GCD of two numbers using Euclid's algorithm
+//Euclids algorithm gcd(m,n)
+//Input - two non negative not-both-zero inetgers
+//Output - greatest common divisor of m and n
+
 #include<stdio.h>
-#include<stdlib.h>
-int euclid(int m, int n){
+
+//Approach 1 - using while loop
+int euclid1(int m , int n){
   int opcount = 0;
-  while(n!=0){
-    int rd = m % n;
+  while(n != 0){
+    int r = m % n;
     opcount++;
     m = n;
-    n = rd;
+    n = r;
   }
   printf("Opcount = %d\n",opcount);
   return m;
 }
+
+//Approach 2 - using recursion
+int euclid2(int m, int n){
+  if(n == 0) return m;
+  else return euclid2(n , m % n);
+}
+
+//Main function
 int main(){
   int m,n;
-  printf("Enter two numbers: ");
+  printf("Enter m and n: ");
   scanf("%d %d",&m,&n);
-    if(m==0 && n==0){
-    printf("Invalid. Both the numbers cant be zero.");
-  }
-  else if(m<0 || n<0){
-    printf("Invalid. The number(s) cannot be negative.");
-  }
-  else{
-    printf("GCD using Euclids algorithm: %d",euclid(m,n));
-  }
+  printf("GCD using Euclids algorithm approach 1 (while loop): %d \n",euclid1(m,n));
+  printf("GCD using Euclids algorithm approach 2 (recursion): %d \n",euclid2(m,n));
+  return 0;
 }
