@@ -2,6 +2,7 @@
 //Input - two non negative not-both-zero integers
 //Output - gcd of m aand n
 //Drawback - one of the number can't be zero
+//Time complexity - O(n)
 
 #include<stdio.h>
 

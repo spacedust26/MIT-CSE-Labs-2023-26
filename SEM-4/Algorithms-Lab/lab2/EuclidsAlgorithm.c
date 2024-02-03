@@ -1,6 +1,7 @@
 //Euclids algorithm gcd(m,n)
 //Input - two non negative not-both-zero inetgers
 //Output - greatest common divisor of m and n
+//Time complexity - O(log n)
 
 #include<stdio.h>
 
