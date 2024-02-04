@@ -1,7 +1,3 @@
-/*Write a program to implement the following graph representations and display them.
-i. Adjacency list
-ii. Adjacency matrix*/
-
 //i)Adjacency list
 #include<stdio.h>
 #include<stdlib.h>
