@@ -114,3 +114,88 @@ int main(){
   printf("\nConnected componenets:");
   connect(g);
 }
+
+// #include <stdio.h>
+// #include <stdbool.h>
+
+// #define MAX_VERTICES 100
+
+// int adjMatrix[MAX_VERTICES][MAX_VERTICES];
+// int visited[MAX_VERTICES];
+// int queue[MAX_VERTICES];
+// int front = 0, rear = 0;
+
+// void initializeGraph(int vertices) {
+//     int i, j;
+//     for (i = 0; i < vertices; i++) {
+//         visited[i] = 0;
+//         for (j = 0; j < vertices; j++) {
+//             adjMatrix[i][j] = 0;
+//         }
+//     }
+// }
+
+// void addEdge(int u, int v) {
+//     adjMatrix[u][v] = 1;
+// }
+
+// void bfs(int start, int vertices) {
+//     int i, current;
+//     queue[rear++] = start;
+//     visited[start] = 1;
+
+//     while (front < rear) {
+//         current = queue[front++];
+//         printf("%d ", current);
+
+//         for (i = 0; i < vertices; i++) {
+//             if (adjMatrix[current][i] && !visited[i]) {
+//                 queue[rear++] = i;
+//                 visited[i] = 1;
+//             }
+//         }
+//     }
+// }
+
+// void dfs(int start, int vertices) {
+//     int i;
+//     printf("%d ", start);
+//     visited[start] = 1;
+
+//     for (i = 0; i < vertices; i++) {
+//         if (adjMatrix[start][i] && !visited[i]) {
+//             dfs(i, vertices);
+//         }
+//     }
+// }
+
+// int main() {
+//     int vertices, edges, i, u, v, start;
+
+//     printf("Enter the number of vertices: ");
+//     scanf("%d", &vertices);
+//     printf("Enter the number of edges: ");
+//     scanf("%d", &edges);
+
+//     initializeGraph(vertices);
+
+//     printf("Enter the edges (u v):\n");
+//     for (i = 0; i < edges; i++) {
+//         scanf("%d %d", &u, &v);
+//         addEdge(u, v);
+//     }
+
+//     printf("Enter the starting vertex for BFS and DFS: ");
+//     scanf("%d", &start);
+
+//     printf("BFS Traversal: ");
+//     bfs(start, vertices);
+
+//     printf("\nDFS Traversal: ");
+//     for (i = 0; i < vertices; i++) {
+//         visited[i] = 0;
+//     }
+//     dfs(start, vertices);
+
+//     return 0;
+// }
