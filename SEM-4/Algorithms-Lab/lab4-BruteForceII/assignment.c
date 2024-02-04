@@ -12,6 +12,7 @@ int assignment[MAX_N];
 int min_assignment[MAX_N];
 int used[MAX_N];
 int min_cost = 999999;
+int opcount = 0;
 
 void permute(int n, int index, int total_cost){
     if (index == n){
@@ -21,6 +22,7 @@ void permute(int n, int index, int total_cost){
                 min_assignment[i] = assignment[i];
             }
         }
+        opcount++;
         return;
     }
     for (int i = 0; i < n; i++) {
@@ -47,7 +49,8 @@ int main() {
     printf("Minimum cost of assignment: %d\n", min_cost);
     printf("Assignments:\n");
     for (int i = 0; i < n; i++) {
-        printf("Agent %d -> Task %d\n", i+1, min_assignment[i]+1);
+        printf("Person %d -> Job %d\n", i+1, min_assignment[i]+1);
     }
+    printf("Opcount = %d ",opcount);
     return 0;
 }
