@@ -1,36 +1,60 @@
-1)CREATE TABLE employee(
-    emp_no INT,
-    emp_name VARCHAR(25),
-    emp_address CHAR(25)
-  );
+1)Create a table employee with ( emp_no, emp_name, emp_address)
 
-2)INSERT INTO employee VALUES(&emp_no, '&emp_name', '&emp_address');
-  // 101, Adam, Manipal
-  // 102, Bob, Manglore    
-  // 103, Casey, Manipal
-  // 104, Donald, Manipal
-  // 105, Eddie, Manglore 
+create table employee(
+  emp_no int,
+  emp_name varchar(25),
+  emp_address char(25)
+);
 
-3)SELECT emp_name
-  FROM employee;
+2)Insert five employees information. 
 
-4)SELECT *
-  FROM employee WHERE emp_address='Manipal';
+insert into employee values(101, 'adam', 'manipal');
+insert into employee values(102, 'bob','manipal');
+insert into employee values(103, 'casey', 'manglore');
+insert into employee values(104, 'donald', 'manglore');
+insert into employee values(105, 'eva', 'manipal');
 
-5)ALTER TABLE employee
-  ADD(salary INT);
+3)Display names of all employees.
 
-6)UPDATE employee SET salary=10000 WHERE emp_no=101;
-  UPDATE employee SET salary=20000 WHERE emp_no=102;
-  UPDATE employee SET salary=30000 WHERE emp_no=103;
-  UPDATE employee SET salary=40000 WHERE emp_no=104;
-  UPDATE employee SET salary=50000 WHERE emp_no=105;
+select emp_name
+from employee;
 
-7)DESCRIBE employee;
+4)Display all the employees from ‘MANIPAL’
 
-8)DELETE FROM employee
-  WHERE emp_address = 'Manglore';
+select *
+from employee
+where emp_address = 'manipal';
 
-9)RENAME employee TO employee1;
+5)Add a column named salary to employee table
 
-10)DROP TABLE employee1;
+alter table employee add (salary numeric(8));
+
+6)Assign the salary for all employees
+
+update employee set salary = 10000
+where emp_no = 101;
+update employee set salary = 20000
+where emp_no = 102;
+update employee set salary = 180000
+where emp_no = 103;
+update employee set salary = 300000
+where emp_no = 104;
+update employee set salary = 6000
+where emp_no = 105;
+
+7)View the structure of the table employee using describe
+
+describe employee;
+
+8)Delete all the employees from ‘MANGALORE’
+
+delete from employee
+where emp_address = 'manglore';
+
+9)Rename employee as employee1
+
+rename employee to employee1;
+
+10) Drop the table employee1
+
+drop table employee1;
