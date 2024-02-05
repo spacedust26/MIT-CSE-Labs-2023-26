@@ -120,9 +120,9 @@ where student.dept_name = course.dept_name and course.course_id = section.course
 16)For all students who have opted courses in 2015, find their names and course id’s 
 with the attribute course title replaced by c-name.
 
-select name, course_id c_name, title
-from student natural join course natural join takes
-where year = 2009;
+select name, takes.course_id , title c_name
+from student , course, takes
+where student.id = takes.id and course.course_id = takes.course_id and year = 2010;
 
 17)Find the names of all instructors whose salary is greater than the salary of at least 
 one instructor of CSE department and salary replaced by inst-salary.
