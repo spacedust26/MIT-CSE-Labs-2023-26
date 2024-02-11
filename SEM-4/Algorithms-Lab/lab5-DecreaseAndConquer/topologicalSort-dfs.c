@@ -11,8 +11,6 @@ int push_order[MAX_SIZE];
 int pop_order[MAX_SIZE];
 int push_index = 0;
 int pop_index = 0;
-int topological_order[MAX_SIZE];
-
 
 void DFS(int vertex, int n) {
     visited[vertex] = 1;
