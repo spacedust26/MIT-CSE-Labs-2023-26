@@ -1,5 +1,5 @@
 //Euclids algorithm gcd(m,n)
-//Input - two non negative not-both-zero inetgers
+//Input - two non negative not-both-zero integers
 //Output - greatest common divisor of m and n
 //Time complexity - O(log n)
 

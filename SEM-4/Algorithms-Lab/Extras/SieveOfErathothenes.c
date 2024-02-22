@@ -1,6 +1,7 @@
 //Sieve of Erthaosthenes to find prime factors of a number
 //Input - an integer n >= 2;
 //Output - array L of all prime factors less than or equal to n
+//Time complexity - O(n)
 
 #include<stdio.h>
 #include<stdlib.h>
