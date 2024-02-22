@@ -1,7 +1,7 @@
 //Brute force string matching algorithm
 //Input - Text string and pattern string 
 //Output - Index of the text string that matches with the pattern string
-//Time complexity - O(mn)
+//Time complexity - O(mn) [for worst case]
 
 #include<stdio.h>
 #include<string.h>
