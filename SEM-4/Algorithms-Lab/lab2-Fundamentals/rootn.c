@@ -1,6 +1,6 @@
 //Computes the square root of a number n
 //Input - positive integer n
-//Output - square root of n
+//Output - integer square root of n
 //Time complexity - O(sqrt(n))
 
 #include<stdio.h>
