@@ -11,10 +11,8 @@ void merge(int b[], int c[], int a[], int n1, int n2, int n){
 
 	while(i<n1 && j<n2){
 		cnt++;
-		if(b[i]<=c[j])
-			a[k++]=b[i++];
-		else
-			a[k++]=c[j++];
+		if(b[i]<=c[j]) a[k++]=b[i++];
+		else a[k++]=c[j++];
 	}
 	while(i<n1){
 		cnt++;
@@ -27,25 +25,18 @@ void merge(int b[], int c[], int a[], int n1, int n2, int n){
 }
 
 void mergesort(int a[], int n){
-	if(n<=1)
-		return;
-
+	if(n<=1) return;
 	int b[50];
 	int c[50];
-
 	int n1=0,n2=0;
-
 	for(int i=0;i<n/2;i++)
 		b[n1++] = a[i];
 	for(int i=n/2;i<n;i++)
 		c[n2++] = a[i];
-
 	mergesort(b,n1);
 	mergesort(c,n2);
-
 	merge(b,c,a,n1,n2,n);
 }
-
 
 void main(){
 	int n;
@@ -59,6 +50,5 @@ void main(){
 	printf("Sorted: \n");
 	for(int i=0;i<n;i++)
 		printf("%d ",arr[i]);
-
 	printf("\nCount: %d",cnt);
 }

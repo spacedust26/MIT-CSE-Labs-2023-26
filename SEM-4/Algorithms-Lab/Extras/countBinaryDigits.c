@@ -1,6 +1,7 @@
 //To count the number of binary digits in a number
 //Input - positive integer n
 //Output - The number of binary digits in n's binary representaion
+//Time complexity - O(log n)
 
 #include<stdio.h>
 

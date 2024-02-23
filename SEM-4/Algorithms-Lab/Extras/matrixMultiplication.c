@@ -1,6 +1,7 @@
 //To perform matrix multiplication of two n X n matrices
 //Input - number of rows/column n and two n X n matrix A and B
 //Output - product matrix C = AB
+//Time complexity - O(n^3)
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -38,6 +39,7 @@ void main(){
       scanf("%d",&B[i][j]);
     }
   }
+  printf("Product matrix: ");
   int **C = multiply(A,B,n);
   for(int i = 0 ; i < n ; i++){
     for(int j = 0 ; j < n ; j++){
