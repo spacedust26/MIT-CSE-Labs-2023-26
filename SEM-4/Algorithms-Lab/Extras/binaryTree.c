@@ -78,7 +78,7 @@ int maximum(int a, int b){
 }
 
 int height(struct node *root){
-  if(root == NULL) return 0;
+  if(root == NULL) return -1;
   else return maximum(height(root->left), height(root->right)) + 1;
 }
 
