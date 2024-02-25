@@ -20,12 +20,14 @@ struct node *createnode(int data){
   return newnode;
 }
 
+int countnode = 0;
 int count(struct node *root){
   opcount++;
   if(root == NULL) return 0;
-  int l = count(root->left);
-  int r = count(root->right);
-  return l + r + 1;
+  count(root->left);
+  countnode++;
+  count(root->right);
+  return countnode;
 }
 
 int main(){

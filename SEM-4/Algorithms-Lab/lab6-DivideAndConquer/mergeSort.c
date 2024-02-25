@@ -4,51 +4,55 @@
 //Time complexity - nlogn
 #include <stdio.h>
 
-int cnt=0;
-
-void merge(int b[], int c[], int a[], int n1, int n2, int n){
-	int i=0,j=0,k=0;
-
-	while(i<n1 && j<n2){
-		cnt++;
-		if(b[i]<=c[j]) a[k++]=b[i++];
-		else a[k++]=c[j++];
+//merge 
+void merge(int *arr, int lb, int mid, int ub){
+	int i = lb;
+	int j = mid + 1;
+	int k = lb;
+	int barr[50];
+	while(i <= mid && j <= ub){
+		if(arr[i] < arr[j]){
+			barr[k++] = arr[i++];
+		}else{
+			barr[k++] = arr[j++];
+		}
 	}
-	while(i<n1){
-		cnt++;
-		a[k++]=b[i++];
+	if(i > mid){
+		while(j <= ub){
+			barr[k++] = arr[j++];
+		}
+	}else{
+		while(i <= mid){
+			barr[k++] = arr[i++];
+		}
 	}
-	while(j<n2){
-		cnt++;
-		a[k++]=c[j++];
+	for(int k = lb ; k <= ub ; k++){
+		arr[k] = barr[k]; 
 	}
 }
 
-void mergesort(int a[], int n){
-	if(n<=1) return;
-	int b[50];
-	int c[50];
-	int n1=0,n2=0;
-	for(int i=0;i<n/2;i++)
-		b[n1++] = a[i];
-	for(int i=n/2;i<n;i++)
-		c[n2++] = a[i];
-	mergesort(b,n1);
-	mergesort(c,n2);
-	merge(b,c,a,n1,n2,n);
+//mergesort
+void mergesort(int *arr, int lb, int ub){
+	if(lb < ub){
+		int mid = (lb + ub)/2;
+		mergesort(arr, lb, mid);
+		mergesort(arr, mid+1, ub);
+		merge(arr, lb, mid, ub);
+	}
 }
 
-void main(){
-	int n;
-	printf("Enter the number of elements: ");
-	scanf("%d",&n);
-	int arr[100];
-	printf("Enter the elements: \n");
-	for(int i=0;i<n;i++)
-		scanf("%d",&arr[i]);
-	mergesort(arr,n);
-	printf("Sorted: \n");
-	for(int i=0;i<n;i++)
-		printf("%d ",arr[i]);
-	printf("\nCount: %d",cnt);
+//Main function
+int main(){
+    int n, arr[30];
+    printf("Enter array size: ");
+    scanf("%d",&n);
+    printf("Enter array elements: ");
+    for(int i = 0 ; i < n ; i++){
+        scanf("%d",&arr[i]);
+    }
+    mergesort(arr, 0 , n-1);
+    for(int i = 0 ; i < n ; i++){
+        printf("%d ",arr[i]);
+    }
+    return 0;
 }

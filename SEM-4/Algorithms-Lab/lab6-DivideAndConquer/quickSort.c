@@ -5,55 +5,56 @@
 //avearge case : 1.39nlogn
 //worst case : n^2
 
-#include <stdio.h>
-int opcount = 0;
-void swap(int* a, int* b) {
+#include<stdio.h>
+
+//Swap function
+void swap(int *a, int *b){
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-int partition(int arr[], int low, int high) {
-    int pivot = arr[low];
-    int i = low + 1;
-    for (int j = low + 1; j <= high; j++) {
-      opcount++;
-        if (arr[j] < pivot) {
-            swap(&arr[i], &arr[j]);
-            i++; 
+//Partition function
+int partition(int *arr, int lb, int ub){
+    int pivot = arr[lb];
+    int start = lb;
+    int end = ub;
+    while(start < end){
+        while(arr[start] <= pivot && start <= ub){
+            start++;
+        }
+        while(arr[end] > pivot && end >= lb){
+            end--;
+        }
+        if(start < end){
+            swap(&arr[start], &arr[end]);
         }
     }
-    swap(&arr[low], &arr[i - 1]);
-    return (i - 1);
+    swap(&arr[lb], &arr[end]);
+    return end;
 }
 
-void quickSort(int arr[], int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
+//Quicksort function
+void quicksort(int *arr, int lb, int ub){
+    if(lb < ub){
+        int loc = partition(arr, lb, ub);
+        quicksort(arr, lb, loc-1);
+        quicksort(arr, loc+1, ub);
     }
 }
 
-void printArray(int arr[], int size) {
-    for (int i = 0; i < size; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
-}
-
-int main() {
-    int arr[30], n;
-    printf("Enter limit: ");
+//Main function
+int main(){
+    int n, arr[30];
+    printf("Enter array size: ");
     scanf("%d",&n);
-    printf("Enter elements: ");
+    printf("Enter array elements: ");
     for(int i = 0 ; i < n ; i++){
-      scanf("%d",&arr[i]);
+        scanf("%d",&arr[i]);
     }
-    printf("Given array: \n");
-    printArray(arr, n);
-    quickSort(arr, 0, n - 1);
-    printf("Sorted array: \n");
-    printArray(arr, n);
-    printf("Opcount = %d\n",opcount);
+    quicksort(arr, 0 , n-1);
+    for(int i = 0 ; i < n ; i++){
+        printf("%d ",arr[i]);
+    }
     return 0;
 }
