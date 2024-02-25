@@ -18,6 +18,7 @@ struct node *createnode(int data){
   return newnode;
 }
 
+//To find closest common ancestor
 struct node *findcca(struct node *root,struct node *p,struct node *q){
   if(root == NULL || root == p || root == q) return root;
   struct node *left = findcca(root->left, p, q);
@@ -26,6 +27,7 @@ struct node *findcca(struct node *root,struct node *p,struct node *q){
   return (left == NULL) ? right:left;
 }
 
+//Main function
 int main(){
   struct node *root = createnode(1);
   root->left = createnode(2);
@@ -33,12 +35,9 @@ int main(){
   root->left->left = createnode(4);
   root->left->right = createnode(5);
   root->left->left->left = createnode(6);
-  root->left->left->right = createnode(7);
-  
+  root->left->left->right = createnode(7); 
   struct node *p = root->left->right;
   struct node *q = root->left->left->left;
-
   struct node *result = findcca(root,p,q);
-
   printf("CCA of %d and %d is %d",p->data, q->data, result->data);
 }

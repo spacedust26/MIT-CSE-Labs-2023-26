@@ -35,10 +35,10 @@ int knapsack(int *w, int *v, int n, int b){
 //Main function
 int main(){
   int n, b;
-  int *w = (int*)calloc(n,sizeof(int));
-  int *v = (int*)calloc(n,sizeof(int));
   printf("Enter total number of items: ");
   scanf("%d",&n);
+  int *w = (int*)calloc(n,sizeof(int));
+  int *v = (int*)calloc(n,sizeof(int));
   printf("Enter weights for\n");
   for(int i = 0 ; i < n ; i++){
     printf("item %d: ",i+1);
