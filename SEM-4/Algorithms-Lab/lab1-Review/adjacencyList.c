@@ -58,11 +58,10 @@ void print(struct node **list, int vertices){
 //Main function
 int main(){
   int vertices;
-  int s,d;
+  int s,d,choice;
   printf("Enter total vertices: ");
   scanf("%d",&vertices);
   initialize(vertices);
-  int choice;
   do{
     printf("Enter source and destination vertices: ");
     scanf("%d %d",&s,&d);
