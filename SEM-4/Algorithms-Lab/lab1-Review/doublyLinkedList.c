@@ -1,4 +1,3 @@
-//*****Example problem*****
 //Algorithm to implement a doubly linked list
 //i. Create the list by adding each node at the front. 
 // ii. Insert a new node to the left of the node whose key value is read as an input. 

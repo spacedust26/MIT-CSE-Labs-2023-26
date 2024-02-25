@@ -1,4 +1,3 @@
-//***** LAB EXRECISE 1 *****
 //Binary search tree with no duplicate elements
 // i.  Given a key, perform a search in the binary search tree. If the key is found then display “key found” else insert the key in the binary search tree. 
 //ii. Display the tree using inorder, preorder and post order traversal methods

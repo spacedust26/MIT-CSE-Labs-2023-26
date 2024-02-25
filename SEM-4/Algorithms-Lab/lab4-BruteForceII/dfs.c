@@ -1,69 +1,134 @@
-#include <stdio.h>
+//Depth-first search of a graph using adjacency matrix and adjacency list
+//Input - total vertices and respective edges
+//Ouput - DFS traversal , Push and Pop order
+//Time complexity - adjacency matrix |V|^2 adjacency list |V| + |E|
 
-#define MAX_SIZE 100
+// 1) Adjacency Matrix
+#include<stdio.h>
 
-int graph[MAX_SIZE][MAX_SIZE];
-int visited[MAX_SIZE];
-int push_order[MAX_SIZE];
-int pop_order[MAX_SIZE];
-int push_index = 0;
-int pop_index = 0;
+//Global variables
+int am[100][100];
+int visited[100];
 
-void DFS(int vertex, int n) {
-    visited[vertex] = 1;
-    push_order[push_index++] = vertex; // Record push order
+//Dfs traversal using an adjacency matrix
+void dfsMatrix(int vertices){
 
-    printf("%d ", vertex); // Display vertex during DFS traversal
-
-    for (int i = 0; i < n; i++) {
-        if (graph[vertex][i] && !visited[i]) {
-            DFS(i, n);
-        }
-    }
-
-    pop_order[pop_index++] = vertex; // Record pop order
 }
 
-int main() {
-    int n;
-    printf("Enter the number of vertices: ");
-    scanf("%d", &n);
-
-    printf("Enter the adjacency matrix:\n");
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            scanf("%d", &graph[i][j]);
+//Main function
+int main(){
+    int vertices;
+    printf("Enter total vertices of the graph: ");
+    scanf("%d",&vertices);
+    printf("Enter adjacency matrix: ");
+    for(int i = 0 ; i < vertices ; i++){
+        for(int j = 0 ; j < vertices ; j++){
+            scanf("%d",&am[i][j]);
         }
     }
-
-    // Initialize visited array
-    for (int i = 0; i < n; i++) {
+    for(int i = 0 ; i < vertices ; i++){
         visited[i] = 0;
     }
-
-    // Perform DFS traversal from each vertex
-    printf("DFS Traversal:\n");
-    for (int i = 0; i < n; i++) {
-        if (!visited[i]) {
-            DFS(i, n);
-        }
-    }
-    printf("\n");
-
-    printf("Push order of vertices during DFS:\n");
-    for (int i = 0; i < push_index; i++) {
-        printf("%d ", push_order[i]);
-    }
-    printf("\n");
-
-    printf("Pop order of vertices during DFS:\n");
-    for (int i = 0; i < pop_index; i++) {
-        printf("%d ", pop_order[i]);
-    }
-    printf("\n");
-
-    return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// #include <stdio.h>
+
+// #define MAX_SIZE 100
+
+// int graph[MAX_SIZE][MAX_SIZE];
+// int visited[MAX_SIZE];
+// int push_order[MAX_SIZE];
+// int pop_order[MAX_SIZE];
+// int push_index = 0;
+// int pop_index = 0;
+
+// void DFS(int vertex, int n) {
+//     visited[vertex] = 1;
+//     push_order[push_index++] = vertex; // Record push order
+
+//     printf("%d ", vertex); // Display vertex during DFS traversal
+
+//     for (int i = 0; i < n; i++) {
+//         if (graph[vertex][i] && !visited[i]) {
+//             DFS(i, n);
+//         }
+//     }
+
+//     pop_order[pop_index++] = vertex; // Record pop order
+// }
+
+// int main() {
+//     int n;
+//     printf("Enter the number of vertices: ");
+//     scanf("%d", &n);
+
+//     printf("Enter the adjacency matrix:\n");
+//     for (int i = 0; i < n; i++) {
+//         for (int j = 0; j < n; j++) {
+//             scanf("%d", &graph[i][j]);
+//         }
+//     }
+
+//     // Initialize visited array
+//     for (int i = 0; i < n; i++) {
+//         visited[i] = 0;
+//     }
+
+//     // Perform DFS traversal from each vertex
+//     printf("DFS Traversal:\n");
+//     for (int i = 0; i < n; i++) {
+//         if (!visited[i]) {
+//             DFS(i, n);
+//         }
+//     }
+//     printf("\n");
+
+//     printf("Push order of vertices during DFS:\n");
+//     for (int i = 0; i < push_index; i++) {
+//         printf("%d ", push_order[i]);
+//     }
+//     printf("\n");
+
+//     printf("Pop order of vertices during DFS:\n");
+//     for (int i = 0; i < pop_index; i++) {
+//         printf("%d ", pop_order[i]);
+//     }
+//     printf("\n");
+
+//     return 0;
+// }
 
 // #include <stdio.h>
 // #include <stdlib.h>
