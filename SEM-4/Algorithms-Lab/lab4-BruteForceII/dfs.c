@@ -43,7 +43,7 @@
 //     }
 //     printf("\nDFS traversal: ");
 //     for(int i = 0 ; i < vertices ; i++){
-//         if(!visited[0]) dfsMatrix(i,vertices);
+//         if(!visited[i]) dfsMatrix(i,vertices);
 //     }
 //     printf("\nPush order: ");
 //     for(int i = 0 ; i < pushIndex ; i++){

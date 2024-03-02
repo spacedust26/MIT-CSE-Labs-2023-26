@@ -15,7 +15,7 @@ void adjacencyMatrix(int s, int d, int vertices, int am[30][30]){
     am[d][s] = 1;
   }else printf("Invalid position");
 
-  //directed graph
+  //Directed graph
   // if(s>=0 && s<vertices && d>=0 && d<vertices){
   //   am[s][d] = 1;
   // }else printf("Invalid position");
