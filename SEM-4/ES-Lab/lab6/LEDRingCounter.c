@@ -12,7 +12,7 @@ int main(void){
 	LPC_PINCON -> PINSEL4 &= 0xFCFFFFFF; //Configure port2 P2.12 pin as GPIO function
 	LPC_GPIO2 -> FIODIR &= 0xFFFFEFFF; //Configure P2.12 as input port
 	while(1){
-		if(!(LPC_GPIO2 -> FIODIR & 1<<12)){ //switch not pressed
+		if(!(LPC_GPIO2 -> FIODIR & 1<<12)){ //switch pressed = 0
 			for(i = 0 ; i < 8 ; i++){
 				LPC_GPIO0 -> FIOPIN = c<<4;
 				for(j = 0 ; j < 80000 ; j++); //random delay
