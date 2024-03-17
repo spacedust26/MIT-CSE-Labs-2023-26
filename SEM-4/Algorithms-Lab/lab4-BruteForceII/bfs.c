@@ -83,6 +83,9 @@ void adjacencyList(int s, int d, int vertices){
     struct node *dest = createNode(d);
     dest->next = list[s];
     list[s] = dest;
+    struct node *src = createNode(s);
+    src->next = list[d];
+    list[d] = src;
 }
 
 //Bfs traversal using an adjacency matrix
