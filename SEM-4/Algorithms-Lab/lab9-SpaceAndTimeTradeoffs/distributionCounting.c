@@ -17,7 +17,7 @@ void distributionCount(int *arr, int n, int l ,int u){
     dtable[arr[i]-l]++;
   }
   //Reuse for distribution
-  for(int i = 1 ; i <= u-1 ; i++){
+  for(int i = 1 ; i <= u - l ; i++){
     dtable[i] += dtable[i-1];
   }
   int newarr[30];
