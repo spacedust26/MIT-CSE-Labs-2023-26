@@ -4,20 +4,19 @@
 __Vectors
 	DCD 0X10001000
 	DCD Reset_Handler
-	ALIGN
+	ALIGN 
 	AREA mycode, CODE, READONLY
 	ENTRY
 	EXPORT Reset_Handler
 Reset_Handler
-	LDR R0, =N
-	LDR R1, =SUM
-	LDR R2, [R0]
-	MLA R2,R2,R2,R2
-	LSR R2, #1
-	STR R2, [R1]
+	LDR R1, =SRC
+	LDR R2, =DST
+	LDR R3, [R1]
+	MLA R3, R3, R3, R3
+	LSR R3, #1
+	STR R3, [R2]
 STOP B STOP
-N DCD 4
+SRC DCD 5
 	AREA mydata, DATA, READWRITE
-SUM DCD 0
+DST DCD 0
 	END
-	

@@ -1,4 +1,4 @@
-;Write a program to add two 32 bit numbers available in the code memory. Store the result in the data memory
+;Write an aseembly language program to implement division using repetitive subtraction
 	AREA RESET, DATA, READONLY
 	EXPORT __Vectors
 __Vectors
@@ -11,14 +11,20 @@ __Vectors
 Reset_Handler
 	LDR R0, =N1
 	LDR R1, =N2
+	LDR R6, =RESULT
 	LDR R2, [R0]
 	LDR R3, [R1]
-	ADDS R2, R3;
-	LDR R4, =RESULT
-	STR R2, [R4]
+	MOV R5, #0
+UP	CMP R2, R3
+	BCC STORE
+	SUBS R2, R3
+	ADD R5, #1
+	B UP
+STORE STR R5, [R6], #4
+	STR R2, [R6]
 STOP B STOP
-N1 DCD 0X20004500
-N2 DCD 0X1000A002
+N1 DCD 0X15
+N2 DCD 0X5
 	AREA mydata, DATA , READWRITE
 RESULT DCD 0
 	END

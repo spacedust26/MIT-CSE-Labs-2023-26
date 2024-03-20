@@ -1,4 +1,4 @@
-;Write a program to add two 32 bit numbers available in the code memory. Store the result in the data memory
+;Write a program to perform subtraction operation two 32 bit numbers available in the code memory. Store the result in the data memory
 	AREA RESET, DATA, READONLY
 	EXPORT __Vectors
 __Vectors
@@ -13,7 +13,7 @@ Reset_Handler
 	LDR R1, =N2
 	LDR R2, [R0]
 	LDR R3, [R1]
-	ADDS R2, R3;
+	SUBS R2, R3;
 	LDR R4, =RESULT
 	STR R2, [R4]
 STOP B STOP

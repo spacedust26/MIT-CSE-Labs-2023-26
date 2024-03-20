@@ -1,0 +1,43 @@
+;Add two 32 bit packed BCD numbers and store the result in packed BCD form
+	AREA RESET, DATA, READONLY
+	EXPORT __Vectors
+__Vectors
+	DCD 0X10001000
+	DCD Reset_Handler
+	ALIGN 
+	AREA mycode, CODE, READONLY
+	ENTRY
+	EXPORT Reset_Handler
+Reset_Handler
+	LDR R0, =N1
+	LDR R1, [R0]
+	LDR R0, =N2
+	LDR R2, [R0]
+	LDR R0, =RESULT
+	MOV R5, #0
+UP	MOV R3, R1
+	AND R4, R3, #0XF
+	ADD R4, R5
+	MOV R5, #0
+	MOV R6, R2
+	AND R7, R6, #0XF
+	BL ADDER
+	LSR R1, #4
+	LSR R2, #4
+	CMP R1, #0
+	BNE UP
+	STRB R5,[R0]
+STOP B STOP
+ADDER ADD R4, R7
+	CMP R4, #10
+	BCC STORE
+	SUB R4, #10
+	ADD R5, #1
+STORE STRB R4, [R0], #1
+	BX LR
+N1 DCD 0X25
+N2 DCD 0X16
+	AREA mydata, DATA, READWRITE
+RESULT DCD 0
+	END
+	

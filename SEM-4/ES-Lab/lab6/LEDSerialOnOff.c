@@ -1,4 +1,4 @@
-//Progarm to turn on/off the LEDs serially
+//Program to turn on/off the LEDs serially
 
 #include<LPC17xx.h>
 unsigned int i,j;
@@ -7,11 +7,9 @@ unsigned long LED;
 int main(void){
   SystemInit();
   SystemCoreClockUpdate();
-	
-  LPC_PINCON->PINSEL0 &= 0xFF0000FF; //Configure port0 pins P0.4-P0.11 as GPIO function
-  LPC_GPIO->FIODIR |= 0X00000FF0; //Configure P0.4-P0.11 as output port
-	
-	while(1){
+	LPC_PINCON->PINSEL0 &= 0xFF0000FF; //P0.4-P0.11 as GPIO function
+  LPC_GPIO->FIODIR |= 0X00000FF0; //P0.4-P0.11 as output port
+		while(1){
 		LED = 0x00000010; //Initial value on LED
 		for(i = 1; i < 9; i++){
 			LPC_GPIO0->FIOSET = LED; //Turn ON LED at LSB(P0.4)

@@ -1,0 +1,43 @@
+;Convert a 16-bit hex number into its equivalent packed BCD
+	AREA RESET, DATA, READONLY
+	EXPORT __Vectors
+__Vectors
+	DCD 0X10001000
+	DCD Reset_Handler
+	ALIGN 
+	AREA mycode, CODE, READONLY
+	ENTRY
+	EXPORT Reset_Handler
+Reset_Handler
+	LDR R0, =SRC
+	LDR R1, [R0]
+	LDR R2, =UNPACKED
+	MOV R4, #0
+UP	CMP R1, #0xA
+	BCC STORE
+	SUBS R1, #0xA
+	ADD R4, #1
+	B UP
+STORE STRB R1, [R2], #1
+	CMP R4, #0
+	BEQ LAST
+	MOV R1, R4
+	MOV R4, #0
+	B UP
+LAST SUBS R2, #-5
+	MOV R10, #5
+	LDR R8, =PACKED
+	LDR R9, [R8]
+UO	LDRB R3, [R2], #1
+	LDRB R4, [R2], #1
+	LSL R4, #4
+	ORR R4, R3
+	STRB R4, [R8], #1
+	SUBS R10, #2
+	BNE UO
+STOP B STOP
+SRC DCD 0XFFFF
+	AREA mydata, DATA, READWRITE
+UNPACKED DCD 0, 0
+PACKED DCD 0, 0
+	END
