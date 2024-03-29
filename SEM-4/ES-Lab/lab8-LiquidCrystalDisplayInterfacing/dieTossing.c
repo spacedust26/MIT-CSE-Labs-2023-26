@@ -1,8 +1,8 @@
-//To display message on LCD
+//To stimulate the tossing of a die on keypress
 #include<LPC17xx.h>
 #define rs_ctrl 0x08000000 //P0.27
 #define en_ctrl 0x10000000 //P0.28
-#define dt_ctrl 0x78000000 //P0.23 - P0.26
+#define dt_ctrl 0x07800000 //P0.23 - P0.26
 
 void lcd_init(void);
 void write(int, int);
@@ -13,17 +13,20 @@ void lcd_puts(unsigned char *);
 
 //Main function
 int main(void){
-  unsigned char msg1[4] = {"MIT"};
-  unsigned char msg2[19] = {"Department of CSE"};
+  unsigned char num;
+  LPC_GPIO2 -> FIODIR &= 0xFFFFEFFF; //switch P2.12
   SystemInit();
   SystemCoreClockUpdate();
   lcd_init();
-  lcd_comdata(0x80,0); //1st line 1st char
-  delay_lcd(800);
-  lcd_puts(&msg1[0]);
-  lcd_comdata(0xC0,0); //2nd line 1st char
-  delay_lcd(800);
-  lcd_puts(&msg2[0]);
+  while(1){
+    if(!(LPC_GPIO2->FIOPIN & 1 << 12)){
+      num = rand() % 6 + 1;
+      num = num + 0x30;
+      lcd_comdata(0x80,0); //1st line 1st char
+      delay_lcd(800);
+      lcd_comdata(num,1);
+    }
+  }
 }
 
 //lcd initialisation
@@ -77,17 +80,4 @@ void clear_ports(void){
   LPC_GPIO0->FIOCLR = dt_ctrl;
   LPC_GPIO0->FIOCLR = rs_ctrl;
   LPC_GPIO0->FIOCLR = en_ctrl;
-}
-
-void lcd_puts(unsigned char *buf1){
-  unsigned int i = 0;
-  unsigned int temp3;
-  while(buf1[i]!='\0'){
-    temp3 = buf1[i];
-    lcd_comdata(temp3, 1);
-    i++;
-    if(i == 16){
-      lcd_comdata(0xC0,0);
-    }
-  }
 }

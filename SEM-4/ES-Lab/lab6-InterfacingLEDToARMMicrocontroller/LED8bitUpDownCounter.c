@@ -1,8 +1,8 @@
-//To stimulate an 8 bit ring counter with key press
+//To read a key and display an 8 bit up/down counter on the LEDs
 
 #include<LPC17xx.h>
 
-unsigned int i,j, c = 1;
+unsigned int j;
 unsigned long LED;
 
 int main(void){
@@ -17,13 +17,18 @@ int main(void){
 	
 	while(1){
 		
-		if(!(LPC_GPIO2 -> FIODIR & 1<<12)){ //switch not pressed
-			for(i = 0 ; i < 8 ; i++){
-				LPC_GPIO0 -> FIOPIN = c<<4;
-				for(j = 0 ; j < 80000 ; j++); //random delay
-				c = c << 1;
+		if(LPC_GPIO2 -> FIOPIN & 1<<12){ //switch not pressed
+			for(LED = 255 ; LED >= 0 ; LED--){
+				LED_GPIO0 -> FIOPIN = LED<<4;
+				for(int j = 0 ; j < 50000 ; j++); //Random delay
 			}
-			c = 1;
 		}
+		else{ //switch pressed
+			for(LED = 0 ; LED < 256 ; LED++){
+				LED_GPIO0 -> FIOPIN = LED<<4;
+				for(j = 0; j < 50000 ; j++); //Random delay
+			}
+		}
+		
 	}	
 }

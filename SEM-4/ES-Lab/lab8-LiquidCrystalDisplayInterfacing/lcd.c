@@ -1,9 +1,8 @@
-//To stimulate the tossing of a die on keypress
+//To display message on LCD
 #include<LPC17xx.h>
 #define rs_ctrl 0x08000000 //P0.27
 #define en_ctrl 0x10000000 //P0.28
-#define dt_ctrl 0x78000000 //P0.23 - P0.26
-LPC_GPIO2 -> FIODIR &= 0xFFFFEFFF; //switch P2.12
+#define dt_ctrl 0x07800000 //P0.23 - P0.26
 
 void lcd_init(void);
 void write(int, int);
@@ -14,19 +13,17 @@ void lcd_puts(unsigned char *);
 
 //Main function
 int main(void){
-  unsigned char num;
+  unsigned char msg1[4] = {"MIT"};
+  unsigned char msg2[19] = {"Department of CSE"};
   SystemInit();
   SystemCoreClockUpdate();
   lcd_init();
-  while(1){
-    if(!(LPC_GPIO2->FIOPIN & 1 << 12)){
-      num = rand() % 6 + 1;
-      num = num + 0x30;
-      lcd_comdata(0x80,0); //1st line 1st char
-      delay_lcd(800);
-      lcd_puts(&k);
-    }
-  }
+  lcd_comdata(0x80,0); //1st line 1st char
+  delay_lcd(800);
+  lcd_puts(&msg1[0]);
+  lcd_comdata(0xC0,0); //2nd line 1st char
+  delay_lcd(800);
+  lcd_puts(&msg2[0]);
 }
 
 //lcd initialisation

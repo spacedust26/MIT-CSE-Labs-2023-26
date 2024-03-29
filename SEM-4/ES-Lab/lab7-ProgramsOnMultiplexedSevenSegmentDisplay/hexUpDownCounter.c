@@ -9,7 +9,7 @@ unsigned int i,j;
 
 void delay(unsigned int milliseconds){
 	LPC_TIM0->CTCR = 0x0;
-	LPC_TIM0->PR = 24;
+	LPC_TIM0->PR = 2;
 	LPC_TIM0->TCR = 0x02;
 	LPC_TIM0->TCR = 0x01;
 	while(LPC_TIM0->TC < milliseconds);
