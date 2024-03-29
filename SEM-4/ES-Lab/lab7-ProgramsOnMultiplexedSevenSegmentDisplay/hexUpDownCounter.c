@@ -1,4 +1,4 @@
-//4 digit up/down counter on seven segment using a switch and a timer delay of 1 second between each count
+//4 digit hex up/down counter on seven segment using a switch and a timer delay of 1 second between each count
 
 #include<LPC17xx.h>
 #include<stdio.h>
