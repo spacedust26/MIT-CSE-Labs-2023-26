@@ -1,4 +1,5 @@
 --PL/SQL Basics
+--Lab exercises
 
 --Use a table StudentTable(RollNo, GPA) and populate the table with {(1, 5.8); (2, 6.5); (3, 3.4); (4,7.8); (5, 9.5)} unless a different DB schema is explicitly specified. 
 --1. Write a PL/SQL block to display the GPA of given student.
