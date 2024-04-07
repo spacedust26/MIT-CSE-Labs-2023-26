@@ -7,6 +7,8 @@
 
 #include<stdio.h>
 
+int inversions = 0;
+
 //Swap function
 void swap(int *a, int *b){
     int temp = *a;
@@ -27,6 +29,7 @@ int partition(int *arr, int lb, int ub){
             end--;
         }
         if(start < end){
+            inversions++;
             swap(&arr[start], &arr[end]);
         }
     }
@@ -56,5 +59,6 @@ int main(){
     for(int i = 0 ; i < n ; i++){
         printf("%d ",arr[i]);
     }
+    printf("\nTotal number of inversions: %d",inversions);
     return 0;
 }
