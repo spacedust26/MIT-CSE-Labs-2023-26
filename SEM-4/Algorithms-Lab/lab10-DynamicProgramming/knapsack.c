@@ -36,7 +36,7 @@ void knapsack(int n, int *w, int *v, int b){
   printf("\nMaximum cost: %d\n",profit[n][b]);
   int i = n;
   int j = b;
-  printf("Items are:");
+  printf("Items are: ");
   while(i > 0 && j >= 0){
     if(profit[i][j] > profit[i-1][j]){
       printf("%d ",i);
