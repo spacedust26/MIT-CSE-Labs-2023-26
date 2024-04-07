@@ -5,66 +5,39 @@
 
 #include <stdio.h>
 
-// Minimum function
-int min(int a, int b){
-    return (a < b) ? a : b;
+//swap function
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
-// Permutation function
-int permutation(int perm[10], int n){
-    int k, l;
-    // Find pivot to modify to get the next lexicographically larger permutation
-    for(k = n - 2; k >= 0; k--){
-        if (perm[k] < perm[k + 1]) break;
-    }
-    // If array is in descending order, reset it
-    if(k < 0){
-        for (int i = 0; i < n; i++){
-            perm[i] = i;
-        }
-        return 0; // No more permutations
-    }else{ // Replace the pivot
-        for (l = n - 1; l > k; l--) {
-            if (perm[k] < perm[l]) break;
-        }
-        int temp = perm[k];
-        perm[k] = perm[l];
-        perm[l] = temp;
-        // Reverse suffix to obtain lexicographically smallest permutation of the suffix
-        for(int i = k + 1, j = n - 1; i < j; i++, j--){
-            temp = perm[i];
-            perm[i] = perm[j];
-            perm[j] = temp;
-        }
-        return 1; // Next permutation exists
-    }
-}
+int minpath = 9999;
+int currentpath = 0;
+int v, graph[10][10];
 
-// Function to find the shortest path using brute force approach
-int tsp(int graph[10][10], int v){
-    int perm[10];
-    for (int i = 0; i < v - 1; i++) {
-        perm[i] = i + 1;
-    }
-    int min_path = 99999;
-    do{
-        int current_pathweight = 0;
-        // Calculate current path weight
-        int k = 0;
-        for (int i = 0; i < v - 1; i++) {
-            current_pathweight += graph[k][perm[i]];
-            k = perm[i];
+//Generating permuations
+void permutepath(int path[], int start, int end){
+    if(start == end){
+        currentpath = 0;
+        for(int i = 0 ; i < v - 1; i++){
+            currentpath += graph[path[i]][path[i+1]];
         }
-        current_pathweight += graph[k][0];
-        // Update minimum path weight
-        min_path = min(min_path, current_pathweight);
-    }while(permutation(perm, v - 1));
-    return min_path;
+        currentpath += graph[path[v-1]][path[0]];//cost of returning back
+        if(currentpath < minpath){
+            minpath = currentpath;
+        }
+    }else{
+        for(int i = start ; i<= end ; i++){
+            swap(&path[start], &path[i]);
+            permutepath(path,start+1,end);
+            swap(&path[start], &path[i]);
+        }
+    }
 }
 
 // Main function
 int main(){
-    int v, graph[10][10];
     printf("Enter number of cities: ");
     scanf("%d", &v);
     printf("Enter the distance matrix: ");
@@ -73,6 +46,11 @@ int main(){
             scanf("%d", &graph[i][j]);
         }
     }
-    printf("Minimum distance to cover all cities: %d\n", tsp(graph, v));
+    int path[10];
+    for(int i = 0 ; i < v ; i++){
+        path[i] = i;
+    }
+    permutepath(path,0,v-1);
+    printf("Minimum distance to cover all cities: %d\n",minpath);
     return 0;
 }
