@@ -3,7 +3,6 @@
 #include<LPC17xx.h>
 
 unsigned int i,j, c = 1;
-unsigned long LED;
 
 int main(void){
 	
