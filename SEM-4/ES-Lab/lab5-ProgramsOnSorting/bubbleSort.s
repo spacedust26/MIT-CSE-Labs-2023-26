@@ -1,47 +1,38 @@
-;Write an ARM assembly language program to sort a list using bubble sort
+;to sort a list using bubble sort
 	AREA RESET, DATA, READONLY
 	EXPORT __Vectors
 __Vectors
 	DCD 0X10001000
 	DCD Reset_Handler
-	ALIGN 
+	ALIGN
 	AREA mycode, CODE, READONLY
 	ENTRY
 	EXPORT Reset_Handler
 Reset_Handler
-	;copy content to destination
+;Copy src to dst
 	LDR R0, =SRC
 	LDR R1, =DST
-	MOV R3, #10
+	MOV R8, #10
 UP	LDR R2, [R0], #4
 	STR R2, [R1], #4
-	SUBS R3, #1
+	SUBS R8, #1
 	BNE UP
 	
-	;sorting
-	LDR R0, =DST
-	MOV R1, #10
-UP2	SUB R1, #1
-	CMP R1, #-1
-	BEQ STOP
+	LDR R1, =DST
+	MOV R10, #9
+OUTER	MOV R9, R10?
 	MOV R2, R1
-	MOV R3, R0
-	LDR R4, [R3, #4]
-UP3	CMP R2, #0
-	BEQ UP2
-	LDR R5, [R3]
-	LDR R6, [R4]
-	SUBS R2, #1
-	CMP R5, R6
-	BCS SWAP
-UP1	ADD R3, #4
-	ADD R4, #4
-	B UP3
-SWAP STR R5, [R4]
-	STR R6, [R3]
-	B UP1	
+INNER	LDR R4, [R2], #4
+	LDR R5, [R2]
+	CMP R4, R5
+	STRGT R4, [R2]
+	STRGT R5, [R2, #-4]
+	SUBS R9, #1
+	BNE  INNER
+	SUBS R10, #1
+	BNE OUTER
 STOP B STOP
-SRC DCD 0X3, 0X4, 0X1, 0X8, 0X7, 0X9, 0X0, 0X2, 0X6, 0X5
+SRC DCD 0X5, 0X9, 0X1, 0X6, 0X2, 0X8, 0X7, 0X3, 0X11, 0X4
 	AREA mydata, DATA, READWRITE
 DST DCD 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 	END

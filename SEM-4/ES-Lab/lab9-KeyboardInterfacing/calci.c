@@ -8,7 +8,7 @@ unsigned char msg1[13] = "Result";
 unsigned char row, flag, key;
 unsigned long int i, var1, temp3;
 unsigned char scan_code[16] = {0x11, 0x21, 0x41, 0x81, 0x12, 0x22, 0x42, 0x82, 0x14, 0x24, 0x44, 0x84, 0x18, 0x28, 0x48, 0x88};
-unsigned char ascii_code[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+unsigned char ascii_code[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', '+', '-', '*', '/'};
 int index = 1, ans = 0, a = 0, b = 0, count = 0;
 char op;
 unsigned char asciians[3] = {'0', '0', '\0'};
@@ -16,11 +16,12 @@ unsigned char asciians[3] = {'0', '0', '\0'};
 int main(){
   LPC_GPIO2->FIODIR |= 0x00003C00; //port pins P2.10-2.13 as output rows
   LPC_GPIO1->FIODIR &= 0xF87FFFFF; //port pins P1.23-1.26 as input columns
+  clear_ports();
   lcd_init();
   lcd_comdata(0x80,0); //1st line 1st char
   delay_lcd(800);
   lcd_puts(&msg1[0]);
-  while(1){
+  while(count < 3){
     while(1){
       for(row = 1 ; row < 5 ; row++){
         if(row == 1) var1 = 0x00000400;
@@ -31,7 +32,10 @@ int main(){
         LPC_GPIO2->FIOSET = var1; //enable row
         flag = 0;
         scan(); //scan if any key is pressed in the enabled row
-        if(flag == 1) break;
+        if(flag == 1){
+          count++;
+          break;
+        } 
       }// end for
       if(flag == 1) break;
     }// end of while 2
