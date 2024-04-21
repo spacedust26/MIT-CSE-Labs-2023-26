@@ -6,13 +6,15 @@ int main(){
   char str[30], del[10];
   int pos = -1, i, j;
   printf("Enter sentence: ");
-  puts(str);
+  fgets(str, sizeof(str), stdin); // Input sentence using fgets
   printf("Enter word to be deleted: ");
-  puts(del);
+  scanf("%s", del); // Input word to be deleted
+  
   int m = strlen(str);
   int n = strlen(del);
-  for(i = 0 ; i <= m-n ; i++){
-    for(j = 0; j < n ; j++){
+  
+  for(i = 0; i <= m - n; i++){
+    for(j = 0; j < n; j++){
       if(str[i + j] != del[j]) break;
     }
     if(j == n){
@@ -20,14 +22,16 @@ int main(){
       break;
     }
   }
-  if(pos == -1)printf("Word to be deleted not found");
+  
+  if(pos == -1)
+    printf("Word to be deleted not found\n");
   else{
-    int last = pos + n - 1;
-    for(i = pos ; i < n ; i++){
+    int last = pos + n;
+    for(i = pos; i < m - n + 1; i++){
       str[i] = str[last++];
     }
     str[i] = '\0';
-    puts(str);
+    printf("Resulting sentence: %s\n", str);
   }
   return 0;
 }

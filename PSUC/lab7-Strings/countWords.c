@@ -1,4 +1,4 @@
-//program to count teh number of words in a sentence
+//program to count the number of words in a sentence
 #include<stdio.h>
 
 int main(){
