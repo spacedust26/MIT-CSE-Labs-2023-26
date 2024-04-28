@@ -8,12 +8,12 @@ long int arr[4] = {0, 0, 0, 0};
 unsigned int i,j;
 
 void delay(unsigned int milliseconds){
-	LPC_TIM0->CTCR = 0x0;
-	LPC_TIM0->PR = 2;
-	LPC_TIM0->TCR = 0x02;
-	LPC_TIM0->TCR = 0x01;
-	while(LPC_TIM0->TC < milliseconds);
-	LPC_TIM0->TCR = 0x00;
+	LPC_TIM0->CTCR = 0x0; // timer mode
+	LPC_TIM0->PR = 2; // tc incremets after every 3 cc
+	LPC_TIM0->TCR = 0x02; // reset timer
+	LPC_TIM0->TCR = 0x01; // enable timer
+	while(LPC_TIM0->TC < milliseconds);//wait 
+	LPC_TIM0->TCR = 0x00; // disable timer
 }
 
 int main(void){

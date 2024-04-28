@@ -22,7 +22,7 @@ int main(void){
   LPC_GPIO2 -> FIODIR &= 0xFFFFEFFF; // P2.12 as input pin for switch
 	
 	while(1){
-    if(LPC_GPIO2 -> FIOPIN & 1){
+    if(LPC_GPIO2 -> FIOPIN & 1 << 12){ //switch not pressed
       for(arr[3]=0; arr[3]<10; arr[3]++){
         for(arr[2]=0; arr[2]<10; arr[2]++){
           for(arr[1]=0; arr[1]<10; arr[1]++){
@@ -38,7 +38,7 @@ int main(void){
           }
         }
 		  }
-    }else{
+    }else{ //switch pressed
       for(arr[3]=9; arr[3]>=0; arr[3]--){
         for(arr[2]=9; arr[2]>=0; arr[2]--){
           for(arr[1]=9; arr[1]>=0; arr[1]--){

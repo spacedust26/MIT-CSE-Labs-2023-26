@@ -2,7 +2,6 @@
 
 #include<LPC17xx.h>
 #include<stdio.h>
-
 void delay(void);
 void display(void);
 
@@ -29,5 +28,5 @@ void display(void){
 }
 
 void delay(void){
-	for(i=0; i<50000; i++);
+	for(i=0; i<50000; i++); //random delay
 }

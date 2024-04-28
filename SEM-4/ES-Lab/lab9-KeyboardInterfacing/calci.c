@@ -43,8 +43,8 @@ int main(){
       if(key == scan_code[i]){
         key = ascii_code[i];
         lcd_puts(&key);
-        delay_lcd(100000);
-        if(count == 1) a = key - 48;
+        delay_lcd(100000); //large delay needed
+        if(count == 1) a = key - 48; //to get numeric value
         else if (count == 2) op = key;
         else if (count == 3) b = key - 48;
         break;

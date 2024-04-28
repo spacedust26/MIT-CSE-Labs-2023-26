@@ -35,11 +35,11 @@ void lcd_init(){
   delay_lcd(3200);
   //4 bit mode
   lcd_comdata(0x33,0);
-  delay_lcd(30000);
+  delay_lcd(800);
   lcd_comdata(0x32,0);
-  delay_lcd(30000);
+  delay_lcd(800);
   lcd_comdata(0x28,0); //function set - 4 bit mode and 2 lines
-  delay_lcd(30000);
+  delay_lcd(800);
   lcd_comdata(0x0C,0); // display on cursor off
   delay_lcd(800);
   lcd_comdata(0x06,0); // entry mode set increment cursor right
@@ -65,7 +65,7 @@ void write(int temp2, int type){
   else LPC_GPIO0->FIOSET = rs_ctrl; //set rs for data
   LPC_GPIO0->FIOSET = en_ctrl; //en=1
   delay_lcd(25);
-   LPC_GPIO0->FIOCLR = en_ctrl; //en=0
+  LPC_GPIO0->FIOCLR = en_ctrl; //en=0
 }
 
 void delay_lcd(unsigned int r1){

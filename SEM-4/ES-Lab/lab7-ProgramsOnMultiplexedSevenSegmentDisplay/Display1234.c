@@ -2,7 +2,6 @@
 
 #include<LPC17xx.h>
 #include<stdio.h>
-
 void delay(void);
 void display(void);
 
@@ -15,7 +14,6 @@ unsigned int i;
 int main(void){
 	LPC_GPIO0 -> FIODIR |= 0XFF<<4; //P0.4-P0.11 as output pin
 	LPC_GPIO1 -> FIODIR |= 0XF<<23; // P1.23-P1.26 as output pin
-	
 	while(1){
 		delay();
 		display();
@@ -30,5 +28,5 @@ void display(void){
 }
 
 void delay(void){
-	for(i=0; i<50000; i++);
+	for(i=0; i<50000; i++);//random delay
 }
