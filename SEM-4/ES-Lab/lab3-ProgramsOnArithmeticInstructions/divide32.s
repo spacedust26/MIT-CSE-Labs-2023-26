@@ -1,4 +1,4 @@
-;Write an aseembly language program to implement division using repetitive subtraction
+;Write an assembly language program to implement division using repetitive subtraction
 	AREA RESET, DATA, READONLY
 	EXPORT __Vectors
 __Vectors
