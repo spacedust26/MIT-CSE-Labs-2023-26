@@ -1,32 +1,23 @@
-//Toggling of LED depending on the external interrupts
+//Toggling of LED depending on the external interrupts EINT0 and EINT1
 #include<LPC17xx.h>
-#define PINSEL_EINT0 20
-#define PINSEL_EINT1 22
-#define LED1 0
-#define LED2 1
-#define SBIT_EINT0 0
-#define SBIT_EINT1 1
-#define SBIT_EXTPOLAR0 0
-#define SBIT_EXTPOLAR1 1
 
 void EINT0_IRQHandler(void){
-  LPC_SC->EXINT = 1 << SBIT_EINT0; //clear interrupt flag
-  LPC_GPIO2->FIOPIN ^= (1<<LED1); //toggle LED1 everytime INTR0 is generated
+  LPC_SC->EXTINT = (1<<0); //clear interrupts flag in EINT0
+  LPC_GPIO2->FIOPIN ^= (1 << 0); //toggle
 }
 void EINT1_IRQHandler(void){
-  LPC_SC->EXINT = 1 << SBIT_EINT1; //clear interrupt flag
-  LPC_GPIO2->FIOPIN ^= (1<<LED2); //toggle LED2 everytime INTR1 is generated
+  LPC_SC->EXTINT = (1<<1); //clear interrupts flag in EINT1
+  LPC_GPIO2->FIOPIN ^= (1 << 1); //toggle
 }
 
 int main(){
-  SystemInit();
-  LPC_SC->EXTINT = (1 << SBIT_EINT0) | (1 << SBIT_EINT1); //clear pending interrupts
-  LPC_PINCON->PINSEL4 = (1 << PINSEL_EINT0) | (1 << PINSEL_EINT1); // configure P2.10, P2.11 as EINT0/1
-  LPC_SC->EXTMODE = (1 << SBIT_EXTMODE0) | (1 << SBIT_EXTMODE1); //configure EINTx as Edge Triggered
-  LPC_SC->EXTPOLAR = (1 << SBIT_EXTPOLAR0)| (1 << SBIT_EXTPOLAR0); //configure EINTx as Falling Edge
-  LPC_GPIO2->FIODIR = (1 << LED1) | (1 << LED2); //configure LED pins as OUTPUT
-  LPC_GPIO2->FIOPIN = 0x00;
-  NVIC_EnableIRQ(EINT0_IRQn); //Enable the EINT0,EINT1 interrupts
-  NVIC_EnableIRQ(EINT1_IRQn); 
-  while(1){}
+  LPC_SC->EXTINT = (1<<0) | (1<<1); //clear pending interrupts in EINT0 and EINT1
+  LPC_PINCON->PINSEL4 = (1<<20) | (1<<22); //Configure 2.10 and 2.11 as EINT0 and EINT1 as function 1
+  LPC_SC->EXTMODE = (1<<0) | (1<<1); //set bits 0 and 1 for edge triggered
+  LPC_SC->EXTPOLAR = (1<<0) | (1<<1); // set bits 0 and 1 for rising edge
+  LPC_GPIO2->FIODIR = (1<<0) | (1<<1); //configure P2.0 and P2.1 for LED output
+  LPC_GPIO->FIOPIN = 0x00;
+  NVIC_EnableIRQ(EINT0_IRQn); //enable EINT0 interrupt
+  NVIC_EnableIRQ(EINT1_IRQn); //enable EINT1 interrupt
+  while(1);
 }
