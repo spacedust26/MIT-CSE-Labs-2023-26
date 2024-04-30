@@ -35,7 +35,7 @@ int main(){
       U0write(msg[i]);
       i++;
     }
-    U0write(CARRIAGE_RETURN); //comment this for linsu or mac
+    U0write(CARRIAGE_RETURN); //comment this for linux or mac
     U0write(LINE_FEED); //windows uses cr+lf for new line
     i = 0;
   }

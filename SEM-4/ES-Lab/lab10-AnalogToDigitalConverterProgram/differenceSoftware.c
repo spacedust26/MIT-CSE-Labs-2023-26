@@ -11,7 +11,7 @@ unsigned char vtg1[7], vtg2[7];
 
 int main(){
   lcd_init();
-  LPC_PINCON->PINSEL3 = 0xF << 28; //set P1.28, P1.29, P1.30. P1.31 as 
+  LPC_PINCON->PINSEL3 = 0xF << 28; //set P1.28, P1.29, P1.30. P1.31 as function 3
   LPC_SC->PCONP = 1 << 12; 
   while(1){
     LPC_ADC->ADCR = (1<<4) | (1<<5) | (1<<21), (1<<24); // set 4th and 5th channel, PDN bit set, set start bit
