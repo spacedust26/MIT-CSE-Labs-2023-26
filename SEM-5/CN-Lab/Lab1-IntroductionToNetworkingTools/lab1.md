@@ -21,6 +21,13 @@ Test connectivity by pinging from the command prompt:
 - **From PC0**
   ```bash
   ping 192.168.10.11
+## GNS3 Configurations
+- Click on start
+- Right click open console 
+- PC0 `ip 192.168.10.10 255.255.255.0`
+- PC1 `ip 192.168.10.11 255.255.255.0`
+
+- To use wirehshark right click on the wire and start capture
 
 # Exercise 2
 
