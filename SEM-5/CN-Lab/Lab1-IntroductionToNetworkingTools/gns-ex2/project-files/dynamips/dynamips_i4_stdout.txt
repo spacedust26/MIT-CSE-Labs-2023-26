@@ -1,6 +1,0 @@
-cygwin warning:
-  MS-DOS style path detected: D:\MIT-CSE-Labs-2023-26\SEM-5\CN-Lab\Lab1-IntroductionToNetworkingTools\gns-ex2\project-files\dynamips
-  Preferred POSIX equivalent is: /cygdrive/d/MIT-CSE-Labs-2023-26/SEM-5/CN-Lab/Lab1-IntroductionToNetworkingTools/gns-ex2/project-files/dynamips
-  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
-  Consult the user's guide for more details about POSIX paths:
-    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
