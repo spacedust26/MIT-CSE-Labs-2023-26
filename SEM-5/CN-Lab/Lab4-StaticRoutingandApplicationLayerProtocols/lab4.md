@@ -11,21 +11,25 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   - IP Address: 192.168.1.2
   - Subnet Mask: 255.255.255.0
   - Default Gateway:  192.168.1.1
+  - GNS3 -  ip 192.168.1.2 255.255.255.0 192.168.1.1
 
 - **PC1**
   - IP Address: 192.168.1.3
   - Subnet Mask: 255.255.255.0
   - Default Gateway:  192.168.1.1
+  - GNS3 -  ip 192.168.1.3 255.255.255.0 192.168.1.1
 
 - **PC2**
   - IP Address: 192.168.2.2
   - Subnet Mask: 255.255.255.0
   - Default Gateway:  192.168.2.1
+  - GNS3 - ip 192.168.2.2 255.255.255.0 192.168.2.1
 
 - **PC3**
   - IP Address: 192.168.2.3
   - Subnet Mask: 255.255.255.0
   - Default Gateway:  192.168.2.1
+  - GNS3 - ip 192.168.2.3 255.255.255.0 192.168.2.1
 
 - **Router1**
 ```bash
