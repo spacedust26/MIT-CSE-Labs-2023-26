@@ -12,7 +12,7 @@
 
 int main(){
   struct sockaddr_in address;
-  int n, result;
+  int n=1, result;
   char ch[256], buf[256];
   //socket
   int sockfd = socket(AF_INET, SOCK_STREAm, 0);
@@ -27,13 +27,13 @@ int main(){
   }
   //send
   printf("Enter a string: ");
-  scanf("%s",ch);
-  write(sockfd, ch, strlen(ch));
+  gets(ch); 
+  ch[strlen(ch)]='\0';
   //receive
   printf("Message sent from server to client: ");
-  while(1){
+  while(n){
     n = read(sockfd, buf, sizeof(buf));
-    printf("%s",buf);
+    puts(buf);
   }
   //close
   close(sockfd);
