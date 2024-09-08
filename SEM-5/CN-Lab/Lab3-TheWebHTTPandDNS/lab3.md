@@ -48,7 +48,7 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   - To check the file exists, perform dir
 
 - **Router**
-  ```bash
+```bash
   enable
   configure terminal
   interface fastethernet0/0
@@ -59,12 +59,14 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   ip address 192.168.2.1 255.255.255.0
   no shutdown
   exit
+```
   
 ## GNS3 Configurations
 - **PC0**
   - ip 192.168.1.1 255.255.255.0 192.168.1.2
 
 - **Router**
+```bash
   enable
   configure terminal
   interface fastethernet0/0
@@ -75,8 +77,10 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   ip address 192.168.2.2 255.255.255.0
   no shutdown
   exit
+```
 
 - **Router 2 - HTTP Server**
+```bash
   enable
   config t
   interface fastethernet0/0
@@ -94,10 +98,10 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   username admin privilege 15 secret adminpassword
   exit
   show ip http server status
-
+```
   - On PC0 ping 192.168.2.2
-
 - **Router 3 - DNS Server**
+```bash
   enable
   config t
   interface fa0/0 
@@ -112,11 +116,13 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   ip dns server
   ip host www.demo.com 192.168.2.2
   exit
-
+```
   - On PC0 ip dns 192.168.2.3
     ping www.demo.com
 
+
 - **Router 3 - DNS Server**
+```bash
   enable
   config t
   interface fa0/0 
@@ -131,7 +137,7 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   ip ftp username admin
   ip ftp password adminpassword
   exit
-
+```
   - On PC0 ip ftp 192.168.2.4 (doesn't work)
     - get `<filename>`
     - put `<filename>`
@@ -142,7 +148,7 @@ DHCP Server configuration in router
 ## Configuration
 
 - **Router**
-  ```bash
+```bash
   enable
   configure terminal
   interface fastethernet0/0
@@ -165,7 +171,7 @@ DHCP Server configuration in router
   network 20.0.0.1 255.255.255.0 
   default-router 20.0.0.4
   exit
-  
+``` 
 ## Testing
 - Enable DHCP in IP configuration for all the PCs to check the IP address assigned 
 
