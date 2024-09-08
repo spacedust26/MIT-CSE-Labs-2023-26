@@ -56,7 +56,7 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   no shutdown
   exit
   interface fastethernet1/0
-  ip address 192.168.2.2 255.255.255.0
+  ip address 192.168.2.1 255.255.255.0
   no shutdown
   exit
   
@@ -96,6 +96,45 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   show ip http server status
 
   - On PC0 ping 192.168.2.2
+
+- **Router 3 - DNS Server**
+  enable
+  config t
+  interface fa0/0 
+  ip address 192.168.2.3 255.255.255.0
+  no shutdown
+  exit
+  ip route 0.0.0.0 0.0.0.0 192.168.2.1
+  exit
+
+  enable
+  config t
+  ip dns server
+  ip host www.demo.com 192.168.2.2
+  exit
+
+  - On PC0 ip dns 192.168.2.3
+    ping www.demo.com
+
+- **Router 3 - DNS Server**
+  enable
+  config t
+  interface fa0/0 
+  ip address 192.168.2.4 255.255.255.0
+  no shutdown
+  exit
+  ip route 0.0.0.0 0.0.0.0 192.168.2.1
+  exit
+
+  enable
+  config t
+  ip ftp username admin
+  ip ftp password adminpassword
+  exit
+
+  - On PC0 ip ftp 192.168.2.4 (doesn't work)
+    - get `<filename>`
+    - put `<filename>`
 
 # Exercise 2
 DHCP Server configuration in router
