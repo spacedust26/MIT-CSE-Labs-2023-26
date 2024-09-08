@@ -167,53 +167,11 @@ DHCP Server configuration in router
   default-router 10.0.0.4
   exit
 
-  ip dhcp pool 20 series
+  ip dhcp pool 20series
   network 20.0.0.1 255.255.255.0 
   default-router 20.0.0.4
   exit
 ``` 
 ## Testing
 - Enable DHCP in IP configuration for all the PCs to check the IP address assigned 
-
-## GNS3 Configuration
-
-- To check IP configurations type - show ip
-
-**From PC0**
-- ip 10.0.0.1 255.255.255.0 10.0.0.4
-
-**From PC1**
-- ip 10.0.0.2 255.255.255.0 10.0.0.4
-
-**From PC2**
-- ip 20.0.0.1 255.255.255.0 20.0.0.4
-
-**From PC3**
-- ip 20.0.0.2 255.255.255.0 20.0.0.4
-
-**From PC4**
-- ip 30.0.0.1 255.255.255.0 30.0.0.4
-
-**From PC5**
-- ip 30.0.0.2 255.255.255.0 30.0.0.4
-
-- **Router**
-  ```bash
-  enable
-  configure terminal
-  interface fastethernet0/0
-  ip address 10.0.0.4 255.255.255.0
-  no shutdown
-  exit
-  interface fastethernet1/0
-  ip address 20.0.0.4 255.255.255.0
-  no shutdown
-  exit
-  interface fastethernet2/0
-  ip address 30.0.0.4 255.255.255.0
-  no shutdown
-  exit
-  interface fastethernet3/0
-  ip address 40.0.0.4 255.255.255.0
-  no shutdown
-  exit
+- In GNS3 type IP DHCP for each PC
