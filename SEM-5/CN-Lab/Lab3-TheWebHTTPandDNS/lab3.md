@@ -100,6 +100,7 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   show ip http server status
 ```
   - On PC0 ping 192.168.2.2
+
 - **Router 3 - DNS Server**
 ```bash
   enable

@@ -19,7 +19,7 @@ int main(){
 		address.sin_port = htons(10200);
 		int result = connect(socket_id, (struct sockaddr*)&address, sizeof(address));
 		
-	        if(result == -1){
+	  if(result == -1){
 			perror("\nClient Error");
 			exit(1);
 		}
