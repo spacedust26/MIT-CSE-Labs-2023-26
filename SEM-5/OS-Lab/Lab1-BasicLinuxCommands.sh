@@ -1,4 +1,4 @@
-#Write shell commands for the following
+#======================LAB EXERCISE==================
 
 #i)To create a directory in your home directory having 2 subdirectories.
 mkdir maindir
@@ -31,7 +31,8 @@ wc -l < file2
 #2. Execute the following commands in sequence: i) date ii) ls iii) pwd
 date; ls; pwd
 
-#Additonal Exercise
+#=================================ADDITIONAL EXRECISE================================
+
 #1. Write shell commands for the following
 #i) To display an error message if the compilation of a program fails.
 gcc hello.c || echo 'Error in compilation'

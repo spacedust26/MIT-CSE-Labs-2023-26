@@ -1,5 +1,4 @@
-# SHELL SCRIPTING 2
-# LAB EXERCISE
+#====================================LAB EXERCISE================================
 
 # 1. Find whether the given number is even or odd.
 echo "Enter number: "
@@ -78,7 +77,7 @@ for ((i=1; i<=n; i++)); do
 done
 echo "Factorial of the number is $fact"
 
-#ADDITIONAL EXERCISE
+#=========================ADDITIONAL EXERCISE==============================
 
 # 1. Find whether the given string is palindrome.
 echo "Enter string"
