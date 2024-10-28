@@ -23,13 +23,10 @@ int main(int argc, char *argv[]) {
         }
 
         while ((read(f, &ch, 1)) > 0) {
-            if (ch != '\n')
-            {
+            if (ch != '\n'){
                 c[i] = ch;
                 i++;
-            }
-
-            else {
+            }else {
                 k++;
                 p++;
                 c[i] = '\0';

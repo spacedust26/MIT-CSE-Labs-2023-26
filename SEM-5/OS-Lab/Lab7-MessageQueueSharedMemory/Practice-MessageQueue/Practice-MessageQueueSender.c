@@ -16,9 +16,9 @@ struct my_msg_st {
 
 int main(){
     int running = 1;
-    struct my_msg_st some_data;int msgid;
+    struct my_msg_st some_data;
     char buffer[BUFSIZ];
-    msgid = msgget((key_t)1234, 0666 | IPC_CREAT);
+    int msgid = msgget((key_t)1234, 0666 | IPC_CREAT);
     if (msgid == -1) {
         fprintf(stderr, "msgget failed with error: %d\n", errno);
         exit(EXIT_FAILURE);
