@@ -1,5 +1,4 @@
-// Write a Code to  access  a shared resource which causes deadlock  using improper use of 
-// semaphore. 
+// 3. Write a Code to  access  a shared resource which causes deadlock  using improper use of semaphore. 
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>

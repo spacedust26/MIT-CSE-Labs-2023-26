@@ -1,5 +1,4 @@
-// 1. Modify the above Producer-Consumer program so that, a producer can produce at the most 
-// 10 items more than what the consumer has consumed. 
+// 1. Modify the above Producer-Consumer program so that, a producer can produce at the most 10 items more than what the consumer has consumed. 
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -12,7 +11,7 @@ int arr[sz];
 int produced = 0, consumed = 0;
 sem_t mutex, full, empty, atmost10;
 
-void* pro(void* param) {
+void* producer(void* param) {
     while (1) {
         while (produced - consumed >= 10) {
             usleep(100000);
@@ -21,8 +20,7 @@ void* pro(void* param) {
         sem_wait(&empty); 
         sem_wait(&mutex);
         
-        int pos = produced % sz;
-        arr[pos] = produced;
+        arr[produced % sz] = produced;
         printf("Produced Item: %d (Difference: %d)\n", produced, produced - consumed);
         produced++;
         
@@ -32,13 +30,12 @@ void* pro(void* param) {
     }
 }
 
-void* con(void* arg) {
+void* consumer(void* arg) {
     while (1) {
         sem_wait(&full);
         sem_wait(&mutex);
         
-        int pos = consumed % sz;
-        int item = arr[pos];
+        int item = arr[consumed % sz];
         printf("Consumed Item: %d (Difference: %d)\n", item, produced - (consumed + 1));
         consumed++;
         
@@ -57,8 +54,8 @@ int main() {
     sem_init(&empty, 0, sz);
     sem_init(&atmost10, 0, 1);
 
-    pthread_create(&th[0], NULL, pro, NULL);
-    pthread_create(&th[1], NULL, con, NULL);
+    pthread_create(&th[0], NULL, producer, NULL);
+    pthread_create(&th[1], NULL, consumer, NULL);
     
     pthread_join(th[0], NULL);
     pthread_join(th[1], NULL);

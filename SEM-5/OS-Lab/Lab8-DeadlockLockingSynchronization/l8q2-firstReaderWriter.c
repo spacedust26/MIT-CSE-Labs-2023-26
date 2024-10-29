@@ -1,4 +1,4 @@
-// Write a C program for the first readers-writers problem using semaphores.
+// 2. Write a C program for the first readers-writers problem using semaphores.
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
@@ -19,18 +19,14 @@ void *writer(void *wno) {
 void *reader(void *rno) {
 	pthread_mutex_lock(&mutsem);
 	numreader++;
-
-	if (numreader == 1)
-		sem_wait(&wrt);
+	if (numreader == 1) sem_wait(&wrt);
 	pthread_mutex_unlock(&mutsem);
 
 	printf("Reader %d: read 'count' as %d\n", *((int *)rno), count);
 
 	pthread_mutex_lock(&mutsem);
 	numreader--;
-
-	if (numreader == 0)
-		sem_post(&wrt);
+	if (numreader == 0) sem_post(&wrt);
 	pthread_mutex_unlock(&mutsem);
 }
 

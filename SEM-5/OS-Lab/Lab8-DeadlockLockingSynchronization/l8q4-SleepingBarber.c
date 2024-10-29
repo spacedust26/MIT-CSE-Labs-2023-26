@@ -8,23 +8,21 @@ sem_t customer, barber;
 pthread_mutex_t seat;
 int free1 = 10;
 
-void *barb(void *args) {
+void *barber(void *args) {
 	while (1) {
 		sem_wait(&customer);
 		pthread_mutex_lock(&seat);
 
-		if (free1 < 10)
-			free1++;
+		if (free1 < 10) free1++;
 		sleep(2);
-
 		printf("Cutting Completed! Free Seats: %d\n", free1);
-		sem_post(&barber);
 
+		sem_post(&barber);
 		pthread_mutex_unlock(&seat);
 	}
 }
 
-void *cust(void *args) {
+void *custumer(void *args) {
 	while (1) {
 		pthread_mutex_lock(&seat);
 
@@ -45,8 +43,8 @@ int main() {
 	sem_init(&barber, 0, 1);
 	sem_init(&customer, 0, 1);
 	pthread_mutex_init(&seat, 0);
-	pthread_create(&threads[0], NULL, &barb, NULL);
-	pthread_create(&threads[1], NULL, &cust, NULL);
+	pthread_create(&threads[0], NULL, &barber, NULL);
+	pthread_create(&threads[1], NULL, &customer, NULL);
 	pthread_join(threads[0], NULL);
 	pthread_join(threads[1], NULL);
 	sem_destroy(&barber);

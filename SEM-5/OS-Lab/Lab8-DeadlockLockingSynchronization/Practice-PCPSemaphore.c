@@ -40,4 +40,7 @@ int main(){
   pthread_create(&tid2, NULL, consume, NULL);
   p_thread_join(tid1, NULL);
   p_thread_join(tid2, NULL);
+  sem_destroy(&mutex);
+  sem_destroy(&full);
+  sem_destroy(&empty);
 }

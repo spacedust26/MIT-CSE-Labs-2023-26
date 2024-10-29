@@ -1,5 +1,4 @@
-// Write a multithreaded program that calculates the summation of non-negative integers in a 
-// separate thread and passes the result to the main thread. 
+// Write a multithreaded program that calculates the summation of non-negative integers in a separate thread and passes the result to the main thread. 
 
 #include <pthread.h>
 #include <stdio.h>
@@ -22,8 +21,7 @@ int main(){
     printf("Enter number of array elements : ");
     scanf("%d", &n);
     printf("Enter array elements :\n");
-    for(int i=0;i<n;i++)
-        scanf("%d", &array[i]);
+    for(int i=0;i<n;i++) scanf("%d", &array[i]);
     pthread_create(&thread, 0, &child_thread, (void*)&n);
     pthread_join(thread, &sum);
     printf("Sum of elements - %d\n", (int)(intptr_t)sum);

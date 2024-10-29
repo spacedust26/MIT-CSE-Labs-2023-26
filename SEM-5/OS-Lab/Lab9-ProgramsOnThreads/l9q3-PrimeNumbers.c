@@ -1,5 +1,4 @@
-//  Write a multithreaded program for generating prime numbers from a given starting number 
-// to the given ending number. 
+//3. Write a multithreaded program for generating prime numbers from a given starting number to the given ending number. 
 
 #include <pthread.h>
 #include <stdio.h>
