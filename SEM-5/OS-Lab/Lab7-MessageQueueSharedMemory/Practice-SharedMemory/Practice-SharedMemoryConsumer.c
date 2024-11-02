@@ -23,7 +23,8 @@ int main(){
         fprintf(stderr, “shmget failed\n”);
         exit(EXIT_FAILURE);
     }
-    shared_memory = shmat(shmid, (void *)0, 0);if (shared_memory == (void *)-1) {
+    shared_memory = shmat(shmid, (void *)0, 0);
+    if (shared_memory == (void *)-1) {
         fprintf(stderr, “shmat failed\n”);
         exit(EXIT_FAILURE);
     }
