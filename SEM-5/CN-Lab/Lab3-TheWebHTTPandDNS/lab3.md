@@ -122,7 +122,7 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
     ping www.demo.com
 
 
-- **Router 3 - DNS Server**
+- **Router 3 - FTP Server**
 ```bash
   enable
   config t
