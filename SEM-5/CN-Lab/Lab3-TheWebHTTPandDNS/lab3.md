@@ -119,7 +119,7 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   exit
 ```
   - On PC0 ip dns 192.168.2.3
-    ping www.demo.com
+  - ping www.demo.com
 
 
 - **Router 3 - FTP Server**
