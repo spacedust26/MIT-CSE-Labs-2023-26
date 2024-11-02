@@ -143,6 +143,10 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
     - get `<filename>`
     - put `<filename>`
 
+
+
+![Screenshot 2024-11-02 220045](https://github.com/user-attachments/assets/ee4d12fb-37df-472b-878e-ba5dd7275b0f)
+
 # Exercise 2
 DHCP Server configuration in router
 
