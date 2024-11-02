@@ -29,6 +29,11 @@ Test connectivity by pinging from the command prompt:
 
 - To use wirehshark right click on the wire and start capture
 
+<div style="display: flex; gap: 10px;"> 
+  <img src="https://github.com/user-attachments/assets/2a13accf-f68f-408d-8397-52c978f7686e" alt="Packet Tracer Screenshot" width="49%"> 
+  <img src="https://github.com/user-attachments/assets/2a7ef5fc-a333-4f0c-8b34-7a5fe2d994e1" alt="GNS3 Screenshot" width="49%"> 
+</div>
+
 # Exercise 2
 
 Replicate the diagram
@@ -64,3 +69,7 @@ Test connectivity by pinging from the command prompt:
 
  Repeat the same for other PCs
 
+<div style="display: flex; gap: 10px;"> 
+  <img src="https://github.com/user-attachments/assets/12199f0f-6f09-4629-9d3c-c3385a49b52c" alt="Packet Tracer Screenshot" width="49%"> 
+  <img src="https://github.com/user-attachments/assets/f7f31bbe-0f8c-4840-b6c5-ad9402e9c2e9" alt="GNS3 Screenshot" width="49%"> 
+</div>
