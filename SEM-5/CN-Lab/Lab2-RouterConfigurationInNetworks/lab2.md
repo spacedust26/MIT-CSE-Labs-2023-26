@@ -55,6 +55,10 @@ Test connectivity by pinging from the command prompt:
 - PC2 `ip 192.168.30.10 255.255.255.0 192.168.30.1`
 - To use wirehshark right click on the wire and start capture
 
+<div style="display: flex; gap: 10px;"> 
+  <img src="https://github.com/user-attachments/assets/2d198296-8fc2-449c-b8f4-07cbb439964c" alt="Packet Tracer Screenshot" width="49%"> 
+</div>
+
 # Exercise 2
 
 You have been tasked with designing and implementing a network infrastructure for a small 
@@ -175,3 +179,5 @@ Test connectivity by pinging from the command prompt:
   ip address 40.0.0.4 255.255.255.0
   no shutdown
   exit
+  
+ ![Screenshot 2024-11-02 210345](https://github.com/user-attachments/assets/175d7784-ec5f-415b-b27d-d5fd5d353b8d)
