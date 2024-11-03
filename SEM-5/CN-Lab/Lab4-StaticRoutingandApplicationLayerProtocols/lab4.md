@@ -67,3 +67,5 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
 **For PC0**
 - ping 192.168.1.3
 - ping 192.168.2.3
+
+  ![Screenshot 2024-11-02 223859](https://github.com/user-attachments/assets/334d5706-d877-45df-b1b0-15a8aa47876b)

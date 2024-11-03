@@ -119,10 +119,10 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   exit
 ```
   - On PC0 ip dns 192.168.2.3
-    ping www.demo.com
+  - ping www.demo.com
 
 
-- **Router 3 - DNS Server**
+- **Router 3 - FTP Server**
 ```bash
   enable
   config t
@@ -142,6 +142,10 @@ Configure each PC by setting a static IP address, default gateway and subnet mas
   - On PC0 ip ftp 192.168.2.4 (doesn't work)
     - get `<filename>`
     - put `<filename>`
+
+
+
+![Screenshot 2024-11-02 220045](https://github.com/user-attachments/assets/ee4d12fb-37df-472b-878e-ba5dd7275b0f)
 
 # Exercise 2
 DHCP Server configuration in router
