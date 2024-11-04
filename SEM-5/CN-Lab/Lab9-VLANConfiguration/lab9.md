@@ -19,7 +19,7 @@ Create a topology as shown and Create 2 VLANs on the switch:  VLAN 10 and VLAN 2
   - Subnet Mask: 255.255.255.0
   - Default Gateway:  192.168.2.2
 
- - **PC3**
+- **PC3**
   - IP Address: 192.168.2.20
   - Subnet Mask: 255.255.255.0
   - Default Gateway:  192.168.2.2
