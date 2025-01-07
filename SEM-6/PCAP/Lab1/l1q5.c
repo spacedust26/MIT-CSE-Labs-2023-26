@@ -1,3 +1,5 @@
+//Write a program in MPI where even ranked process prints factorial of the rank and odd ranked process prints rank's Fibonacci number.
+
 #include<stdio.h>
 #include<mpi.h>
 

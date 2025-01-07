@@ -1,3 +1,5 @@
+//Write a program in MPI to stimulate simple calculator. Perform each operation using different process in parallel.
+
 #include<stdio.h>
 #include<mpi.h>
 
@@ -8,7 +10,6 @@ int main(int argc, char *argv[]){
     // printf("Enter second number: ");
     // scanf("%d", &b);
     int a = 48, b = 13;
-
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -25,10 +26,6 @@ int main(int argc, char *argv[]){
         printf("Rank %d performs Multiplication: Product is %d\n", rank, ans);
     }
     else if(rank == 3){
-        if(b == 0) {
-            printf("Rank %d performs Division: Divide by zero not possible");
-            return 0;
-        }
         float ans = (float) a / (float) b;
         printf("Rank %d performs Division: Quotient is %f\n", rank, ans);
     }
