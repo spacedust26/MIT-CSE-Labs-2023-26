@@ -1,11 +1,11 @@
-// Program to copy contents of source file to destination file 
-
+// Write a C program to reverse the file contents and store in another file. Also display the size of file using file handling function.
 #include<stdio.h>
 #include<stdlib.h>
 
 int main(){
   FILE *fptr1, *fptr2;
   char filename[100], c;
+  int n = 0;
   //Open the read file
   printf("Enter the file path to read from: ");
   scanf("%s", filename);
@@ -24,11 +24,16 @@ int main(){
   }
   //Copy contents
   c = fgetc(fptr1);
-  while(c != EOF){
-    fputc(c, fptr2);
-    c = fgetc(fptr1);
-  }
-  printf("The contents of the file have been copied.\n");
+	while (c != EOF) {
+		n++;
+		c = fgetc(fptr1);
+	}
+	for(int i = n - 1; i >= 0; i--) {
+		fseek(fptr1, i, SEEK_SET);
+		c = fgetc(fptr1);
+		fputc(c, fptr2);
+	}
+  printf("The contents of the file have been reversed and  copied.\n");
   //Close files
   fclose(fptr1);
   fclose(fptr2);
