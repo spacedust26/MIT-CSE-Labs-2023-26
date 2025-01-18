@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab3 q 3</title>
+    <link rel="stylesheet" 
+href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-
+Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row" style="background-color: rgb(188, 229, 229); padding: 50px;">
+            <form>
+                <span class="badge badge-primary">Top Part</span>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-
+describedby="emailHelp">
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone 
+else.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+        <div class="row">
+            <div class="col" style="background-color: rgb(188, 192, 229); padding: 50px;">
+                <form>
+                    <span class="badge badge-dark">Bottom Part Column 1</span>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Email address</label>
+                      <input type="email" class="form-control" id="exampleFormControlInput1" 
+placeholder="name@example.com">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Example select</label>
+                      <select class="form-control" id="exampleFormControlSelect1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect2">Example multiple select</label>
+                      <select multiple class="form-control" id="exampleFormControlSelect2">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Example textarea</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" 
+rows="3"></textarea>
+                    </div>
+                  </form>
+            </div>
+            <div class="col" style="background-color: rgb(188, 229, 198); padding: 50px;">
+                <div class="form-check">
+                    <span class="badge badge-info">Bottom Part Column 2</span>
+                    <br>
+                    <input class="form-check-input" type="radio" name="exampleRadios" 
+id="exampleRadios1" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                      Default radio
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" 
+id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                      Second default radio
+                    </label>
+                  </div>
+                  <div class="form-check disabled">
+                    <input class="form-check-input" type="radio" name="exampleRadios" 
+id="exampleRadios3" value="option3" disabled>
+                    <label class="form-check-label" for="exampleRadios3">
+                      Disabled radio
+                    </label>
+                  </div>
+            </div>
+            <div class="col" style="background-color: rgb(213, 188, 229); padding: 50px;">
+                <form>
+                    <span class="badge badge-success">Bottom Part Column 3</span>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Email</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Password</label>
+                        <input type="password" class="form-control" id="inputPassword4" 
+placeholder="Password">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputAddress">Address</label>
+                      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main 
+St">
+                    </div>
+                    <div class="form-group">
+                      <label for="inputAddress2">Address 2</label>
+                      <input type="text" class="form-control" id="inputAddress2" 
+placeholder="Apartment, studio, or floor">
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" class="form-control" id="inputCity">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="inputState">State</label>
+                        <select id="inputState" class="form-control">
+                          <option selected>Choose...</option>
+                          <option>...</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-2">
+                        <label for="inputZip">Zip</label>
+                        <input type="text" class="form-control" id="inputZip">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                          Check me out
+                        </label>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
