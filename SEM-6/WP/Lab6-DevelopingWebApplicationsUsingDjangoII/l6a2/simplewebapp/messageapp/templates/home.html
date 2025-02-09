@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Formatter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        input[type="text"], textarea {
+            padding: 8px;
+            margin: 10px 0;
+            font-size: 14px;
+            width: 250px;
+        }
+
+        textarea {
+            height: 80px;
+            width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .output-label {
+            font-size: 20px;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkbox-group, .radio-group {
+            margin-top: 10px;
+        }
+
+        .checkbox-group label, .radio-group label {
+            font-size: 14px;
+            margin-right: 15px;
+        }
+
+        .message-output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+        }
+
+        .message-output p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Message Formatter</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" required></textarea><br><br>
+
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="format" value="bold"> Bold</label>
+            <label><input type="checkbox" name="format" value="italic"> Italic</label>
+            <label><input type="checkbox" name="format" value="underline"> Underline</label>
+        </div><br>
+
+        <label>Select Color:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="color" value="red"> Red</label>
+            <label><input type="radio" name="color" value="green"> Green</label>
+            <label><input type="radio" name="color" value="blue"> Blue</label>
+            <label><input type="radio" name="color" value="black" checked> Black</label>
+        </div><br>
+
+        <button type="submit">Display Message</button>
+        <button type="reset">Clear</button>
+    </form>
+
+    {% if formatted_message %}
+        <div class="message-output">
+            <p>{% autoescape off %}{{ formatted_message|safe }}{% endautoescape %}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
