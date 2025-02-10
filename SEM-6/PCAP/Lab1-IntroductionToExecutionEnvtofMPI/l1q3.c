@@ -1,14 +1,10 @@
-//Write a program in MPI to stimulate simple calculator. Perform each operation using different process in parallel.
+//Lab Exercise 3 - Write a program in MPI to stimulate simple calculator. Perform each operation using different process in parallel.
 
 #include<stdio.h>
 #include<mpi.h>
 
 int main(int argc, char *argv[]){
     int rank, size;
-    // printf("Enter first number: ");
-    // scanf("%d", &a);
-    // printf("Enter second number: ");
-    // scanf("%d", &b);
     int a = 48, b = 13;
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);

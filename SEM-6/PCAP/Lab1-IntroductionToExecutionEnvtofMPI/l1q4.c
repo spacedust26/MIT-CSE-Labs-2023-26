@@ -1,4 +1,4 @@
-//Write a program in MPI to toggle character of a given string indexed by rank of the process. Hint: Suppose the string is "HeLLO" and there are 5 processes, then process 0 toggles 'H' to 'h', process 1 toggles 'e' to 'E' and so on.
+//Lab Exercise 4 - Write a program in MPI to toggle character of a given string indexed by rank of the process. Hint: Suppose the string is "HeLLO" and there are 5 processes, then process 0 toggles 'H' to 'h', process 1 toggles 'e' to 'E' and so on.
 
 #include<stdio.h>
 #include<mpi.h>

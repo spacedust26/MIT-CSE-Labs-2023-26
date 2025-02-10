@@ -1,4 +1,4 @@
-//Write a single MPI program to find out pow(x, rank) for all the processes where 'x' is the integer constant and 'rank' is the rank of the process.
+//Lab Exercise 1 - Write a single MPI program to find out pow(x, rank) for all the processes where 'x' is the integer constant and 'rank' is the rank of the process.
 
 #include<stdio.h>
 #include<mpi.h>

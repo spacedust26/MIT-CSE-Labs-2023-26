@@ -1,3 +1,7 @@
+//Additional Exercise 1 - Write a program in MPI to reverse the digits of the following integer array of size 9 with 9 processes. Initialze the array to the following values.
+// Input array : 18, 523, 301, 1234, 2, 14, 108, 150, 1928
+// Output array : 81, 325, 103, 4321, 2, 41, 801, 51, 8291
+
 #include<stdio.h>
 #include<mpi.h>
 
