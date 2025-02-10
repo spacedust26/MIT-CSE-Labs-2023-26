@@ -1,3 +1,5 @@
+// Lab exercise 2 - Write a MPI program to read an integer value M and NXM elements into a 1D array in the root process where N is the number of processes. Root process sends M elements to each process. Each process finds the average of M elements it received and sends these avergae values to root. Root collects all the values and finds the total average. Use collective communication routines.
+
 #include<stdio.h>
 #include<mpi.h>
 #include<unistd.h>

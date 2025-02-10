@@ -1,3 +1,5 @@
+// Lab exercise 3 - Write a MPI program to read a string. Use N processes (string length is evenly divisible by N). Find the number of non-vowels in the string. In root process print number of non-vowels found by each process and print the total number of non-vowels
+
 #include<stdio.h>
 #include<mpi.h>
 #include<unistd.h>

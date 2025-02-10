@@ -1,3 +1,5 @@
+// Lab exercise 1 - Write a MPI program to read N values in the root process. Root process sends one value to each process. Every process receives it and finds the factorial of that number and returns it to the root process. Root process gathers the factorial and finds sum of it. use N numer of processes.
+
 #include<stdio.h>
 #include "mpi.h"
 
