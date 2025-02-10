@@ -1,4 +1,4 @@
-// Write a MPI program using synchronous send. The sender process sends a word to the receiver. The second process receives the word, toggles each letter of the word and sends it back to the first process. Both processes use synchronous send operation
+// Lab exercise 1 - Write a MPI program using synchronous send. The sender process sends a word to the receiver. The second process receives the word, toggles each letter of the word and sends it back to the first process. Both processes use synchronous send operation
 
 #include<stdio.h>
 #include<string.h>
@@ -17,7 +17,6 @@ int main(int argc, char* argv[]){
 		scanf("%s",str);
 		printf("Process %d: Sending string %s\n", rank, str);
 		MPI_Ssend(&str,sizeof(str),MPI_CHAR,1,0,MPI_COMM_WORLD);
-
 		MPI_Recv(&str,sizeof(str),MPI_CHAR,1,1,MPI_COMM_WORLD,&status);
 		printf("Process %d: Received string %s\n",rank, str);
 	}
@@ -28,10 +27,10 @@ int main(int argc, char* argv[]){
         	if (str[i] >= 'A' && str[i] <= 'Z') str[i] += 32; 
         	else if (str[i] >= 'a' && str[i] <= 'z') str[i] -= 32; 
     	}
-
-    	printf("Process %d: Toggled string %s\n",rank, str);
+    printf("Process %d: Toggled string %s\n",rank, str);
 		printf("Process %d: Sending string %s\n", rank, str);
 		MPI_Ssend(&str,sizeof(str),MPI_CHAR,0,1,MPI_COMM_WORLD);
 	}
 	MPI_Finalize();
+	return 0;
 }

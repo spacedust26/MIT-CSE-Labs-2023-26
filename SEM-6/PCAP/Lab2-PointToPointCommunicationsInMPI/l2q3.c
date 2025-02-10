@@ -1,3 +1,5 @@
+// lab exercise 3 - Write a MPI program to read N elements of the array in the root process (process 0) where N is equal to the total number of processes. The root process sends one value to each of the slaves. Let even ranked process find square of the received element and odd ranked process find the cube of the received element. Use buffered send.
+
 #include<mpi.h>
 #include<stdio.h>
 #include<stdlib.h>
@@ -15,16 +17,13 @@ int main(int argc, char* argv[]){
 		int bSize = sizeof(arr);
 		int* buf = (int*)malloc(bSize);
 		MPI_Buffer_attach(buf,bSize);
-		for(int i=0;i<size-1;i++)
-			MPI_Bsend(&arr[i],1,MPI_INT,i+1,0,MPI_COMM_WORLD);
+		for(int i=0;i<size-1;i++) MPI_Bsend(&arr[i],1,MPI_INT,i+1,0,MPI_COMM_WORLD);
 		MPI_Buffer_detach(&buf,&bSize);
 	}
 	else {
 		MPI_Recv(&num,1,MPI_INT,0,0,MPI_COMM_WORLD,&status);
-		if(rank % 2 == 0)
-			printf("Rank %d squaring: Received %d\n",rank,num*num);
-		else
-			printf("Rank %d cubing: Received %d\n",rank,num*num*num);
+		if(rank % 2 == 0) printf("Rank %d squaring: Received %d\n",rank,num*num);
+		else printf("Rank %d cubing: Received %d\n",rank,num*num*num);
 	}
     MPI_Finalize();
     return 0;
