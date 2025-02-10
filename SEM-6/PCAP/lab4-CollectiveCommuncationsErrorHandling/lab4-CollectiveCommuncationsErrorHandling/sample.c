@@ -1,3 +1,5 @@
+// Sample exercise - Write a MPI program using N processes to find 1! + 2! + .... + N !. Use collective communication routines.
+
 #include<stdio.h>
 #include "mpi.h"
 

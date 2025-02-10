@@ -1,3 +1,13 @@
+// Lab exercise 3 - Write a MPI program to read 4 X 4 matrix and display the following output using four processes.
+// I/p matrix : 1 2 3 4
+            // 1 2 3 1
+            // 1 1 1 1
+            // 2 1 2 1
+// O/p matrix : 1 2 3 4
+            // 2 4 6 5
+            // 3 5 7 6
+            // 5 6 9 7
+
 #include<stdio.h>
 #include "mpi.h"
 
@@ -27,11 +37,11 @@ int main(int argc, char *argv[]){
         }
     }
     error_code = MPI_Scatter(mat, 4, MPI_INT, arr1, 4, MPI_INT,0, MPI_COMM_WORLD);
-    if(rank == 0) ErrorHandler(error_code);
+    ErrorHandler(error_code);
     error_code = MPI_Scan(arr1, arr2, 4, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
-    if(rank == 0) ErrorHandler(error_code);
+    ErrorHandler(error_code);
     error_code = MPI_Gather(arr2, 4, MPI_INT, ans,4, MPI_INT, 0, MPI_COMM_WORLD);
-    if(rank == 0) ErrorHandler(error_code);
+    ErrorHandler(error_code);
     if(rank == 0){
          for(int i = 0; i < 4; i++){
             for(int j = 0; j < 4; j++){

@@ -1,3 +1,5 @@
+// Lab exrecise 2 - Write a MPI program to read 3 X 3 matrix. Enter an element to be searched in the root process. Find the number of occurances of this element in the matrix using three processes.
+
 #include<stdio.h>
 #include "mpi.h"
 
@@ -29,14 +31,14 @@ int main(int argc, char *argv[]){
         scanf("%d", &ele);
     }
     error_code = MPI_Bcast(&ele, 1, MPI_INT, 0, MPI_COMM_WORLD);
-    if(rank == 0) ErrorHandler(error_code);
+    ErrorHandler(error_code);
     error_code = MPI_Scatter(mat, 3, MPI_INT, arr, 3, MPI_INT, 0, MPI_COMM_WORLD);
-    if(rank == 0) ErrorHandler(error_code);
+    ErrorHandler(error_code);
     for(int i = 0; i < 3; i++){
         if(arr[i] == ele) count++;
     }
     error_code = MPI_Reduce(&count, &ans, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-    if(rank == 0) ErrorHandler(error_code);
+    ErrorHandler(error_code);
     if(rank == 0) printf("Total number of occurance of element %d is %d.\n", ele, ans);
     MPI_Finalize();
     return 0;

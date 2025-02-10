@@ -1,3 +1,5 @@
+// Lab exercise 4 - Write a MPI program to read a word of length N. Using N processes including the root get output word with the patterm as shown in example. Display the resultant output word in the root. Example: Input : PCAP Output: PCCAAAPPPP
+
 #include<stdio.h>
 #include "mpi.h"
 

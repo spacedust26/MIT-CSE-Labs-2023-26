@@ -1,3 +1,5 @@
+// Lab exercise 1 -Write a MPI program using N processes to find 1! + 2! + .... + N!. Use scan. Also handle different errors using error handling routines.
+
 #include<stdio.h>
 #include "mpi.h"
 
@@ -16,15 +18,15 @@ int main(int argc, char *argv[]){
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
-    MPI_Errhandler_set(MPI_COMM_WORLD,MPI_ERRORS_RETURN);
+    MPI_Errhandler_set(MPI_COMM_WORLD, MPI_ERRORS_RETURN);
 
     value = rank + 1;
     error_code = MPI_Scan(&value, &factprod ,1, MPI_INT, MPI_PROD,MPI_COMM_WORLD);
-    if(rank == 0) ErrorHandler(error_code);
+    ErrorHandler(error_code);
     printf("Process %d: %d\n", rank, factprod);
 
     error_code = MPI_Scan(&factprod, &factsum, 1,MPI_INT, MPI_SUM, MPI_COMM_WORLD);
-    if(rank == 0) ErrorHandler(error_code);
+    ErrorHandler(error_code);
 
     if(rank == size -1) printf("Sum of all factorials is %d\n", factsum);
     MPI_Finalize();
