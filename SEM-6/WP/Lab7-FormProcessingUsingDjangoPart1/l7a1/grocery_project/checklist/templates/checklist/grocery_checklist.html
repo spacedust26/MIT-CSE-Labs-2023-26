@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Checklist</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid black;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Grocery Checklist</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <h3>Select Items:</h3>
+        {% for item in grocery_items %}
+            <input type="checkbox" name="items" value="{{ item.name }}"> {{ item.name }} - ${{ item.price }}<br>
+        {% endfor %}
+        <br>
+        <button type="submit">Add Item</button>
+    </form>
+
+    {% if selected_items %}
+        <h3>Selected Items:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in selected_items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>${{ item.price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
