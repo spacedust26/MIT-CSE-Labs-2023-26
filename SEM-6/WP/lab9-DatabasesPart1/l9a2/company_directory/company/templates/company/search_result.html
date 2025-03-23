@@ -1,0 +1,24 @@
+<!-- company/templates/company/search_result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>People working at {{ company_name }}</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+        </tr>
+        {% for person in people %}
+            <tr>
+                <td>{{ person.name }}</td>
+                <td>{{ person.city }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
