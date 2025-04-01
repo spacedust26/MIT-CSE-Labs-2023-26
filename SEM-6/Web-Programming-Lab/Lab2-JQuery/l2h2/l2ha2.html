@@ -1,0 +1,42 @@
+<!-- Implement the bouncing ball using animate() function -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing Ball Animation</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+       function bounceBall(){
+        $(".ball").animate(
+          {top:"350px"}, 1000, function(){
+            $(this).animate(
+              {top:"0"}, 1000,bounceBall
+            )
+          }
+        )
+       }
+       bounceBall();
+      });
+    </script>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .ball {
+          width: 100px;
+          height: 100px;
+          background-color: rgb(52, 4, 20);
+          border-radius: 50%;
+          position: absolute;
+          top: 50%;
+          left: 45%;
+      }
+    </style>
+</head>
+<body>
+    <div class="ball"></div>
+</body>
+</html>

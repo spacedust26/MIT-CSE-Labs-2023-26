@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>The jQuery Example</title>
+   <script type="text/javascript" src="jquery-3.7.1.min.js.js"></script>
+   <script type="text/javascript" language="javascript">
+       $(document).ready(function(){
+           $("#button").click(function(){
+               $(this).val("Stop that!");
+           })
+       })
+   </script>
+</head>
+<body>
+   <div id="mydiv">Click on this to see a dialogue box</div>
+   <input type="button" id="button">
+</body>
+</html>

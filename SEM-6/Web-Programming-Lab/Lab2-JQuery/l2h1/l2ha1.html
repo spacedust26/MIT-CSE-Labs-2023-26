@@ -1,0 +1,98 @@
+<!-- 1. Design a webpage. The page contains: 
+• Dropdown list with HP, Nokia, Samsung, Motorola, Apple as items. 
+• Checkbox with Mobile and Laptop as items.  Textbox where you enter quantity.
+ • There is a button with text as ‘Produce Bill’. 
+On Clicking Produce Bill button, alert should be displayed with total amount. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Tech Stuff</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".submit").click(function () {
+                const company = $("#company").val();
+                const isMobileChecked = $("#mobile").is(":checked");
+                const isLaptopChecked = $("#laptop").is(":checked");
+                const quantity = parseInt($("#quantity").val());
+                if (!isMobileChecked && !isLaptopChecked) {
+                    alert("Please select at least one item (Mobile or Laptop).");
+                    return;
+                }
+                if (isNaN(quantity) || quantity <= 0) {
+                    alert("Please enter a valid quantity.");
+                    return;
+                }
+                let totalAmount = 0;
+                if (isMobileChecked) {
+                    totalAmount += 300 * quantity; 
+                }
+                if (isLaptopChecked) {
+                    totalAmount += 800 * quantity;
+                }
+                alert(`Company: ${company}\nTotal Amount: $${totalAmount}`);
+            });
+        });
+    </script>
+    <style>
+        .maindiv {
+            background-color: darkcyan;
+            width: 500px;
+            padding: 20px;
+            margin: 0 auto;
+            text-align: center;
+            border-radius: 10px;
+            color: white;
+            margin-top: 200px;
+        }
+        .maindiv h3 {
+            margin-bottom: 20px;
+        }
+        .maindiv div {
+            margin-bottom: 15px;
+        }
+        button.submit {
+            background-color: white;
+            color: darkcyan;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button.submit:hover {
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="maindiv">
+        <h3>Buy Tech Stuff</h3>
+        <div>
+            <p>Choose the company</p>
+            <select name="company" id="company">
+                <option value="HP">HP</option>
+                <option value="Nokia">Nokia</option>
+                <option value="Motorola">Motorola</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Apple">Apple</option>
+            </select>
+        </div>
+        <div>
+            <input type="checkbox" id="mobile" name="mobile" />
+            <label for="mobile">Mobile</label>
+            <br />
+            <input type="checkbox" id="laptop" name="laptop" />
+            <label for="laptop">Laptop</label>
+        </div>
+        <div>
+            <p>Enter quantity:</p>
+            <input type="text" name="quantity" id="quantity">
+        </div>
+        <button class="submit">Produce Bill</button>
+    </div>
+</body>
+</html>

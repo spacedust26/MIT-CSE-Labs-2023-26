@@ -55,3 +55,5 @@ celerybeat.pid
 # Migrations (optional, if you want to force developers to run migrations)
 **/migrations/*.py
 !**/migrations/__init__.py
+
+jquery-3.7.1.min.js.js

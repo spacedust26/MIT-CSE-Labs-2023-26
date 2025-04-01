@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee CRUD Operations</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5" style="background-color: antiquewhite; padding: 50px;">
+        <h2 class="text-center">Employee CRUD Operations</h2>
+        <form id="employeeForm" class="mb-4">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label for="empId">Employee ID</label>
+                    <input type="text" id="empId" class="form-control" placeholder="Enter Employee ID (for Update)">
+                </div>
+                <div class="col-md-4">
+                    <label for="empName">Employee Name</label>
+                    <input type="text" id="empName" class="form-control" placeholder="Enter Name">
+                </div>
+                <div class="col-md-4">
+                    <label for="empEmail">Employee Email</label>
+                    <input type="email" id="empEmail" class="form-control" placeholder="Enter Email">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label for="empPhone">Employee Phone</label>
+                    <input type="text" id="empPhone" class="form-control" placeholder="Enter Phone Number">
+                </div>
+                <div class="col-md-4">
+                    <label for="empDepartment">Department</label>
+                    <input type="text" id="empDepartment" class="form-control" placeholder="Enter Department">
+                </div>
+            </div>
+            <button type="button" id="addEmployee" class="btn btn-success mt-3">Add Employee</button>
+            <button type="button" id="updateEmployee" class="btn btn-warning mt-3">Update Employee</button>
+        </form>
+ 
+        <table class="table table-bordered" id="employeeTable">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ 
+    <script>
+        let employees = [];
+        
+        function renderTable() {
+            const tableBody = document.querySelector('#employeeTable tbody');
+            tableBody.innerHTML = '';
+ 
+            employees.forEach((emp, index) => {
+                const row = `
+                    <tr>
+                        <td>${emp.id}</td>
+                        <td>${emp.name}</td>
+                        <td>${emp.email}</td>
+                        <td>${emp.phone}</td>
+                        <td>${emp.department}</td>
+                        <td>
+                            <button class="btn btn-info btn-sm" onclick="editEmployee(${index})">Edit</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteEmployee(${index})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+ 
+        document.getElementById('addEmployee').addEventListener('click', () => {
+            const name = document.getElementById('empName').value;
+            const email = document.getElementById('empEmail').value;
+            const phone = document.getElementById('empPhone').value;
+            const department = document.getElementById('empDepartment').value;
+ 
+            const newEmployee = {
+                id: Date.now(),
+                name,
+                email,
+                phone,
+                department
+            };
+ 
+            employees.push(newEmployee);
+            renderTable();
+            clearForm();
+        });
+ 
+        function editEmployee(index) {
+            const emp = employees[index];
+            document.getElementById('empId').value = emp.id;
+            document.getElementById('empName').value = emp.name;
+            document.getElementById('empEmail').value = emp.email;
+            document.getElementById('empPhone').value = emp.phone;
+            document.getElementById('empDepartment').value = emp.department;
+
+            document.getElementById('addEmployee').style.display = 'none';
+            document.getElementById('updateEmployee').style.display = 'inline-block';
+ 
+
+            document.getElementById('updateEmployee').onclick = () => {
+                emp.name = document.getElementById('empName').value;
+                emp.email = document.getElementById('empEmail').value;
+                emp.phone = document.getElementById('empPhone').value;
+                emp.department = document.getElementById('empDepartment').value;
+ 
+                renderTable();
+                clearForm();
+                document.getElementById('addEmployee').style.display = 'inline-block';
+                document.getElementById('updateEmployee').style.display = 'none';
+            };
+        }
+ 
+        function deleteEmployee(index) {
+            employees.splice(index, 1);
+            renderTable();
+        }
+ 
+        function clearForm() {
+            document.getElementById('empId').value = '';
+            document.getElementById('empName').value = '';
+            document.getElementById('empEmail').value = '';
+            document.getElementById('empPhone').value = '';
+            document.getElementById('empDepartment').value = '';
+        }
+    </script>
+</body>
+</html>

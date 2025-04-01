@@ -23,3 +23,8 @@ py -3 -m venv .venv
 .venv\scripts\activate
 ```
 
+### Locally using Bootstrap and JQuery
+```
+<script src="js/script.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+```
