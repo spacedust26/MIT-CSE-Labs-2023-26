@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share your Winter Vacation Videos</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Lucida Handwriting", cursive;
+    }
+    .upper-div {
+      background: repeating-linear-gradient(
+        45deg, 
+        rgb(34, 45, 162) 0px, 
+        rgb(34, 45, 162) 20px, 
+        black 20px, 
+        black 40px
+    );
+      padding: 20px;
+      color: white;
+    }
+    .lower-div{
+      background: linear-gradient(to bottom,rgb(34, 45, 162), white);
+    }
+    .figurediv{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+    .html-video{
+      padding-top: 50px;
+      padding-left: 270px;
+      color: white;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="upper-div">
+    <h1>Share Your Travels</h1>
+  </div>
+  <div class="lower-div">
+    <p class="html-video">HTML Video</p>
+    <figure class="figurediv">
+      <video width="320" height="240" controls>
+          <source src="v1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+        </video>
+        <video width="320" height="240" controls>
+          <source src="v2.mp4" type="video/mp4">
+Your browser does not support the video tag.
+        </video> 
+        <video width="320" height="240" controls>
+          <source src="v3.mp4" type="video/mp4">
+Your browser does not support the video tag.
+        </video>  
+  </figure>   
+  </div>
+</body>
+</html>

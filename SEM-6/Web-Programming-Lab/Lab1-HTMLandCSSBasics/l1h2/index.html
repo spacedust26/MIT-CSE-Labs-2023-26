@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Assignment 2</title>
+     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        table {
+            margin: auto;
+            width: 60%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+            width:fit-content
+        }
+        thead th {
+            background-color: red;
+        }
+        .country {
+            background-color: rgb(235, 239, 174);
+        }
+        .year {
+            background-color: rgb(137, 131, 202);
+        }
+        .population {
+            background-color: rgb(159, 212, 159);
+        }
+    </style>
+</head>
+<body>
+  <table id="populationTable">
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th colspan="2">Population (in crores)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <template id="rowTemplate">
+          <tr>
+              <td class="country"></td>
+              <td class="year"></td>
+              <td class="population"></td>
+          </tr>
+      </template>
+  </tbody>
+    </tbody>
+  </table>
+  <script>
+    const populationData = [
+              {country: "India", year: 1998, population: 85 },
+              {country: "India", year: 1999, population: 90 },
+              {country: "India", year: 2000, population: 100 },
+              {country: "USA", year: 1998, population: 30 },
+              {country: "USA", year: 1999, population: 35 },
+              {country: "USA", year: 2000, population: 40 },
+              {country: "UK", year: 1998, population: 25 },
+              {country: "UK", year: 1999, population: 30 },
+              {country: "UK", year: 2000, population: 35 }]
+  const template = document.getElementById("rowTemplate");
+  const tbody = document.querySelector("#populationTable tbody");
+  const createTableRows = (countryData) => {
+    let countryRowspan = countryData.length;
+    countryData.forEach((data, index) => {
+    const clone = document.importNode(template.content, true);
+    if (index === 0) {
+      clone.querySelector(".country").textContent = data.country;
+      clone.querySelector(".country").rowSpan = countryRowspan;
+    }else{
+      clone.querySelector(".country").remove();
+    }
+    clone.querySelector(".year").textContent = data.year;
+    clone.querySelector(".population").textContent = data.population;
+    tbody.appendChild(clone);
+    });
+  };
+  const groupedData = populationData.reduce((acc, currentValue) => {
+      (acc[currentValue.country] = acc[currentValue.country] || []).push(currentValue);
+      return acc;
+  }, {});
+  Object.values(groupedData).forEach(group => createTableRows(group));
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Assignment 1</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    table, tr, th, td{
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    table{
+      width: 80%;
+    }
+    th, td{
+      padding: 10px;
+      text-align: center;
+    }
+    .red-row{
+      background-color: red;
+    }
+    .yellow-cell{
+      background-color: rgb(227, 227, 158);
+      text-align: center;
+    }
+    .green-cell{
+      background-color: rgb(177, 232, 177);
+      text-align: right;
+    }
+    .blue-cell{
+      background-color: rgb(158, 158, 227);
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr class="red-row">
+        <th>Country</th>
+        <th colspan="2">Population (in crores)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="4" class="yellow-cell">India</td>
+       <tr>
+        <td class="blue-cell">1998</td>
+        <td class="green-cell">85</td>
+       </tr>
+       <tr>
+        <td class="blue-cell">1999</td>
+        <td class="green-cell">90</td>
+       </tr>
+       <tr>
+        <td class="blue-cell">2000</td>
+        <td class="green-cell">100</td>
+       </tr>
+      </tr>
+      <tr>
+        <td rowspan="4" class="yellow-cell">USA</td>
+       <tr>
+        <td class="blue-cell">1998</td>
+        <td class="green-cell">30</td>
+       </tr>
+       <tr>
+        <td class="blue-cell">1999</td>
+        <td class="green-cell">35</td>
+       </tr>
+       <tr>
+        <td class="blue-cell">2000</td>
+        <td class="green-cell">40</td>
+       </tr>
+      </tr>
+      <tr>
+        <td rowspan="4" class="yellow-cell">UK</td>
+       <tr>
+        <td class="blue-cell">1998</td>
+        <td class="green-cell">25</td>
+       </tr>
+       <tr>
+        <td class="blue-cell">1999</td>
+        <td class="green-cell">30</td>
+       </tr>
+       <tr>
+        <td class="blue-cell">2000</td>
+        <td class="green-cell">35</td>
+       </tr>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
