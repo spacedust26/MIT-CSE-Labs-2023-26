@@ -34,15 +34,13 @@ int main() {
             fputc(c1, fptr3);
             c1 = fgetc(fptr1);
         }
-        if (c1 == '\n')
-            fputc(c1, fptr3);
+        if (c1 == '\n') fputc(c1, fptr3);
         c1 = fgetc(fptr1);
         while (c2 != '\n' && c2 != EOF) {
             fputc(c2, fptr3);
             c2 = fgetc(fptr2);
         }
-        if (c2 == '\n')
-            fputc(c2, fptr3);
+        if (c2 == '\n') fputc(c2, fptr3);
         c2 = fgetc(fptr2);
     }
     //Close all the files
