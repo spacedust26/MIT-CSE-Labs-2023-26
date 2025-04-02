@@ -1,3 +1,5 @@
+// Write a C program, that takes a C program as input , recognizes all keywords and prints them in uppercase
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
