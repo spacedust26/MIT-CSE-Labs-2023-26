@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+
+  <script src="{% static 'jquery-3.7.1.min.js' %}"></script>
+  <script>
+    $(document).ready(function(){
+      $("form").on("submit", function(event) {
+        let name = $("#name").val().trim();
+        let roll_number = $("#roll_number").val().trim();
+        let gender = $("#gender").val();
+        let email = $("#email").val().trim();
+        let department = $("#department").val().trim();
+
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        let rollPattern = /^[A-Za-z0-9]+$/;
+
+        if (!name || !roll_number || !gender || !email || !department) {
+            alert("All fields are required.");
+            event.preventDefault();
+            return false;
+        }
+
+        if (!emailPattern.test(email)) {
+            alert("Invalid email format.");
+            event.preventDefault();
+            return false;
+        }
+
+        if (!rollPattern.test(roll_number)) {
+            alert("Roll number should be alphanumeric.");
+            event.preventDefault();
+            return false;
+        }
+
+        return true;
+      });
+    });
+  </script>
+
+  <title>MIT Tech Fest</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: black;
+      color: white;
+    }
+    .heading {
+      font-size: 48px;
+      font-weight: 600;
+      margin: 20px;
+    }
+    .para {
+      width: 500px;
+      text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="d-flex flex-column justify-content-center align-items-center" style="gap:20px">
+    <p class="heading text-center">MIT Tech Fest</p>
+    <p class="para">
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit consequuntur ex aliquam accusamus adipisci facilis sint dignissimos est quia voluptatum ab laudantium animi sit nobis sequi distinctio, tempora veritatis eligendi quisquam deserunt vero temporibus doloremque vitae provident? A cupiditate fuga, voluptatibus facilis libero iure? Ab fuga fugiat quibusdam repellendus vitae?"
+    </p>
+
+    <div class="container">
+      <form method="post" action="{% url 'page1' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" name="roll_number" id="roll_number" placeholder="Enter your roll number">
+        </div>
+        <div class="mb-3">
+          <select class="form-control" name="gender" id="gender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <input type="email" class="form-control" name="email_address" id="email_address" placeholder="Email Address">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" name="department" id="department" placeholder="Department">
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

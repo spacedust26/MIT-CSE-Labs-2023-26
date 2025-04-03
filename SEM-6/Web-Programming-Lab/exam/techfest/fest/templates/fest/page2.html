@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}"></link>
+  <script src="/static/jquery-3.7.1.min.js"></script>
+  <title>Document</title>
+</head>
+<body class="bg-dark text-white text-center">
+  <h1 class="mt-4">Registered Students</h1>
+  <table class="table table-dark table-bordered mt-3">
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Roll Number</th>
+              <th>Gender</th>
+              <th>Email</th>
+              <th>Department</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for student in students %}
+          <tr>
+              <td>{{ student.name }}</td>
+              <td>{{ student.roll_number }}</td>
+              <td>{{ student.gender }}</td>
+              <td>{{ student.email_address }}</td>
+              <td>{{ student.department }}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</body>
+</html>
