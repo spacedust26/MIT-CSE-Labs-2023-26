@@ -1,4 +1,5 @@
 //Sample - Write a program in MPI to print total number of process and rank of each process
+
 #include<stdio.h>
 #include "mpi.h"
 
