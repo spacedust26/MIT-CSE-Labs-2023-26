@@ -61,7 +61,12 @@ python manage.py migrate
 #### Step 6 - Define the form in forms.py
 #### Step 7 - Create a view in views.py
 #### Step 8 - Create templates
-#### Step 9 - Start the django server
+#### Step 9 - Register Models in Admin Panel
+#### Step 10 - Create super admin
+```
+python manage.py createsueruser
+```
+#### Step 11 - Start the django server
 ```
 python manage.py runserver
 ```
