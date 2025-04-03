@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Records</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Select a Human</h2>
+    <select id="humanSelect">
+        <option value="">-- Select a Name --</option>
+        {% for human in humans %}
+            <option value="{{ human.id }}">{{ human.first_name }}</option>
+        {% endfor %}
+    </select>
+
+    <form id="humanForm">
+        <input type="text" id="last_name" placeholder="Last Name">
+        <input type="text" id="phone" placeholder="Phone">
+        <input type="text" id="address" placeholder="Address">
+        <input type="text" id="city" placeholder="City">
+        <button type="button" id="updateBtn">Update</button>
+        <button type="button" id="deleteBtn" style="background-color: red;">Delete</button>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            $("#humanSelect").change(function() {
+                var human_id = $(this).val();
+                if (human_id) {
+                    $.get(`/get_human/${human_id}/`, function(data) {
+                        $("#last_name").val(data.last_name);
+                        $("#phone").val(data.phone);
+                        $("#address").val(data.address);
+                        $("#city").val(data.city);
+                    });
+                } else {
+                    $("#humanForm input").val("");
+                }
+            });
+
+            $("#updateBtn").click(function() {
+                var human_id = $("#humanSelect").val();
+                if (!human_id) return alert("Select a person first!");
+                
+                $.post(`/update_human/${human_id}/`, {
+                    last_name: $("#last_name").val(),
+                    phone: $("#phone").val(),
+                    address: $("#address").val(),
+                    city: $("#city").val(),
+                    csrfmiddlewaretoken: "{{ csrf_token }}"
+                }, function(response) {
+                    alert(response.status);
+                });
+            });
+
+            $("#deleteBtn").click(function() {
+                var human_id = $("#humanSelect").val();
+                if (!human_id) return alert("Select a person first!");
+                
+                if (confirm("Are you sure you want to delete this record?")) {
+                    $.post(`/delete_human/${human_id}/`, {
+                        csrfmiddlewaretoken: "{{ csrf_token }}"
+                    }, function(response) {
+                        alert(response.status);
+                        location.reload();  // Refresh dropdown list
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
