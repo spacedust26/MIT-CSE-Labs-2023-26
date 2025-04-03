@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Information</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Book Title</h1>
+        <img src="{% static 'images/book.jpg' %}" alt="Book Cover">
+        <div class="links">
+            <p><a href="{% url 'metadata' %}">Metadata</a></p>
+            <p><a href="{% url 'reviews' %}">Reviews</a></p>
+            <p><a href="{% url 'publisher_info' %}">Publisher Info</a></p>
+        </div>
+    </div>
+    <footer>
+        <p>Book Information Website</p>
+    </footer>
+</body>
+</html>

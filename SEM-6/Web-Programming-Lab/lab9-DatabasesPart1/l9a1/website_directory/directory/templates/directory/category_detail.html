@@ -1,0 +1,21 @@
+<!-- directory/templates/directory/category_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category.name }} - Details</title>
+</head>
+<body>
+    <h1>{{ category.name }}</h1>
+    <p>Visits: {{ category.visits }}</p>
+    <p>Likes: {{ category.likes }}</p>
+
+    <h2>Pages:</h2>
+    <ul>
+        {% for page in pages %}
+            <li>{{ page.title }} - Views: {{ page.views }} <a href="{{ page.url }}" target="_blank">{{ page.url }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'index' %}">Back to Categories</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Form</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <div class="container">
+      <h1>Select Car Manufacturer and Model</h1>
+      <form method="POST">
+          {% csrf_token %}
+          <label for="manufacturer">Choose a Manufacturer:</label>
+          <select name="manufacturer" id="manufacturer">
+              {% for manufacturer in manufacturers %}
+                  <option value="{{ manufacturer }}">{{ manufacturer }}</option>
+              {% endfor %}
+          </select>
+          <label for="model">Model Name:</label>
+          <input type="text" name="model" id="model" required>
+          <button type="submit">Submit</button>
+      </form>
+  </div>
+</body>
+</html>

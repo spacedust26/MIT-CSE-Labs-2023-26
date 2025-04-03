@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publisher Information</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Publisher Information</h1>
+        
+        <h3>Publisher</h3>
+        <p><strong>Name:</strong> Scholastic Press</p>
+        <p><strong>Founded:</strong> 1920</p>
+        <p><strong>Headquarters:</strong> New York City, New York, USA</p>
+
+        <h3>About Scholastic Press</h3>
+        <p>Scholastic Press is a major publisher of children's books, young adult literature, and educational materials. They are known for publishing popular titles such as *Harry Potter*, *The Hunger Games*, and *Clifford the Big Red Dog*. Scholastic's focus is on books that inspire, educate, and engage young readers, with a particular focus on fostering a love of reading.</p>
+        
+        <h3>Other Notable Publications</h3>
+        <ul>
+            <li>Harry Potter Series by J.K. Rowling</li>
+            <li>Clifford the Big Red Dog by Norman Bridwell</li>
+            <li>Percy Jackson Series by Rick Riordan</li>
+            <li>The Giver by Lois Lowry</li>
+        </ul>
+
+        <p><a href="{% url 'home' %}">Back to Home</a></p>
+    </div>
+    <footer>
+        <p>Book Information Website</p>
+    </footer>
+</body>
+</html>
