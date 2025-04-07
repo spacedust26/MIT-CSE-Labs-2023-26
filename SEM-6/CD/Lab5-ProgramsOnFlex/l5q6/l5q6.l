@@ -1,38 +1,34 @@
+// Convert uppercase characters to lowercase characters of C file excluding the characters present in the comment
+
 %{
 #include <stdio.h>
 #include <ctype.h>
 %}
  
-%start COMMENT
- 
+%x COMMENT
+%x LINECOMMENT
+
 %%
- 
-"//".*               { printf("%s", yytext); }
-"/*"                 { BEGIN(COMMENT); printf("%s", yytext); }
-<COMMENT>"*/"       { BEGIN(INITIAL); printf("%s", yytext); }
-<COMMENT>.           { printf("%s", yytext); }
-<COMMENT>\n          { printf("%s", yytext); }
- 
-[a-z]                { putchar(yytext[0]); }
-[A-Z]                { putchar(tolower(yytext[0])); }
- 
-.                     { putchar(yytext[0]); }
- 
+"/*" {BEGIN(COMMENT); printf("/*");}
+"//" {BEGIN(LINECOMMENT); printf("//");}
+<COMMENT>{
+  "*/" {BEGIN(INITIAL); printf("*/");}
+  .|\n {putchar(yytext[0]);}
+}
+<LINECOMMENT>{
+  \n {BEGIN(INITIAL); putchar('\n');}
+  . {putchar(yytext[0]);}
+}
+[A-Z] {putchar(tolower(yytext[0]));}
+.|\n {putchar(yytext[0]);}
 %%
- 
-int main(int argc, char *argv[]) {
-if (argc > 1) {
-FILE *file = fopen(argv[1], "r");
-if (file) {
-yyin = file;
-yylex();
-fclose(file);
-} else {
-perror("Error opening file");
+
+int yywrap(){
+  return 1;
 }
-} else {
-yylex();
+
+int main(int argc, char **argv){
+  yyin = fopen(argv[1], "r");
+  yylex();
+  return 0;
 }
-return 0;
-}
-int yywrap(){ return 1; }
