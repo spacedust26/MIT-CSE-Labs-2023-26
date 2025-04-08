@@ -21,7 +21,7 @@ void invalid() {
     exit(0);
 }
 void valid(){
-    printf("----------------------------SUCCESS--------------------\n");
+    printf("-----------------SUCCESS-----------------\n");
     exit(0);
 }
 void E(){
@@ -67,4 +67,5 @@ int main(){
     E();
     if(str[curr] == '$') valid();
     else invalid();
+    return 0;
 }

@@ -1,201 +1,248 @@
+// The following C lexical analyzer handles keywords, identifiers, numbers, special symbols, arithmetic operators, relational operators, string literals, logical operators. It skips comments and preprocessor directives
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
-struct token {
-    char lexeme[64];
-    int row, col;
+struct token
+{
+    char lexeme[30];
     char type[30];
+    int row, col;
 };
 
-static int row = 1, col = 1;
-char specialsymbols[] = {'?', ';', ':', ',', '(', ')', '{', '}', '.'};
-char *Keywords[] = {"for", "if", "else", "while", "do", "break", "continue", "return", "int", "double", "float", "char", "long", "short", "sizeof", "typedef", "switch", "case", "struct", "const", "void", "exit"};
-char arithmeticsymbols[] = {'*','+','-','/', '%'};
+int row = 1, col = 1;
 
-int isKeyword(char *str) {
-    for (int i = 0; i < sizeof(Keywords) / sizeof(char *); i++) {
-        if (strcmp(str, Keywords[i]) == 0)
+char *keywords[] = {"int", "float", "char", "if", "else", "while", "return", "for", "do", "switch", "case", "break", "continue", "void", "struct", "double", "long", "short", "sizeof", "typedef", "const", "exit", NULL};
+
+int isKeyword(char *str)
+{
+    for (int i = 0; keywords[i] != NULL; i++)
+    {
+        if (strcmp(str, keywords[i]) == 0)
             return 1;
     }
     return 0;
 }
 
-int charBelongsTo(int c, char *arr, int len) {
-    for (int i = 0; i < len; i++) {
-        if (c == arr[i])
-            return 1;
-    }
-    return 0;
-}
+struct token getNextToken(FILE *fp)
+{
+    struct token tkn;
+    tkn.lexeme[0] = '\0';
+    tkn.type[0] = '\0';
 
-void fillToken(struct token *tkn, char c, int row, int col, char *type) {
-    tkn->row = row;
-    tkn->col = col;
-    strcpy(tkn->type, type);
-    tkn->lexeme[0] = c;
-    tkn->lexeme[1] = '\0';
-}
+    int c = fgetc(fp);
 
-void newLine() {
-    ++row;
-    col = 1;
-}
-
-struct token getNextToken(FILE *fin) {
-    int c, d;
-    struct token tkn = {.row = -1};
-    int gotToken = 0;
-
-    while (!gotToken && (c = getc(fin)) != EOF) {
-        // SKIP COMMENTS
-        if (c == '/') {
-            d = getc(fin);
-            if (d == '/') {  // Skip single-line comments
-                while ((c = getc(fin)) != EOF && c != '\n') ++col;
-                if (c == '\n') newLine();
-                continue;
-            } else if (d == '*') {  // Skip multi-line comments
-                do {
-                    if (c == '\n') newLine();
-                    while ((c = getc(fin)) != EOF && c != '*') {
-                        if (c == '\n') newLine();
-                    }
-                    if (c == '*') d = getc(fin);
-                } while (c != EOF && d != '/');
-                continue;
-            } else {
-                fseek(fin, -1, SEEK_CUR);  // Not a comment
-            }
+    // Skip whitespaces
+    while (isspace(c))
+    {
+        if (c == '\n')
+        {
+            row++;
+            col = 1;
         }
+        else
+            col++;
+        c = fgetc(fp);
+    }
 
-        // Handle preprocessor directives (lines starting with '#')
-        if (c == '#') {
-            tkn.row = row;
-            tkn.col = col++;
-            tkn.lexeme[0] = '#';
-            int k = 1;
-            while ((c = getc(fin)) != '\n' && !isspace(c)) {
-                tkn.lexeme[k++] = c;
-                col++;
-            }
-            tkn.lexeme[k] = '\0';  // Null-terminate the lexeme
+    // EOF
+    if (c == EOF)
+    {
+        strcpy(tkn.type, "EOF");
+        return tkn;
+    }
 
-            // Process #include directive
-            if (strcmp(tkn.lexeme, "#include") == 0) {
-                c = getc(fin); ++col;
-                if (c == '<' || c == '"') {
-                    while ((c = getc(fin)) != EOF && c != (c == '<' ? '>' : '"')) ++col;
-                    if (c != EOF) {
-                        while ((c = getc(fin)) != '\n') ++col;  // Skip the rest of the line
-                        newLine();
-                    }
-                    continue;
-                } else {
-                    // Invalid #include
-                    strcpy(tkn.type, "InvalidDirective");
-                    strcat(tkn.lexeme, "<invalid>");
-                    while ((c = getc(fin)) != '\n') {
-                        strncat(tkn.lexeme, (char*)&c, 1);
-                        ++col;
-                    }
-                    newLine();
-                    gotToken = 1;
+    // Skip preprocessor directives
+    if (c == '#')
+    {
+        while ((c = fgetc(fp)) != EOF && c != '\n')
+            ;
+        row++;
+        col = 1;
+        return getNextToken(fp);
+    }
+
+    // Skip comments
+    if (c == '/')
+    {
+        int d = fgetc(fp);
+        if (d == '/')
+        {
+            while ((c = fgetc(fp)) != EOF && c != '\n')
+                ;
+            row++;
+            col = 1;
+            return getNextToken(fp);
+        }
+        else if (d == '*')
+        {
+            int prev = 0;
+            while ((c = fgetc(fp)) != EOF)
+            {
+                if (c == '\n')
+                {
+                    row++;
+                    col = 1;
                 }
+                else
+                    col++;
+                if (prev == '*' && c == '/')
+                    break;
+                prev = c;
             }
+            col++;
+            return getNextToken(fp);
         }
-
-        // Process special symbols
-        if (charBelongsTo(c, specialsymbols, sizeof(specialsymbols) / sizeof(char))) {
-            fillToken(&tkn, c, row, col, (char[]){c, '\0'});
-            gotToken = 1;
-            ++col;
-        }
-
-        // Process arithmetic operators
-        else if (charBelongsTo(c, arithmeticsymbols, sizeof(arithmeticsymbols) / sizeof(char))) {
-            d = getc(fin);
-            if (d == '=' || (c == '+' || c == '-') && d == c) {
-                fillToken(&tkn, c, row, col, (char[]){c, c == '=' ? '=' : '\0', '\0'});
-                col += 2;
-            } else {
-                fillToken(&tkn, c, row, col, (char[]){c, '\0'});
-                ++col;
-                fseek(fin, -1, SEEK_CUR);
-            }
-            gotToken = 1;
-        }
-
-        // Process relational operators
-        else if (c == '=' || c == '<' || c == '>' || c == '!') {
-            d = getc(fin);
-            if (d == '=') {
-                fillToken(&tkn, c, row, col, (char[]){c, '=', '\0'});
-                col += 2;
-            } else {
-                fillToken(&tkn, c, row, col, (char[]){c, '\0'});
-                ++col;
-                fseek(fin, -1, SEEK_CUR);
-            }
-            gotToken = 1;
-        }
-
-        // Process numbers
-        else if (isdigit(c)) {
-            tkn.row = row;
-            tkn.col = col++;
-            tkn.lexeme[0] = c;
-            int k = 1;
-            while ((c = getc(fin)) != EOF && isdigit(c)) {
-                tkn.lexeme[k++] = c;
-                ++col;
-            }
-            tkn.lexeme[k] = '\0';
-            strcpy(tkn.type, "Number");
-            gotToken = 1;
-            fseek(fin, -1, SEEK_CUR);
-        }
-
-        // Discard whitespaces
-        else if (isspace(c)) {
-            ++col;
-        }
-
-        // Process keywords and identifiers
-        else if (isalpha(c) || c == '_') {
-            tkn.row = row;
-            tkn.col = col++;
-            tkn.lexeme[0] = c;
-            int k = 1;
-            while ((c = getc(fin)) != EOF && isalnum(c)) {
-                tkn.lexeme[k++] = c;
-                ++col;
-            }
-            tkn.lexeme[k] = '\0';
-            strcpy(tkn.type, isKeyword(tkn.lexeme) ? "Keyword" : "Identifier");
-            gotToken = 1;
-            fseek(fin, -1, SEEK_CUR);
-        }
-
-        // Process String Literals
-        else if (c == '"') {
-            tkn.row = row;
-            tkn.col = col;
-            strcpy(tkn.type, "StringLiteral");
-            int k = 1;
-            tkn.lexeme[0] = '"';
-            while ((c = getc(fin)) != EOF && c != '"') {
-                tkn.lexeme[k++] = c;
-                ++col;
-            }
-            tkn.lexeme[k] = '"';
-            gotToken = 1;
-        }
-
-        else {
-            ++col;
-        }
+        else
+            ungetc(d, fp);
     }
+
+    // Save position for the actual token
+    tkn.row = row;
+    tkn.col = col;
+
+    // String literals
+    if (c == '"')
+    {
+        int i = 0;
+        tkn.lexeme[i++] = '"';
+        col++;
+        while ((c = fgetc(fp)) != EOF && c != '"')
+        {
+            if (c == '\n')
+            {
+                row++;
+                col = 1;
+            }
+            else
+                col++;
+            tkn.lexeme[i++] = c;
+        }
+        tkn.lexeme[i++] = '"';
+        tkn.lexeme[i] = '\0';
+        col++;
+        strcpy(tkn.type, "StringLiteral");
+        return tkn;
+    }
+
+    // Identifier or Keyword
+    if (isalpha(c) || c == '_')
+    {
+        int i = 0;
+        tkn.lexeme[i++] = c;
+        col++;
+        while ((c = fgetc(fp)) != EOF && (isalnum(c) || c == '_'))
+        {
+            col++;
+            tkn.lexeme[i++] = c;
+        }
+        tkn.lexeme[i] = '\0';
+        ungetc(c, fp);
+        if (isKeyword(tkn.lexeme))
+            strcpy(tkn.type, "Keyword");
+        else
+            strcpy(tkn.type, "Identifier");
+        return tkn;
+    }
+
+    // Numbers
+    if (isdigit(c))
+    {
+        int i = 0;
+        tkn.lexeme[i++] = c;
+        col++;
+        while ((c = fgetc(fp)) != EOF && isdigit(c))
+        {
+            col++;
+            tkn.lexeme[i++] = c;
+        }
+        tkn.lexeme[i] = '\0';
+        ungetc(c, fp);
+        strcpy(tkn.type, "Number");
+        return tkn;
+    }
+
+    // Relational, Logical, Assignment
+    if (c == '=' || c == '!' || c == '<' || c == '>' || c == '&' || c == '|')
+    {
+        int d = fgetc(fp);
+        col++;
+        if ((c == '&' && d == '&') || (c == '|' && d == '|'))
+        {
+            tkn.lexeme[0] = c;
+            tkn.lexeme[1] = d;
+            tkn.lexeme[2] = '\0';
+            col++;
+            strcpy(tkn.type, "LogicalOperator");
+        }
+        else if (d == '=')
+        {
+            tkn.lexeme[0] = c;
+            tkn.lexeme[1] = d;
+            tkn.lexeme[2] = '\0';
+            if (c == '=' || c == '!' || c == '<' || c == '>')
+                strcpy(tkn.type, "RelationalOperator");
+            else
+                strcpy(tkn.type, "Operator");
+            col++;
+        }
+        else if (c == '!')
+        {
+            tkn.lexeme[0] = c;
+            tkn.lexeme[1] = '\0';
+            strcpy(tkn.type, "LogicalOperator");
+            ungetc(d, fp);
+        }
+        else if (c == '<' || c == '>')
+        {
+            tkn.lexeme[0] = c;
+            tkn.lexeme[1] = '\0';
+            strcpy(tkn.type, "RelationalOperator");
+            ungetc(d, fp);
+        }
+        else if (c == '=')
+        {
+            tkn.lexeme[0] = c;
+            tkn.lexeme[1] = '\0';
+            strcpy(tkn.type, "AssignmentOperator");
+            ungetc(d, fp);
+        }
+        else
+        {
+            tkn.lexeme[0] = c;
+            tkn.lexeme[1] = '\0';
+            strcpy(tkn.type, "Unknown");
+            ungetc(d, fp);
+        }
+        return tkn;
+    }
+
+    // Arithmetic
+    if (strchr("+-*/%", c))
+    {
+        tkn.lexeme[0] = c;
+        tkn.lexeme[1] = '\0';
+        strcpy(tkn.type, "ArithmeticOperator");
+        col++;
+        return tkn;
+    }
+
+    // Special Symbols
+    if (strchr("()[]{},;:$#@'", c))
+    {
+        tkn.lexeme[0] = c;
+        tkn.lexeme[1] = '\0';
+        strcpy(tkn.type, "SpecialSymbol");
+        col++;
+        return tkn;
+    }
+
+    // Unknown character
+    tkn.lexeme[0] = c;
+    tkn.lexeme[1] = '\0';
+    strcpy(tkn.type, "Unknown");
+    col++;
     return tkn;
 }

@@ -1,6 +1,6 @@
 // S→a | > | ( T )
 // T→T, S|S
-
+// After removing left recursion
 // S→a | > | ( T )
 // T→ST'
 // T'-> ,ST'| epsilon
