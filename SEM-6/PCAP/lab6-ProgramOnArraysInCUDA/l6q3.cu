@@ -1,67 +1,38 @@
+// Exercise 3 - Write a program in CUDA to perform odd even transposition sort in parallel
+
 #include <stdio.h>
-#include <stdlib.h>
-#include <cuda.h>
-#include <cuda_runtime.h>
-void intswap(int &A, int &B) {
-    int temp = A;
-    A = B;
-    B = temp;
-}
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
 
-__global__ void sort(int *c, int *count) {
-    int l;
-    if (*count % 2 == 0)
-        l = *count / 2;
-    else
-        l = (*count / 2) + 1;
+__global__ void oddEvenKernel(int *d_arr, int n, int phase) {
+    int idx = threadIdx.x + blockDim.x * blockIdx.x;
+    int i = phase % 2 == 0 ? 2 * idx : 2 * idx + 1;
 
-    for (int i = 0; i < l; i++) {
-        if (threadIdx.x < (*count - 1)) {
-            if (c[threadIdx.x] > c[threadIdx.x + 1])
-                intswap(c[threadIdx.x], c[threadIdx.x + 1]);
+    if (i + 1 < n) {
+        if (d_arr[i] > d_arr[i + 1]) {
+            // Swap elements
+            int temp = d_arr[i];
+            d_arr[i] = d_arr[i + 1];
+            d_arr[i + 1] = temp;
         }
-
-        if (threadIdx.x < (*count - 1)) {
-            if (c[threadIdx.x] > c[threadIdx.x + 1])
-                intswap(c[threadIdx.x], c[threadIdx.x + 1]);
-        }
-
-    } 
+    }
 }
 
 int main() {
-    int *a, *b;
-    int n;
-    printf("Enter size of array: ");
-    scanf("%d", &n);
-    int N = sizeof(int) * n;
-    a = (int *)malloc(N);
-    b = (int *)malloc(N);
-    printf("Enter the elements of array: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &a[i]);
+    const int n = 10;
+    int h_arr[n] = {7,5,4,8,9,1,2,3,6,2};
+    int *d_arr;
+    cudaMalloc((void**)&d_arr, n * sizeof(int));
+    cudaMemcpy(d_arr, h_arr, n * sizeof(int), cudaMemcpyHostToDevice);
+    
+    for (int phase = 0; phase < n; phase++) {
+        oddEvenKernel<<<ceil((float)n/512), 512>>>(d_arr, n, phase);
+        cudaDeviceSynchronize();
     }
 
-    int *d_A, *count;
-    cudaMalloc(&d_A, N);
-    cudaMalloc((void **)&count, sizeof(int));
-    cudaMemcpy(d_A, a, N, cudaMemcpyHostToDevice);
-    cudaMemcpy(count, &n, sizeof(int), cudaMemcpyHostToDevice);
-    
-    sort<<<1, n>>>(d_A, count);
-    
-    cudaMemcpy(b, d_A, N, cudaMemcpyDeviceToHost); 
-    printf("\nSORTED ARRAY: \n");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", b[i]);
-    }
-
-    printf("\n");
-
-    free(a);
-    free(b);
-    cudaFree(d_A);
-    cudaFree(count);
-
+    cudaMemcpy(h_arr, d_arr, n * sizeof(int), cudaMemcpyDeviceToHost);
+    printf("Sorted array: ");
+    for (int i = 0; i < n; i++) printf("%d ", h_arr[i]);
+    cudaFree(d_arr);
     return 0;
 }
