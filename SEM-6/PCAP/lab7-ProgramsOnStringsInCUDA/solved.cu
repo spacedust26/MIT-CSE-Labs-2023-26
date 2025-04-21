@@ -1,11 +1,11 @@
-// A CUDA program which takes a string as input and determines the number of occurances of a character 'a' in the string. This program uses atomicAdd() function.
+// Solved Exercise - A CUDA program which takes a string as input and determines the number of occurances of a character 'a' in the string. This program uses atomicAdd() function.
 
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#define N 1024
+#define N 256
 
 __global__ void CUDACount(char *A, unsigned int *d_count){
     int i = threadIdx.x;
