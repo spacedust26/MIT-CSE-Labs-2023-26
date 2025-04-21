@@ -1,3 +1,5 @@
+// Lab exercise 1 - Write a program in CUDA to perform matrix multiplication using 2D grid and 2D block
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <cuda_runtime.h>

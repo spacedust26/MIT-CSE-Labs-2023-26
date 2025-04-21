@@ -1,3 +1,5 @@
+//Lab Exercise 2 - Write a program in CUDA to improve the performance of 1D parallel convolution using constant memory
+
 #include "cuda_runtime.h"
 #include<stdio.h>
 #include "device_launch_parameters.h"
