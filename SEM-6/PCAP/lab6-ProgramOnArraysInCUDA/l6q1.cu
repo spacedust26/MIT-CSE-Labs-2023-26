@@ -1,4 +1,4 @@
-// Exercise 1 - Write a program in CUDA which performs convolution operation on one-dimensional imput array N of size width using a mask array M of size mask_width to produce the resultant one dimensional array P of size width
+// Exercise 1 - Write a program in CUDA which performs convolution operation on one-dimensional input array N of size width using a mask array M of size mask_width to produce the resultant one dimensional array P of size width
 
 #include <stdio.h>
 #include "cuda_runtime.h"

@@ -16,10 +16,8 @@ int main(){
     char A[N];
     char *d_A;
     unsigned int *count = 0, *d_count, *result;
-
     printf("Enter a string: ");
     scanf("%s", A);
-
     result = (unsigned int*)malloc(sizeof(unsigned int)); 
 
     cudaEvent_t start, stop;

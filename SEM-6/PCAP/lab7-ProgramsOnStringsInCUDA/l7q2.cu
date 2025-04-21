@@ -6,39 +6,47 @@
 #include <stdio.h>
 #include <string.h>
 
-__global__ void pattern(char* s,int len,char* rs){
-    int gtid = threadIdx.x;
-    int pos = (gtid *(2*len + (gtid-1)*-1))/2; 
-    int finlen = len - gtid;
-    for(int i=0;i<finlen;i++){
-        rs[pos++]=s[i];
+__global__ void buildRS(char* s, char* rs, int len) {
+    int i = threadIdx.x;
+    // Calculate starting offset in the output string
+    int offset = 0;
+    for (int j = 0; j < i; j++) {
+        offset += len - j;
     }
-
+    // Copy first (len - i) characters of s to rs at offset
+    for (int j = 0; j < len - i; j++) {
+        rs[offset + j] = s[j];
+    }
 }
 
-int main(){
-    char s[20];
-    printf("Input string s: ");
-    scanf("%s",s);
-
+int main() {
+    char s[100];
+    printf("Enter string S: ");
+    scanf("%s", s);
     int len = strlen(s);
-    int rslen = len*(len+1)/2;
-    char rs[rslen];
-    char * d_s;
-    char * d_rs;
 
-    cudaMalloc((void**)&d_s,len*sizeof(char));
-    cudaMalloc((void**)&d_rs,rslen*sizeof(char));
+    int rs_len = len * (len + 1) / 2;  // total output size
+    char* rs = (char*)malloc((rs_len + 1) * sizeof(char));  // +1 for '\0'
+    rs[rs_len] = '\0';
 
-    cudaMemcpy(d_s,s,len*sizeof(char),cudaMemcpyHostToDevice);
+    // Allocate device memory
+    char *d_s, *d_rs;
+    cudaMalloc((void**)&d_s, len * sizeof(char));
+    cudaMalloc((void**)&d_rs, rs_len * sizeof(char));
 
-    pattern<<<1,len>>>(d_s,len,d_rs);
+    cudaMemcpy(d_s, s, len * sizeof(char), cudaMemcpyHostToDevice);
 
-    cudaMemcpy(rs,d_rs,rslen*sizeof(char),cudaMemcpyDeviceToHost);
-    rs[rslen]='\0';
-    printf("Output string rs: %s\n",rs);
+    // Launch kernel
+    buildRS<<<1, len>>>(d_s, d_rs, len);
+    cudaDeviceSynchronize();
+
+    cudaMemcpy(rs, d_rs, rs_len * sizeof(char), cudaMemcpyDeviceToHost);
+
+    printf("Output string RS: %s\n", rs);
 
     cudaFree(d_s);
     cudaFree(d_rs);
+    free(rs);
+
     return 0;
 }

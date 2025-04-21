@@ -1,47 +1,62 @@
 // Solved Exercise - Write a program in CUDA to find the transpose of a matrix in parallel
 
-#include "cuda_runtime.h"
-#include "device_launch_parameters.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
 
-__global__ void transpose(int *a, int *t){
-    int n = threadIdx.x;
-    int m = blockIdx.x;
-    int size = blockDim.x;
-    int size1 = gridDim.x;
-    t[n*size1+m] = a[m*size+n];
+__global__ void transpose(int* input, int* output, int rows, int cols) {
+    int x = blockIdx.x * blockDim.x + threadIdx.x; // column index
+    int y = blockIdx.y * blockDim.y + threadIdx.y; // row index
+
+    if (x < cols && y < rows) {
+        output[x * rows + y] = input[y * cols + x];
+    }
 }
 
-int main(){
-    int *a, *t, m, n;
-    int *d_a, *d_t;
-    printf("Enter the value of m: ");
-    scanf("%d", &m);
-    printf("Enter the value of n: ");
-    scanf("%d", &n);
-    int size = sizeof(int) * m * n;
-    a = (int *) malloc(size);
-    t = (int *) malloc(size);
-    printf("Enter input matrix: ");
-    for(int i = 0; i < m*n; i++) scanf("%d", &a[i]);
+int main() {
+    int rows, cols;
+    // Get matrix size from user
+    printf("Enter number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter number of columns: ");
+    scanf("%d", &cols);
 
-    cudaMalloc((void**)&d_a, size);
-    cudaMalloc((void**)&d_t, size);
-    cudaMemcpy(d_a, a, size, cudaMemcpyHostToDevice);
-    transpose<<<m,n>>>(d_a, d_t);
-    cudaMemcpy(t, d_t, size, cudaMemcpyDeviceToHost);
+    int size = rows * cols;
+    int* h_input = (int*)malloc(size * sizeof(int));
+    int* h_output = (int*)malloc(size * sizeof(int));
 
-    printf("Result vector is:\n");
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m; j++){
-            printf("%d\t",t[i*m+j]);
+    // Get matrix elements from user
+    printf("Enter %d elements (row-wise):\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &h_input[i]);
+    }
+
+    int *d_input, *d_output;
+    cudaMalloc((void**)&d_input, size * sizeof(int));
+    cudaMalloc((void**)&d_output, size * sizeof(int));
+
+    cudaMemcpy(d_input, h_input, size * sizeof(int), cudaMemcpyHostToDevice);
+
+    dim3 threadsPerBlock(16, 16);
+    dim3 blocksPerGrid((cols + 15) / 16, (rows + 15) / 16);
+    transpose<<<blocksPerGrid, threadsPerBlock>>>(d_input, d_output, rows, cols);
+
+    cudaMemcpy(h_output, d_output, size * sizeof(int), cudaMemcpyDeviceToHost);
+
+    // Display transposed matrix
+    printf("\nTransposed Matrix (%dx%d):\n", cols, rows);
+    for (int i = 0; i < cols; i++) {
+        for (int j = 0; j < rows; j++) {
+            printf("%d ", h_output[i * rows + j]);
         }
         printf("\n");
     }
+    // Cleanup
+    cudaFree(d_input);
+    cudaFree(d_output);
+    free(h_input);
+    free(h_output);
 
-    getchar();
-    cudaFree(d_a);
-    cudaFree(d_t);
     return 0;
 }

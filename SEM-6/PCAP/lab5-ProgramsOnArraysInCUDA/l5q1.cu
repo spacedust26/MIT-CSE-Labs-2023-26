@@ -35,7 +35,7 @@ int main(){
     cudaMemcpy(d_b, b, n * size, cudaMemcpyHostToDevice);
 
     //launch add() kernal on GPU for block size as N
-    vector_additionNblocks<<<n,1>>>(d_a, d_b, d_c); //1 
+    vector_additionNblocks<<<n,1>>>(d_a, d_b, d_c);
 
     //copy results back to host
     cudaMemcpy(c, d_c, n * size, cudaMemcpyDeviceToHost);
@@ -48,7 +48,7 @@ int main(){
     printf("\n");
 
     //launch add() kernal on GPU for N threads
-    vector_additionNthreads<<<1,n>>>(d_a, d_b, d_c); //1 
+    vector_additionNthreads<<<1,n>>>(d_a, d_b, d_c); 
 
     //copy results back to host
     cudaMemcpy(c, d_c, n * size, cudaMemcpyDeviceToHost);
